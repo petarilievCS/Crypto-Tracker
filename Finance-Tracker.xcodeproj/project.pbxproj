@@ -60,14 +60,38 @@
 			children = (
 				E6A501512937DED100E5C36F /* AppDelegate.swift */,
 				E6A501532937DED100E5C36F /* SceneDelegate.swift */,
-				E6A501552937DED100E5C36F /* ViewController.swift */,
-				E6A501572937DED100E5C36F /* Main.storyboard */,
+				E6A5016A2937DF2500E5C36F /* Model */,
+				E6A501692937DF1C00E5C36F /* Views */,
+				E6A501682937DF0D00E5C36F /* Controllers */,
 				E6A5015D2937DED600E5C36F /* Assets.xcassets */,
 				E6A5015F2937DED600E5C36F /* LaunchScreen.storyboard */,
 				E6A501622937DED600E5C36F /* Info.plist */,
-				E6A5015A2937DED100E5C36F /* Finance_Tracker.xcdatamodeld */,
 			);
 			path = "Finance-Tracker";
+			sourceTree = "<group>";
+		};
+		E6A501682937DF0D00E5C36F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E6A501552937DED100E5C36F /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E6A501692937DF1C00E5C36F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E6A501572937DED100E5C36F /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E6A5016A2937DF2500E5C36F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E6A5015A2937DED100E5C36F /* Finance_Tracker.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
