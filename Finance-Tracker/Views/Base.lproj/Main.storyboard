@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gPS-BF-SaK">
     <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -17,55 +17,200 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dollarsign.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UYS-Mo-fJ1">
-                                <rect key="frame" x="59" y="94.666666666666629" width="276" height="250"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="Signature Green"/>
-                            </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-O2-R5F" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="58" y="413" width="279" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csM-SS-Nd4">
-                                <rect key="frame" x="60" y="583" width="277" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Signature Green"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign In">
-                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="24"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twy-pA-KYx">
-                                <rect key="frame" x="58" y="656" width="279" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign Up">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
-                                    <color key="baseForegroundColor" systemColor="systemGray2Color"/>
-                                </buttonConfiguration>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-El-zlh" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="55" y="497" width="282" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="67" translatesAutoresizingMaskIntoConstraints="NO" id="8rB-rr-apx">
+                                <rect key="frame" x="34" y="111.66666666666669" width="325" height="629"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dollarsign.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UYS-Mo-fJ1">
+                                        <rect key="frame" x="37.666666666666686" y="1.6666666666666572" width="250" height="247"/>
+                                        <color key="tintColor" name="Signature Green"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="250" id="ARG-Aq-fYh"/>
+                                            <constraint firstAttribute="width" constant="250" id="Vvp-pw-b7w"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6a5-S8-HN9">
+                                        <rect key="frame" x="0.0" y="317" width="325" height="312"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="i1h-cZ-a4g">
+                                                <rect key="frame" x="0.0" y="0.0" width="325" height="150"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-O2-R5F" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="325" height="69"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-El-zlh" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="81" width="325" height="69"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="325" id="QCf-Iv-I5q"/>
+                                                    <constraint firstAttribute="height" constant="150" id="abv-u3-paq"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qfc-MT-Wyg">
+                                                <rect key="frame" x="0.0" y="161.99999999999994" width="325" height="150"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csM-SS-Nd4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="325" height="69"/>
+                                                        <color key="backgroundColor" name="Signature Green"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Sign In">
+                                                            <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="22"/>
+                                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twy-pA-KYx">
+                                                        <rect key="frame" x="0.0" y="81" width="325" height="69"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Sign Up">
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                                            <color key="baseForegroundColor" systemColor="systemGray2Color"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <segue destination="kSx-Xh-jDo" kind="show" id="muV-8R-ZFO"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="9TR-BK-v0f"/>
+                                                    <constraint firstAttribute="width" constant="325" id="UBR-mU-nsn"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8rB-rr-apx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="3uu-aW-an8"/>
+                            <constraint firstItem="8rB-rr-apx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7HR-v4-Fqc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8rB-rr-apx" secondAttribute="bottom" constant="5" id="gD9-4t-SZ9"/>
+                            <constraint firstItem="8rB-rr-apx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jkD-nO-Shs"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="KMB-Pr-dvK"/>
                     <connections>
                         <outlet property="loginButton" destination="csM-SS-Nd4" id="YIj-bt-Vvn"/>
                         <outlet property="passwordField" destination="ky9-El-zlh" id="CiL-Lh-uRT"/>
+                        <outlet property="registerButton" destination="Twy-pA-KYx" id="ktb-BN-ZfM"/>
                         <outlet property="usernameField" destination="R3Y-O2-R5F" id="bIi-gI-y2W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="973.28244274809151" y="-2.1126760563380285"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="p5z-HL-sfo">
+            <objects>
+                <viewController id="kSx-Xh-jDo" customClass="RegisterViewController" customModule="Finance_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XES-m7-8vS">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="Jpx-gd-xY0">
+                                <rect key="frame" x="34" y="149.66666666666663" width="325" height="553"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-VZ-7Aq">
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="X8t-fa-4uz">
+                                        <rect key="frame" x="0.0" y="83" width="325" height="470"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SIE-kC-04x" userLabel="First Name" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="325" height="68.333333333333329"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="97Q-gr-bd8" userLabel="Last Name" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="80.333333333333343" width="325" height="68.333333333333343"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-Mail " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tVn-oZ-l4r" userLabel="Email" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="160.66666666666666" width="325" height="68.333333333333343"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aDZ-VA-eHW" userLabel="Password" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="241.00000000000003" width="325" height="68.333333333333343"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nij-AG-7AM" userLabel="Password #2 " customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="321.33333333333337" width="325" height="68.333333333333314"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLL-0Q-5BJ">
+                                                <rect key="frame" x="0.0" y="401.66666666666674" width="325" height="68.333333333333314"/>
+                                                <color key="backgroundColor" name="Signature Green"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Sign Up ">
+                                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="22"/>
+                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="325" id="cv2-sZ-qBa"/>
+                                            <constraint firstAttribute="height" constant="470" id="pkc-Xb-25J"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wm7-ib-b6C"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Jpx-gd-xY0" firstAttribute="centerY" secondItem="XES-m7-8vS" secondAttribute="centerY" id="piy-JU-VRN"/>
+                            <constraint firstItem="Jpx-gd-xY0" firstAttribute="centerX" secondItem="XES-m7-8vS" secondAttribute="centerX" id="xnM-NJ-owK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="q7u-dI-cut"/>
+                    <connections>
+                        <outlet property="emailField" destination="tVn-oZ-l4r" id="YxU-To-Dqo"/>
+                        <outlet property="firstNameField" destination="SIE-kC-04x" id="RSB-F9-JCP"/>
+                        <outlet property="lastNameField" destination="97Q-gr-bd8" id="05x-wq-zh0"/>
+                        <outlet property="passwordField" destination="aDZ-VA-eHW" id="kco-L3-VL5"/>
+                        <outlet property="passwordField2" destination="Nij-AG-7AM" id="Tge-tR-3AG"/>
+                        <outlet property="signUpButton" destination="OLL-0Q-5BJ" id="UlO-QC-qKP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SmO-CT-QRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1765.6488549618321" y="-2.1126760563380285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iBf-LL-MS2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gPS-BF-SaK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="q7D-zF-9aC">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="er7-TS-kjv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wGv-ee-jbI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="46.564885496183201" y="-2.1126760563380285"/>
         </scene>

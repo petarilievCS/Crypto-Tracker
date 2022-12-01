@@ -15,6 +15,8 @@
 		E6A5015E2937DED600E5C36F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6A5015D2937DED600E5C36F /* Assets.xcassets */; };
 		E6A501612937DED600E5C36F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A5015F2937DED600E5C36F /* LaunchScreen.storyboard */; };
 		E6A5016C293826CC00E5C36F /* UICustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5016B293826CC00E5C36F /* UICustomTextField.swift */; };
+		E6A5016E2938F75900E5C36F /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5016D2938F75900E5C36F /* K.swift */; };
+		E6A501722938FD5700E5C36F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501712938FD5700E5C36F /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		E6A501602937DED600E5C36F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6A501622937DED600E5C36F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6A5016B293826CC00E5C36F /* UICustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomTextField.swift; sourceTree = "<group>"; };
+		E6A5016D2938F75900E5C36F /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
+		E6A501712938FD5700E5C36F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 				E6A5015D2937DED600E5C36F /* Assets.xcassets */,
 				E6A5015F2937DED600E5C36F /* LaunchScreen.storyboard */,
 				E6A501622937DED600E5C36F /* Info.plist */,
+				E6A5016D2938F75900E5C36F /* K.swift */,
 			);
 			path = "Finance-Tracker";
 			sourceTree = "<group>";
@@ -76,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				E6A501552937DED100E5C36F /* WelcomeViewController.swift */,
+				E6A501712938FD5700E5C36F /* RegisterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -170,7 +176,9 @@
 			files = (
 				E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */,
 				E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */,
+				E6A501722938FD5700E5C36F /* RegisterViewController.swift in Sources */,
 				E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */,
+				E6A5016E2938F75900E5C36F /* K.swift in Sources */,
 				E6A5015C2937DED100E5C36F /* Finance_Tracker.xcdatamodeld in Sources */,
 				E6A5016C293826CC00E5C36F /* UICustomTextField.swift in Sources */,
 			);
@@ -325,8 +333,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -353,8 +360,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
