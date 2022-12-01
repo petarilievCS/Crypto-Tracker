@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501512937DED100E5C36F /* AppDelegate.swift */; };
 		E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501532937DED100E5C36F /* SceneDelegate.swift */; };
-		E6A501562937DED100E5C36F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501552937DED100E5C36F /* ViewController.swift */; };
+		E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501552937DED100E5C36F /* WelcomeViewController.swift */; };
 		E6A501592937DED100E5C36F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A501572937DED100E5C36F /* Main.storyboard */; };
 		E6A5015C2937DED100E5C36F /* Finance_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6A5015A2937DED100E5C36F /* Finance_Tracker.xcdatamodeld */; };
 		E6A5015E2937DED600E5C36F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6A5015D2937DED600E5C36F /* Assets.xcassets */; };
 		E6A501612937DED600E5C36F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A5015F2937DED600E5C36F /* LaunchScreen.storyboard */; };
+		E6A5016C293826CC00E5C36F /* UICustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5016B293826CC00E5C36F /* UICustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E6A5014E2937DED100E5C36F /* Finance-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finance-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A501512937DED100E5C36F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6A501532937DED100E5C36F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E6A501552937DED100E5C36F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E6A501552937DED100E5C36F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		E6A501582937DED100E5C36F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6A5015B2937DED100E5C36F /* Finance_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Finance_Tracker.xcdatamodel; sourceTree = "<group>"; };
 		E6A5015D2937DED600E5C36F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6A501602937DED600E5C36F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6A501622937DED600E5C36F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6A5016B293826CC00E5C36F /* UICustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +75,7 @@
 		E6A501682937DF0D00E5C36F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E6A501552937DED100E5C36F /* ViewController.swift */,
+				E6A501552937DED100E5C36F /* WelcomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				E6A501572937DED100E5C36F /* Main.storyboard */,
+				E6A5016B293826CC00E5C36F /* UICustomTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,10 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6A501562937DED100E5C36F /* ViewController.swift in Sources */,
+				E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */,
 				E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */,
 				E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */,
 				E6A5015C2937DED100E5C36F /* Finance_Tracker.xcdatamodeld in Sources */,
+				E6A5016C293826CC00E5C36F /* UICustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
