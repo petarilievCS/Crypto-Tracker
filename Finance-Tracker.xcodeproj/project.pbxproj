@@ -22,6 +22,7 @@
 		E6A5017C293915B500E5C36F /* AssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6A5017A293915B500E5C36F /* AssetCell.xib */; };
 		E6A5017E293A58F600E5C36F /* CryptoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5017D293A58F600E5C36F /* CryptoViewController.swift */; };
 		E6A50180293A5AF100E5C36F /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5017F293A5AF100E5C36F /* StocksViewController.swift */; };
+		E6A50182293A5D6E00E5C36F /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50181293A5D6E00E5C36F /* GraphViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		E6A5017A293915B500E5C36F /* AssetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetCell.xib; sourceTree = "<group>"; };
 		E6A5017D293A58F600E5C36F /* CryptoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoViewController.swift; sourceTree = "<group>"; };
 		E6A5017F293A5AF100E5C36F /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
+		E6A50181293A5D6E00E5C36F /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				E6A501732939037400E5C36F /* FavoritesViewController.swift */,
 				E6A5017D293A58F600E5C36F /* CryptoViewController.swift */,
 				E6A5017F293A5AF100E5C36F /* StocksViewController.swift */,
+				E6A50181293A5D6E00E5C36F /* GraphViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				E6A501742939037400E5C36F /* FavoritesViewController.swift in Sources */,
 				E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */,
 				E6A5016E2938F75900E5C36F /* K.swift in Sources */,
+				E6A50182293A5D6E00E5C36F /* GraphViewController.swift in Sources */,
 				E6A5015C2937DED100E5C36F /* Finance_Tracker.xcdatamodeld in Sources */,
 				E6A5016C293826CC00E5C36F /* UICustomTextField.swift in Sources */,
 			);

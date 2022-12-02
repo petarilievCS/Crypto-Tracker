@@ -245,6 +245,54 @@
             </objects>
             <point key="canvasLocation" x="4466.4122137404574" y="-2.1126760563380285"/>
         </scene>
+        <!--Graph-->
+        <scene sceneID="abZ-h6-wWn">
+            <objects>
+                <viewController title="Graph" id="Aep-eb-tai" customClass="GraphViewController" customModule="Finance_Tracker" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cbK-9L-MJV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="APPL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WR5-i7-CeP">
+                                <rect key="frame" x="18" y="114" width="104" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Apple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5F7-yz-pqv">
+                                <rect key="frame" x="18" y="159" width="68" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$146.37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cN-pV-Z1c">
+                                <rect key="frame" x="209" y="114" width="162" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-2.40%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afu-28-qap">
+                                <rect key="frame" x="281" y="159" width="90" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" name="Signature Red"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="g5X-hL-pnt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="APPL" id="Ohv-0q-WBg">
+                        <barButtonItem key="rightBarButtonItem" image="heart" catalog="system" id="KAP-SV-xaY"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="03k-5b-FjP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5283" y="-2"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="iBf-LL-MS2">
             <objects>
@@ -253,6 +301,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q7D-zF-9aC">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="Signature Green"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -272,6 +321,9 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="ChL-Mp-fz5">
                                 <color key="tintColor" name="Signature Green"/>
+                                <connections>
+                                    <segue destination="Aep-eb-tai" kind="show" id="K6Q-wt-oBZ"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="dollarsign" catalog="system" id="pOM-Fm-bsx">
                                 <color key="tintColor" name="Signature Green"/>
@@ -401,15 +453,23 @@
     <inferredMetricsTieBreakers>
         <segue reference="M63-tM-O7r"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" name="Signature Green"/>
     <resources>
         <image name="bitcoinsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="dollarsign" catalog="system" width="89" height="128"/>
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="dollarsign.square" catalog="system" width="128" height="114"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <namedColor name="Signature Green">
             <color red="0.15294117647058825" green="0.68235294117647061" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Signature Red">
+            <color red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
