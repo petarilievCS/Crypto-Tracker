@@ -9,6 +9,13 @@ import UIKit
 
 class AssetCell: UITableViewCell {
 
+    @IBOutlet weak var logoImaeView: UIImageView!
+    @IBOutlet weak var circleImageView: UIImageView!
+    @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var companyLabel: UILabel!
+    @IBOutlet weak var percentLabel: UILabel!
+    
+    @IBOutlet weak var priceLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

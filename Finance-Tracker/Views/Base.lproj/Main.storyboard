@@ -203,11 +203,11 @@
             </objects>
             <point key="canvasLocation" x="1765.6488549618321" y="-2.1126760563380285"/>
         </scene>
-        <!--Stocks-->
+        <!--Favorites-->
         <scene sceneID="5Np-Dd-ikO">
             <objects>
-                <tableViewController id="G7e-ge-7uD" customClass="StocksViewController" customModule="Finance_Tracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="0P5-oR-AEL">
+                <tableViewController id="G7e-ge-7uD" customClass="FavoritesViewController" customModule="Finance_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="0P5-oR-AEL">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -221,10 +221,10 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssetCell" id="wjC-bY-wxY" customClass="AssetCell" customModule="Finance_Tracker">
-                                <rect key="frame" x="0.0" y="94" width="393" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="94" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wjC-bY-wxY" id="Qjv-Yt-p7u">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -234,12 +234,12 @@
                             <outlet property="delegate" destination="G7e-ge-7uD" id="9w0-Oi-YyY"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Stocks" id="9FH-f2-7Zs">
-                        <imageReference key="image" image="dollarsign.square.fill" catalog="system" symbolScale="large"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="9FH-f2-7Zs">
+                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
                         <color key="badgeColor" name="Signature Green"/>
-                        <imageReference key="selectedImage" image="dollarsign.square.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="heart.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Stocks" id="Jkh-Ff-8hR"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="Jkh-Ff-8hR"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Glv-qn-0vh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -279,6 +279,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WP3-cT-5kp">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="Signature Green"/>
@@ -287,20 +288,125 @@
                     </tabBar>
                     <connections>
                         <segue destination="G7e-ge-7uD" kind="relationship" relationship="viewControllers" id="5vu-zF-Ifr"/>
+                        <segue destination="vkJ-9T-mEX" kind="relationship" relationship="viewControllers" id="BzI-66-bLv"/>
+                        <segue destination="boB-eE-zzv" kind="relationship" relationship="viewControllers" id="uUz-FJ-qax"/>
+                        <segue destination="6ke-lA-xhu" kind="relationship" relationship="viewControllers" id="sOx-vk-PRu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wvt-35-yd7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3539.6946564885493" y="-2.1126760563380285"/>
         </scene>
+        <!--Crypto-->
+        <scene sceneID="RS2-e5-vL8">
+            <objects>
+                <tableViewController id="vkJ-9T-mEX" customClass="CryptoViewController" customModule="Finance_Tracker" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="nlX-Wd-edI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="qha-cb-Dnp">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="vkJ-9T-mEX" id="SFz-ym-RYF"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssetCell" id="XR8-iU-uAn" customClass="AssetCell" customModule="Finance_Tracker">
+                                <rect key="frame" x="0.0" y="94" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XR8-iU-uAn" id="bxd-ft-4GJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vkJ-9T-mEX" id="VWd-uP-IMu"/>
+                            <outlet property="delegate" destination="vkJ-9T-mEX" id="4iS-Ib-RtZ"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Crypto" id="Z1W-i6-iaL">
+                        <imageReference key="image" image="bitcoinsign.circle.fill" catalog="system" symbolScale="large"/>
+                        <color key="badgeColor" name="Signature Green"/>
+                        <imageReference key="selectedImage" image="bitcoinsign.circle.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Crypto" id="59P-92-5hl"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kdj-Ip-JAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4465" y="710"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="O4j-QV-TSw">
+            <objects>
+                <viewController id="6ke-lA-xhu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nXh-rV-PhT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="f8s-Dc-l5C"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="rgW-4N-dsQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2VG-yU-d57" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2541" y="797"/>
+        </scene>
+        <!--Stocks-->
+        <scene sceneID="2du-fJ-syf">
+            <objects>
+                <tableViewController id="boB-eE-zzv" customClass="StocksViewController" customModule="Finance_Tracker" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="3RU-fV-rtz">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="X0e-Cn-YIO">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="boB-eE-zzv" id="MYK-lE-ySH"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssetCell" id="lqK-rb-b9i" customClass="AssetCell" customModule="Finance_Tracker">
+                                <rect key="frame" x="0.0" y="94" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lqK-rb-b9i" id="fUd-p8-Tm5">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="boB-eE-zzv" id="4Rk-gS-3Lg"/>
+                            <outlet property="delegate" destination="boB-eE-zzv" id="R9f-c3-iJ2"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Stocks" id="UKq-ZN-aK6">
+                        <imageReference key="image" image="dollarsign.circle.fill" catalog="system" symbolScale="large"/>
+                        <color key="badgeColor" name="Signature Green"/>
+                        <imageReference key="selectedImage" image="dollarsign.circle.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Stocks" id="Huq-um-pCQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbh-lZ-EPT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3425" y="778"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="M63-tM-O7r"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="bitcoinsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="dollarsign" catalog="system" width="89" height="128"/>
+        <image name="dollarsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="dollarsign.square" catalog="system" width="128" height="114"/>
-        <image name="dollarsign.square.fill" catalog="system" width="128" height="114"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <namedColor name="Signature Green">
             <color red="0.15294117647058825" green="0.68235294117647061" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
