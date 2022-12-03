@@ -170,7 +170,7 @@
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="QGt-rR-paW" kind="show" id="M63-tM-O7r"/>
+                                                    <action selector="signUpButtonPressed:" destination="kSx-Xh-jDo" eventType="touchUpInside" id="s9G-vD-jGq"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -196,7 +196,8 @@
                         <outlet property="lastNameField" destination="97Q-gr-bd8" id="05x-wq-zh0"/>
                         <outlet property="passwordField" destination="aDZ-VA-eHW" id="kco-L3-VL5"/>
                         <outlet property="passwordField2" destination="Nij-AG-7AM" id="Tge-tR-3AG"/>
-                        <outlet property="signUpButton" destination="OLL-0Q-5BJ" id="UlO-QC-qKP"/>
+                        <outlet property="signUpButton" destination="OLL-0Q-5BJ" id="SPz-Jc-lT8"/>
+                        <segue destination="QGt-rR-paW" kind="show" identifier="registerToStocks" id="T0e-ep-etr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SmO-CT-QRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -587,7 +588,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="M63-tM-O7r"/>
+        <segue reference="T0e-ep-etr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
     <resources>

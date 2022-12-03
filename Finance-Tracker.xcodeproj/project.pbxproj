@@ -23,6 +23,10 @@
 		E6A5017E293A58F600E5C36F /* CryptoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5017D293A58F600E5C36F /* CryptoViewController.swift */; };
 		E6A50180293A5AF100E5C36F /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5017F293A5AF100E5C36F /* StocksViewController.swift */; };
 		E6A50182293A5D6E00E5C36F /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50181293A5D6E00E5C36F /* GraphViewController.swift */; };
+		E6A50184293BD1C800E5C36F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6A50183293BD1C800E5C36F /* GoogleService-Info.plist */; };
+		E6A50187293BD29700E5C36F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E6A50186293BD29700E5C36F /* FirebaseAuth */; };
+		E6A50189293BD29800E5C36F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E6A50188293BD29800E5C36F /* FirebaseFirestore */; };
+		E6A5018B293BD29800E5C36F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E6A5018A293BD29800E5C36F /* FirebaseFirestoreSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +48,7 @@
 		E6A5017D293A58F600E5C36F /* CryptoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoViewController.swift; sourceTree = "<group>"; };
 		E6A5017F293A5AF100E5C36F /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
 		E6A50181293A5D6E00E5C36F /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		E6A50183293BD1C800E5C36F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +56,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6A50187293BD29700E5C36F /* FirebaseAuth in Frameworks */,
+				E6A50189293BD29800E5C36F /* FirebaseFirestore in Frameworks */,
+				E6A5018B293BD29800E5C36F /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +92,7 @@
 				E6A5015D2937DED600E5C36F /* Assets.xcassets */,
 				E6A5015F2937DED600E5C36F /* LaunchScreen.storyboard */,
 				E6A501622937DED600E5C36F /* Info.plist */,
+				E6A50183293BD1C800E5C36F /* GoogleService-Info.plist */,
 				E6A5016D2938F75900E5C36F /* K.swift */,
 			);
 			path = "Finance-Tracker";
@@ -137,6 +146,11 @@
 			dependencies = (
 			);
 			name = "Finance-Tracker";
+			packageProductDependencies = (
+				E6A50186293BD29700E5C36F /* FirebaseAuth */,
+				E6A50188293BD29800E5C36F /* FirebaseFirestore */,
+				E6A5018A293BD29800E5C36F /* FirebaseFirestoreSwift */,
+			);
 			productName = "Finance-Tracker";
 			productReference = E6A5014E2937DED100E5C36F /* Finance-Tracker.app */;
 			productType = "com.apple.product-type.application";
@@ -165,6 +179,9 @@
 				Base,
 			);
 			mainGroup = E6A501452937DED000E5C36F;
+			packageReferences = (
+				E6A50185293BD29700E5C36F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = E6A5014F2937DED100E5C36F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -181,6 +198,7 @@
 			files = (
 				E6A501612937DED600E5C36F /* LaunchScreen.storyboard in Resources */,
 				E6A5015E2937DED600E5C36F /* Assets.xcassets in Resources */,
+				E6A50184293BD1C800E5C36F /* GoogleService-Info.plist in Resources */,
 				E6A5017C293915B500E5C36F /* AssetCell.xib in Resources */,
 				E6A501592937DED100E5C36F /* Main.storyboard in Resources */,
 			);
@@ -354,6 +372,7 @@
 				DEVELOPMENT_TEAM = 64QS8TW84P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Finance-Tracker/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Finance Tracker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -381,6 +400,7 @@
 				DEVELOPMENT_TEAM = 64QS8TW84P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Finance-Tracker/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Finance Tracker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -420,6 +440,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E6A50185293BD29700E5C36F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E6A50186293BD29700E5C36F /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6A50185293BD29700E5C36F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E6A50188293BD29800E5C36F /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6A50185293BD29700E5C36F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E6A5018A293BD29800E5C36F /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6A50185293BD29700E5C36F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E6A5015A2937DED100E5C36F /* Finance_Tracker.xcdatamodeld */ = {
