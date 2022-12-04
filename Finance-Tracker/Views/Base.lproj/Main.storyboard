@@ -35,7 +35,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="i1h-cZ-a4g">
                                                 <rect key="frame" x="0.0" y="0.0" width="325" height="150"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-O2-R5F" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-O2-R5F" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="325" height="69"/>
                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -135,15 +135,15 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="325" height="68.333333333333329"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="97Q-gr-bd8" userLabel="Last Name" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="80.333333333333343" width="325" height="68.333333333333343"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                             </textField>
-                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-Mail " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tVn-oZ-l4r" userLabel="Email" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tVn-oZ-l4r" userLabel="Email" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="160.66666666666666" width="325" height="68.333333333333343"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>

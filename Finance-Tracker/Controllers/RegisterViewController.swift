@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 import AudioToolbox
+import IQKeyboardManagerSwift
 
 class RegisterViewController: UIViewController {
     
@@ -41,12 +42,12 @@ class RegisterViewController: UIViewController {
         emailField.delegate = self
         passwordField.delegate = self
         passwordField2.delegate = self
+        
+        IQKeyboardManager.shared.enableAutoToolbar = false
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        if createUser() {
-            performSegue(withIdentifier: "registerToStocks", sender: self)
-        }
+        _ = createUser()
     }
     
     // Dismiss keyboard upon tap
@@ -143,7 +144,12 @@ class RegisterViewController: UIViewController {
             // Register user
             Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { authResult, error in
                 if error != nil {
-                    print ("Error with user creation")
+                    self.shake(self.emailField)
+                    AudioServicesPlaySystemSound(1519)
+                    self.emailField.placeholder = "User already exists..."
+                    self.emailField.text = ""
+                } else {
+                    self.performSegue(withIdentifier: "registerToStocks", sender: self)
                 }
             }
         }
@@ -204,7 +210,6 @@ extension RegisterViewController : UITextFieldDelegate {
         if textField.tag == 4 {
             // Present next VC
             if createUser() {
-                performSegue(withIdentifier: "registerToStocks", sender: self)
                 return true
             }
         }
