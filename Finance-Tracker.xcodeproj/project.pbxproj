@@ -29,6 +29,9 @@
 		E6A5018B293BD29800E5C36F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E6A5018A293BD29800E5C36F /* FirebaseFirestoreSwift */; };
 		E6A5018E293CFCA300E5C36F /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E6A5018D293CFCA300E5C36F /* IQKeyboardManagerSwift */; };
 		E6A50190293D019800E5C36F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5018F293D019800E5C36F /* Utilities.swift */; };
+		E6A50192293D0C2900E5C36F /* Crypto .swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50191293D0C2900E5C36F /* Crypto .swift */; };
+		E6A50194293D0CFB00E5C36F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50193293D0CFA00E5C36F /* Keys.swift */; };
+		E6A50196293D0EAC00E5C36F /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50195293D0EAC00E5C36F /* CryptoManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		E6A50181293A5D6E00E5C36F /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		E6A50183293BD1C800E5C36F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E6A5018F293D019800E5C36F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		E6A50191293D0C2900E5C36F /* Crypto .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto .swift"; sourceTree = "<group>"; };
+		E6A50193293D0CFA00E5C36F /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		E6A50195293D0EAC00E5C36F /* CryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 				E6A50183293BD1C800E5C36F /* GoogleService-Info.plist */,
 				E6A5016D2938F75900E5C36F /* K.swift */,
 				E6A5018F293D019800E5C36F /* Utilities.swift */,
+				E6A50193293D0CFA00E5C36F /* Keys.swift */,
 			);
 			path = "Finance-Tracker";
 			sourceTree = "<group>";
@@ -131,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				E6A5015A2937DED100E5C36F /* Finance_Tracker.xcdatamodeld */,
+				E6A50191293D0C2900E5C36F /* Crypto .swift */,
+				E6A50195293D0EAC00E5C36F /* CryptoManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,10 +231,13 @@
 				E6A50180293A5AF100E5C36F /* StocksViewController.swift in Sources */,
 				E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */,
 				E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */,
+				E6A50194293D0CFB00E5C36F /* Keys.swift in Sources */,
 				E6A50190293D019800E5C36F /* Utilities.swift in Sources */,
+				E6A50192293D0C2900E5C36F /* Crypto .swift in Sources */,
 				E6A5017E293A58F600E5C36F /* CryptoViewController.swift in Sources */,
 				E6A501722938FD5700E5C36F /* RegisterViewController.swift in Sources */,
 				E6A501742939037400E5C36F /* FavoritesViewController.swift in Sources */,
+				E6A50196293D0EAC00E5C36F /* CryptoManager.swift in Sources */,
 				E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */,
 				E6A5016E2938F75900E5C36F /* K.swift in Sources */,
 				E6A50182293A5D6E00E5C36F /* GraphViewController.swift in Sources */,
