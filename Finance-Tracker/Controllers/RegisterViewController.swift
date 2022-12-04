@@ -54,13 +54,6 @@ class RegisterViewController: UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-
-    // Checks if a string is a valid email
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
     
     // Checks if first name entered is valid
     func checkFirstName() -> Bool {
@@ -76,8 +69,8 @@ class RegisterViewController: UIViewController {
     func checkEmail() -> Bool {
         if emailField.text!.isEmpty {
             return false
-        } else if !isValidEmail(emailField.text!) {
-            emailField.placeholder = "Enter a valid email..."
+        } else if !Utilities.isValidEmail(emailField.text!) {
+            emailField.placeholder = "Enter a valid email"
             return false
         }
         return true
@@ -90,7 +83,7 @@ class RegisterViewController: UIViewController {
         } else if passwordField.text!.count < 6 {
             passwordField.text = ""
             passwordField2.text = ""
-            passwordField.placeholder = "Password is too short..."
+            passwordField.placeholder = "Password is too short"
             return false
         }
         return true
@@ -114,27 +107,27 @@ class RegisterViewController: UIViewController {
         var infoValid = true
         
         if !checkFirstName() {
-            shake(firstNameField)
+            Utilities.shake(firstNameField)
             infoValid = false
         }
         
         if !checkLastName() {
-            shake(lastNameField)
+            Utilities.shake(lastNameField)
             infoValid = false
         }
         
         if !checkEmail() {
-            shake(emailField)
+            Utilities.shake(emailField)
             infoValid = false
         }
         
         if !checkPassword() {
-            shake(passwordField)
+            Utilities.shake(passwordField)
             infoValid = false
         }
         
         if !checkPassword2() {
-            shake(passwordField2)
+            Utilities.shake(passwordField2)
             infoValid = false
         }
         
@@ -144,9 +137,9 @@ class RegisterViewController: UIViewController {
             // Register user
             Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { authResult, error in
                 if error != nil {
-                    self.shake(self.emailField)
+                    Utilities.shake(self.emailField)
                     AudioServicesPlaySystemSound(1519)
-                    self.emailField.placeholder = "User already exists..."
+                    self.emailField.placeholder = "User already exists"
                     self.emailField.text = ""
                 } else {
                     self.performSegue(withIdentifier: "registerToStocks", sender: self)
@@ -155,18 +148,6 @@ class RegisterViewController: UIViewController {
         }
         return infoValid
     }
-    
-    // Creates a basic shake animation for the text fields
-    func shake(_ viewToShake: UITextField) {
-        let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.07
-        animation.repeatCount = 4
-        animation.autoreverses = true
-        animation.fromValue = NSValue(cgPoint: CGPoint(x: viewToShake.center.x - 10, y: viewToShake.center.y))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: viewToShake.center.x + 10, y: viewToShake.center.y))
-        viewToShake.layer.add(animation, forKey: "position")
-    }
-
 }
 
 // MARK: -  Text Field delegate methods
@@ -177,31 +158,31 @@ extension RegisterViewController : UITextFieldDelegate {
         switch textField.tag {
         case 0:
             if !checkFirstName() {
-                shake(firstNameField)
+                Utilities.shake(firstNameField)
                 AudioServicesPlaySystemSound(1519)
                 return false
             }
         case 1:
             if !checkLastName() {
-                shake(lastNameField)
+                Utilities.shake(lastNameField)
                 AudioServicesPlaySystemSound(1519)
                 return false
             }
         case 2:
             if !checkEmail() {
-                shake(emailField)
+                Utilities.shake(emailField)
                 AudioServicesPlaySystemSound(1519)
                 return false
             }
         case 3:
             if !checkPassword() {
-                shake(passwordField)
+                Utilities.shake(passwordField)
                 AudioServicesPlaySystemSound(1519)
                 return false
             }
         default:
             if !checkPassword2() {
-                shake(passwordField2)
+                Utilities.shake(passwordField2)
                 AudioServicesPlaySystemSound(1519)
                 return false
             }

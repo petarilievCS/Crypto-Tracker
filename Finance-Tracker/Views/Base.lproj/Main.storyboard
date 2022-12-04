@@ -39,13 +39,13 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="325" height="69"/>
                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-El-zlh" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-El-zlh" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="81" width="325" height="69"/>
                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -65,7 +65,7 @@
                                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <segue destination="QGt-rR-paW" kind="show" id="3Vc-Tb-fDN"/>
+                                                            <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jh4-S0-Pho"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twy-pA-KYx">
@@ -105,6 +105,7 @@
                         <outlet property="passwordField" destination="ky9-El-zlh" id="CiL-Lh-uRT"/>
                         <outlet property="registerButton" destination="Twy-pA-KYx" id="ktb-BN-ZfM"/>
                         <outlet property="usernameField" destination="R3Y-O2-R5F" id="bIi-gI-y2W"/>
+                        <segue destination="QGt-rR-paW" kind="show" identifier="loginToStocks" id="Unm-Fo-Pa7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -588,7 +589,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="T0e-ep-etr"/>
+        <segue reference="Unm-Fo-Pa7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
     <resources>

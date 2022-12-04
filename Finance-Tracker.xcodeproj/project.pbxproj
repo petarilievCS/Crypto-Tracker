@@ -28,6 +28,7 @@
 		E6A50189293BD29800E5C36F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E6A50188293BD29800E5C36F /* FirebaseFirestore */; };
 		E6A5018B293BD29800E5C36F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E6A5018A293BD29800E5C36F /* FirebaseFirestoreSwift */; };
 		E6A5018E293CFCA300E5C36F /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E6A5018D293CFCA300E5C36F /* IQKeyboardManagerSwift */; };
+		E6A50190293D019800E5C36F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5018F293D019800E5C36F /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		E6A5017F293A5AF100E5C36F /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
 		E6A50181293A5D6E00E5C36F /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		E6A50183293BD1C800E5C36F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E6A5018F293D019800E5C36F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				E6A501622937DED600E5C36F /* Info.plist */,
 				E6A50183293BD1C800E5C36F /* GoogleService-Info.plist */,
 				E6A5016D2938F75900E5C36F /* K.swift */,
+				E6A5018F293D019800E5C36F /* Utilities.swift */,
 			);
 			path = "Finance-Tracker";
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				E6A50180293A5AF100E5C36F /* StocksViewController.swift in Sources */,
 				E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */,
 				E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */,
+				E6A50190293D019800E5C36F /* Utilities.swift in Sources */,
 				E6A5017E293A58F600E5C36F /* CryptoViewController.swift in Sources */,
 				E6A501722938FD5700E5C36F /* RegisterViewController.swift in Sources */,
 				E6A501742939037400E5C36F /* FavoritesViewController.swift in Sources */,
