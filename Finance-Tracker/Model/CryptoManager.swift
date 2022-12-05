@@ -7,27 +7,22 @@
 
 import Foundation
 
-struct CryptoManager {
+class CryptoManager {
     
     let cryptoCurrencies = ["BTC", "ETH", "USDT", "BNB", "USDC", "BUSD", "XRP", "DOGE", "ADA", "MATIC"]
     let urlString = "https://rest.coinapi.io/v1/exchangerate"
+    var returnArray: [Crypto] = []
     
     // Performs HTTP requests to CoinAPI for top 10 crypto currencies
-    func performRequests() -> [Crypto] {
-        var returnArray: [Crypto] = []
+    func performRequests() {
         for currency in cryptoCurrencies {
-            if let safeCurrency = performRequest(with: currency) {
-                print("Adding \(safeCurrency.asset_id_base) to array")
-                returnArray.append(safeCurrency)
-            }
+            performRequest(with: currency)
         }
-        return returnArray
     }
     
     // Performs single HTTP request to CoinAPI
-    func performRequest(with cryptoCurrency: String) -> Crypto? {
+    func performRequest(with cryptoCurrency: String) {
         let requestString = urlString + "/\(cryptoCurrency)/USD?apikey=\(Keys.coinAPI)"
-        var returnValue: Crypto?
         if let URL = URL(string: requestString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: URL) { data, response, error in
@@ -35,12 +30,13 @@ struct CryptoManager {
                     print(error?.localizedDescription as Any)
                 }
                 if let safeData = data {
-                    returnValue =  parseJSON(from: safeData)
+                    if let returnValue =  self.parseJSON(from: safeData) {
+                        self.returnArray.append(returnValue)
+                    }
                 }
             }
             task.resume()
         }
-        return returnValue
     }
     
     // Parses JSON data received from CoinAPI 
