@@ -9,7 +9,7 @@ import UIKit
 
 class CryptoViewController: UITableViewController {
     
-    var crypto: [Crypto] = []
+    var crypto: [CryptoData] = []
     let cryptoManager = CryptoManager()
 
     override func viewDidLoad() {
@@ -36,10 +36,10 @@ class CryptoViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.assetCellIdentifier) as! AssetCell
         let currentCrypto = crypto[indexPath.row]
         cell.circleImageView.layer.cornerRadius = 32.0
-        cell.priceLabel.text = String(format: "%.2f", currentCrypto.rate)
-        cell.stockLabel.text = currentCrypto.asset_id_base
-        cell.companyLabel.text = ""
-        cell.percentLabel.text = ""
+        // cell.priceLabel.text = "$" + String(format: "%.2f", currentCrypto.coins[0].price_usd)
+        cell.stockLabel.text = currentCrypto.symbol
+        cell.companyLabel.text = currentCrypto.name
+        // cell.percentLabel.text = ""
         return cell
     }
     

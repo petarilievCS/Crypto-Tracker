@@ -8,8 +8,10 @@
 import Foundation
 
 struct Crypto : Codable {
-    let asset_id_base : String
-    let rate : Double
-    
-    // TODO: Add change and name 
+    let data : [String : [CryptoData]]
+}
+
+struct CryptoData : Codable {
+    let name : String
+    let symbol : String
 }
