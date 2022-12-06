@@ -14,7 +14,7 @@ class CryptoViewController: UITableViewController {
 
     override func viewDidLoad() {
         tableView.register(UINib(nibName: K.assetCellIdentifier, bundle: nil), forCellReuseIdentifier: K.assetCellIdentifier)
-        cryptoManager.performRequests()
+        cryptoManager.performRequest()
         super.viewDidLoad()
     }
     
@@ -36,10 +36,18 @@ class CryptoViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.assetCellIdentifier) as! AssetCell
         let currentCrypto = crypto[indexPath.row]
         cell.circleImageView.layer.cornerRadius = 32.0
-        // cell.priceLabel.text = "$" + String(format: "%.2f", currentCrypto.coins[0].price_usd)
+        cell.priceLabel.text = "$" + String(format: "%.2f", currentCrypto.quote.USD.price)
         cell.stockLabel.text = currentCrypto.symbol
         cell.companyLabel.text = currentCrypto.name
-        // cell.percentLabel.text = ""
+        
+        let percentChange = currentCrypto.quote.USD.percent_change_24h
+        cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
+        
+        if currentCrypto.id == 1 {
+            cell.logoImaeView.image = UIImage(named: "1")
+        }
+        
+        cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.USD.percent_change_24h) + "%"
         return cell
     }
     
