@@ -13,7 +13,22 @@ class CryptoViewController: UITableViewController {
     let cryptoManager = CryptoManager()
 
     override func viewDidLoad() {
+        
+        // Dismiss keyboard upon tap
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
         tableView.register(UINib(nibName: K.assetCellIdentifier, bundle: nil), forCellReuseIdentifier: K.assetCellIdentifier)
+        
+        refreshControl = UIRefreshControl()
+        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl!.addTarget(self, action: #selector(refreshInformation), for: .valueChanged)
+        
+        // navigationController?.navigationBar.items?.first?.rightBarButtonItems.count = #selector(refreshInformation)
+        // print(navigationController?.navigationBar.butto
+        self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshInformation))
+        
+        cryptoManager.delegate = self
         cryptoManager.performRequest()
         super.viewDidLoad()
     }
@@ -22,8 +37,6 @@ class CryptoViewController: UITableViewController {
         // Customize bar
         tabBarController?.navigationItem.hidesBackButton = true
         tabBarController?.navigationItem.title = "Crypto"
-        crypto = cryptoManager.returnArray
-        tableView.reloadData()
     }
     
     // MARK: - Table View methods
@@ -42,16 +55,34 @@ class CryptoViewController: UITableViewController {
         
         let percentChange = currentCrypto.quote.USD.percent_change_24h
         cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-        
-        if currentCrypto.id == 1 {
-            cell.logoImaeView.image = UIImage(named: "1")
-        }
-        
         cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.USD.percent_change_24h) + "%"
+        
+        cell.logoImaeView.image = UIImage(named: "\(currentCrypto.id).png")
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75.0
     }
+              
+    // Dismiss keyboard upon tap
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+              
+    // Reloads most recent data
+    @objc func refreshInformation() {
+        cryptoManager.performRequest()
+    }
+            
 }
+
+// MARK: - Crypto Manager Delegate methods
+extension CryptoViewController : CryptoManagerDelegate {
+    func receivedInformation() {
+        crypto = cryptoManager.returnArray
+        tableView.reloadData()
+    }
+}
+

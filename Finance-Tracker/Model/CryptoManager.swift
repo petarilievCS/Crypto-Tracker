@@ -7,18 +7,21 @@
 
 import Foundation
 
+protocol CryptoManagerDelegate {
+    func receivedInformation()
+}
+
 class CryptoManager {
+
+    var delegate : CryptoManagerDelegate?
     
-    let cryptoCurrencies = ["BTC", "ETH", "USDT", "BNB", "USDC", "BUSD", "XRP", "DOGE", "ADA", "MATIC"]
-    var urlString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=10"
+    var urlString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=5"
     var returnArray: [CryptoData] = []
     var cryptoResponse : Crypto? = nil
     
-    let dispatchQueue = DispatchQueue(label: "cryptoQueue") // serial queue
-    let semaphore = DispatchSemaphore(value: 1)
-    
     // Performs single HTTP request to CoinAPI
     func performRequest() {
+        returnArray = [] 
         // constructURL()
         if let URL = URL(string: urlString) {
             var request = URLRequest(url: URL)
@@ -35,6 +38,9 @@ class CryptoManager {
                     self.cryptoResponse = self.parseJSON(from: safeData)
                 }
                 self.parseData()
+                DispatchQueue.main.async {
+                    self.delegate?.receivedInformation()
+                }
             }
             task.resume()
         }
@@ -44,14 +50,6 @@ class CryptoManager {
         for coinData in cryptoResponse!.data {
             returnArray.append(coinData)
         }
-    }
-    
-    // Creates URL for HTTP request
-    func constructURL() {
-        for currency in cryptoCurrencies {
-            urlString += "\(currency),"
-        }
-        urlString.removeLast()
     }
     
     // Parses JSON data received from CoinAPI 

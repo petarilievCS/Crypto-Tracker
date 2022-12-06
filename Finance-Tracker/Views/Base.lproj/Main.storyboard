@@ -457,11 +457,8 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="kYt-cf-SmH">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="ChL-Mp-fz5">
+                            <barButtonItem systemItem="refresh" id="ChL-Mp-fz5">
                                 <color key="tintColor" name="Signature Green"/>
-                                <connections>
-                                    <segue destination="Aep-eb-tai" kind="show" id="K6Q-wt-oBZ"/>
-                                </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="dollarsign" catalog="system" id="pOM-Fm-bsx">
                                 <color key="tintColor" name="Signature Green"/>
@@ -523,7 +520,7 @@
                         <color key="badgeColor" name="Signature Green"/>
                         <imageReference key="selectedImage" image="bitcoinsign.circle.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Crypto" id="59P-92-5hl"/>
+                    <navigationItem key="navigationItem" title="Crypto" largeTitleDisplayMode="always" id="59P-92-5hl"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kdj-Ip-JAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
