@@ -45,6 +45,16 @@ class CryptoViewController: UITableViewController {
         // Customize bar
         tabBarController?.navigationItem.hidesBackButton = true
         tabBarController?.navigationItem.title = "Crypto"
+        tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
+       
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        tabBarController?.navigationController?.navigationBar.isTranslucent = true
+        // tabBarController?.navigationController?.navigationBar.tintColor = UIColor(named: "Signature Green")
+        tabBarController?.navigationController?.navigationBar.barTintColor = UIColor.black
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
     }
     
     // MARK: - Table View methods

@@ -434,7 +434,7 @@
         <!--Navigation Controller-->
         <scene sceneID="iBf-LL-MS2">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gPS-BF-SaK" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="gPS-BF-SaK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q7D-zF-9aC">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -455,7 +455,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="QGt-rR-paW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="kYt-cf-SmH">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="kYt-cf-SmH">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="refresh" id="ChL-Mp-fz5">
                                 <color key="tintColor" name="Signature Green"/>
@@ -589,7 +589,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Unm-Fo-Pa7"/>
+        <segue reference="T0e-ep-etr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
     <resources>
