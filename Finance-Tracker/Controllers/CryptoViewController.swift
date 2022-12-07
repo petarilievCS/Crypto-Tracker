@@ -20,12 +20,9 @@ class CryptoViewController: UITableViewController {
         
         tableView.register(UINib(nibName: K.assetCellIdentifier, bundle: nil), forCellReuseIdentifier: K.assetCellIdentifier)
         
+        // Refresh functionality
         refreshControl = UIRefreshControl()
-        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl!.addTarget(self, action: #selector(refreshInformation), for: .valueChanged)
-        
-        // navigationController?.navigationBar.items?.first?.rightBarButtonItems.count = #selector(refreshInformation)
-        // print(navigationController?.navigationBar.butto
         self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshInformation))
         
         cryptoManager.delegate = self
@@ -74,6 +71,10 @@ class CryptoViewController: UITableViewController {
     // Reloads most recent data
     @objc func refreshInformation() {
         cryptoManager.performRequest()
+        
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
     }
             
 }
