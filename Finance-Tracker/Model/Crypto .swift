@@ -25,6 +25,13 @@ struct Quote : Codable {
     let GBP: Rate
     let JPY: Rate
     let CAD: Rate
+    let CHF: Rate
+    let KRW: Rate
+    let INR: Rate
+    let HKD: Rate
+    let AUD: Rate
+    let TWD: Rate
+    let BRL: Rate
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -58,8 +65,49 @@ struct Quote : Codable {
         } else {
             self.CAD = Rate(price: 0.0, percent_change_24h: 0.0)
         }
+        
+        if let CHF = try container.decodeIfPresent(Rate.self, forKey: .CHF) {
+            self.CHF = CHF
+        } else {
+            self.CHF = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
+        
+        if let KRW = try container.decodeIfPresent(Rate.self, forKey: .KRW) {
+            self.KRW = KRW
+        } else {
+            self.KRW = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
+        
+        if let INR = try container.decodeIfPresent(Rate.self, forKey: .INR) {
+            self.INR = INR
+        } else {
+            self.INR = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
+        
+        if let HKD = try container.decodeIfPresent(Rate.self, forKey: .HKD) {
+            self.HKD = HKD
+        } else {
+            self.HKD = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
+        
+        if let AUD = try container.decodeIfPresent(Rate.self, forKey: .AUD) {
+            self.AUD = AUD
+        } else {
+            self.AUD = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
+        
+        if let TWD = try container.decodeIfPresent(Rate.self, forKey: .TWD) {
+            self.TWD = TWD
+        } else {
+            self.TWD = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
+        
+        if let BRL = try container.decodeIfPresent(Rate.self, forKey: .BRL) {
+            self.BRL = BRL
+        } else {
+            self.BRL = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
     }
-   
 }
 
 struct Rate : Codable {
