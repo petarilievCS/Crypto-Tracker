@@ -20,8 +20,11 @@ struct CryptoData : Codable {
 
 struct Quote : Codable {
 
-    let USD : Rate
-    let EUR : Rate
+    let USD: Rate
+    let EUR: Rate
+    let GBP: Rate
+    let JPY: Rate
+    let CAD: Rate
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -36,6 +39,24 @@ struct Quote : Codable {
             self.EUR = EUR
         } else {
             self.EUR = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
+        
+        if let GBP = try container.decodeIfPresent(Rate.self, forKey: .GBP) {
+            self.GBP = GBP
+        } else {
+            self.GBP = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
+        
+        if let JPY = try container.decodeIfPresent(Rate.self, forKey: .JPY) {
+            self.JPY = JPY
+        } else {
+            self.JPY = Rate(price: 0.0, percent_change_24h: 0.0)
+        }
+        
+        if let CAD = try container.decodeIfPresent(Rate.self, forKey: .CAD) {
+            self.CAD = CAD
+        } else {
+            self.CAD = Rate(price: 0.0, percent_change_24h: 0.0)
         }
     }
    
