@@ -9,6 +9,8 @@ import UIKit
 
 class CryptoViewController: UITableViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var crypto: [CryptoData] = []
     let cryptoManager = CryptoManager()
 
@@ -25,6 +27,7 @@ class CryptoViewController: UITableViewController {
         refreshControl!.addTarget(self, action: #selector(refreshInformation), for: .valueChanged)
         self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshInformation))
         
+        searchBar.delegate = self
         cryptoManager.delegate = self
         cryptoManager.performRequest()
         super.viewDidLoad()
@@ -80,10 +83,35 @@ class CryptoViewController: UITableViewController {
 }
 
 // MARK: - Crypto Manager Delegate methods
-extension CryptoViewController : CryptoManagerDelegate {
+
+extension CryptoViewController: CryptoManagerDelegate {
     func receivedInformation() {
         crypto = cryptoManager.returnArray
         tableView.reloadData()
     }
 }
 
+// MARK: - Search Bar Delegate methods
+
+extension CryptoViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        crypto = crypto.filter({ coin in
+            let query = searchBar.text!.lowercased()
+            let coinName = coin.name.lowercased()
+            let coinSymbol = coin.symbol.lowercased()
+            return coinName.contains(query) || coinSymbol.contains(query)
+        })
+        tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text!.isEmpty {
+            refreshInformation()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+    
+}

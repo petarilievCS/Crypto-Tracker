@@ -492,7 +492,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="qha-cb-Dnp">
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" id="qha-cb-Dnp">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -521,6 +521,9 @@
                         <imageReference key="selectedImage" image="bitcoinsign.circle.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Crypto" largeTitleDisplayMode="always" id="59P-92-5hl"/>
+                    <connections>
+                        <outlet property="searchBar" destination="qha-cb-Dnp" id="Z6U-CR-YG4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kdj-Ip-JAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
