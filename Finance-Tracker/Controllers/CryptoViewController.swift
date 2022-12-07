@@ -13,6 +13,7 @@ class CryptoViewController: UITableViewController {
     
     var crypto: [CryptoData] = []
     let cryptoManager = CryptoManager()
+    var fiatCurrencies = ["USD", "EUR", "GBP", "CNY", "JPY", "KRW", "INR", "CAD", "HKD", "AUD", "TWD", "BRL", "CHF", "RUB", "MXN", "THB", "SAR", "SGD", "VND", "AED"]
 
     override func viewDidLoad() {
         
@@ -27,9 +28,14 @@ class CryptoViewController: UITableViewController {
         refreshControl!.addTarget(self, action: #selector(refreshInformation), for: .valueChanged)
         self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshInformation))
         
+        // Currency change
+        fiatCurrencies.sort()
+        // let style = tabBarController?.navigationItem.rightBarButtonItems?[0].style
+        self.tabBarController?.navigationItem.rightBarButtonItems?[1] = UIBarButtonItem(image: UIImage(systemName: "dollarsign"), style: .plain, target: self, action: #selector(changeCurrency))
+        
         searchBar.delegate = self
         cryptoManager.delegate = self
-        cryptoManager.performRequest()
+        // cryptoManager.performRequest()
         super.viewDidLoad()
     }
     
@@ -79,6 +85,25 @@ class CryptoViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
         }
     }
+    
+    @objc func changeCurrency() {
+        let alert = UIAlertController(title: "Change Currency", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Change", style: .default) { action in
+            // TODO: Change currency
+        }
+        alert.addAction(action)
+        alert.view.tintColor = UIColor(named: "Signature Green")
+        
+        let viewController = UIViewController()
+        viewController.preferredContentSize = CGSize(width: 150,height: 200)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 150, height: 200))
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        viewController.view.addSubview(pickerView)
+        alert.setValue(viewController, forKey: "contentViewController")
+        
+        present(alert, animated: true)
+    }
             
 }
 
@@ -112,6 +137,23 @@ extension CryptoViewController: UISearchBarDelegate {
                 searchBar.resignFirstResponder()
             }
         }
+    }
+}
+
+// MARK: - UI Picker View methods
+
+extension CryptoViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return fiatCurrencies.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return fiatCurrencies[row]
     }
     
 }
