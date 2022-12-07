@@ -14,16 +14,17 @@ protocol CryptoManagerDelegate {
 class CryptoManager {
 
     var delegate : CryptoManagerDelegate?
+    let defaults = UserDefaults.standard
     
-    var urlString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=5"
+    var urlString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=5&convert="
     var returnArray: [CryptoData] = []
     var cryptoResponse : Crypto? = nil
     
     // Performs single HTTP request to CoinAPI
     func performRequest() {
         returnArray = [] 
-        // constructURL()
-        if let URL = URL(string: urlString) {
+        let requestString = urlString + (defaults.string(forKey: K.defaultFiat) ?? "USD")
+        if let URL = URL(string: requestString) {
             var request = URLRequest(url: URL)
             request.addValue(Keys.coinMarketCap, forHTTPHeaderField: "X-CMC_PRO_API_KEY")
             request.httpMethod = "GET"
