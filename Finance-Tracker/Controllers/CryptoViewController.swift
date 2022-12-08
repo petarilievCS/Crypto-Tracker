@@ -37,7 +37,7 @@ class CryptoViewController: UITableViewController {
         
         searchBar.delegate = self
         cryptoManager.delegate = self
-        // cryptoManager.performRequest()
+        cryptoManager.performRequest()
         super.viewDidLoad()
     }
     
