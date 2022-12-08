@@ -21,8 +21,8 @@ class CryptoViewController: UITableViewController {
     override func viewDidLoad() {
         
         // Dismiss keyboard upon tap
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+//        view.addGestureRecognizer(tap)
         
         tableView.register(UINib(nibName: K.assetCellIdentifier, bundle: nil), forCellReuseIdentifier: K.assetCellIdentifier)
         
@@ -71,6 +71,14 @@ class CryptoViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75.0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchBar.isFirstResponder {
+            searchBar.resignFirstResponder()
+        } else {
+            performSegue(withIdentifier: "cryptoToInfo", sender: self)
+        } 
     }
               
     // Dismiss keyboard upon tap

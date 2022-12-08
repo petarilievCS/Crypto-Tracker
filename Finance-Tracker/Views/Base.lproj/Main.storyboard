@@ -489,7 +489,7 @@
         <scene sceneID="RS2-e5-vL8">
             <objects>
                 <tableViewController id="vkJ-9T-mEX" customClass="CryptoViewController" customModule="Finance_Tracker" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="nlX-Wd-edI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="nlX-Wd-edI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -524,6 +524,7 @@
                     <navigationItem key="navigationItem" title="Crypto" largeTitleDisplayMode="always" id="59P-92-5hl"/>
                     <connections>
                         <outlet property="searchBar" destination="qha-cb-Dnp" id="Z6U-CR-YG4"/>
+                        <segue destination="Aep-eb-tai" kind="show" identifier="cryptoToInfo" id="9SD-7O-YqS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kdj-Ip-JAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
