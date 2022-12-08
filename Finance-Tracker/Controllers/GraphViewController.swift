@@ -11,7 +11,10 @@ class GraphViewController: UIViewController {
     
     var selectedCurrency: CryptoData? = nil
     var price: String = ""
-    var percentChange: String = "" 
+    var percentChange: String = ""
+    
+    // TODO: Change to computed variable
+    var isFavorite: Bool = false
     
     // Outlets
     @IBOutlet weak var highView: UIView!
@@ -25,6 +28,7 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var percentChangeLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,5 +52,10 @@ class GraphViewController: UIViewController {
         graphView.layer.cornerRadius = K.viewCornerRadius
     }
     
+    // Add crypto to favorites 
+    @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        favoriteButton.image = isFavorite ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
+        isFavorite = !isFavorite
+    }
 }
  

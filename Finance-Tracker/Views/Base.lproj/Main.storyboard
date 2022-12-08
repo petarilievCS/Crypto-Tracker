@@ -415,10 +415,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ohv-0q-WBg">
-                        <barButtonItem key="rightBarButtonItem" image="heart" catalog="system" id="KAP-SV-xaY"/>
+                        <barButtonItem key="rightBarButtonItem" image="heart" catalog="system" id="KAP-SV-xaY">
+                            <connections>
+                                <action selector="favoriteButtonPressed:" destination="Aep-eb-tai" id="fsh-H0-jmE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="closedView" destination="xYo-us-ARQ" id="1ee-DI-JqY"/>
+                        <outlet property="favoriteButton" destination="KAP-SV-xaY" id="xPO-YO-aV5"/>
                         <outlet property="graphView" destination="B1N-9v-R7j" id="tEL-Ws-f1D"/>
                         <outlet property="highView" destination="1CK-FL-WLS" id="kBn-ah-dAH"/>
                         <outlet property="lowView" destination="K9F-bq-Dr4" id="qtl-eb-ncK"/>
