@@ -104,10 +104,22 @@ class CryptoViewController: UITableViewController {
         
         pickerView.delegate = self
         pickerView.dataSource = self
+        pickerView.selectRow(currentCurrencyRow(), inComponent: 0, animated: false)
         viewController.view.addSubview(pickerView)
         alert.setValue(viewController, forKey: "contentViewController")
         
         present(alert, animated: true)
+    }
+    
+    // Returns row number of current selected currency
+    func currentCurrencyRow() -> Int {
+        let currency = defaults.string(forKey: K.defaultFiat) ?? "USD"
+        for row in 0..<fiatCurrencies.count {
+            if fiatCurrencies[row] == currency {
+                return row
+            }
+        }
+        return 0
     }
 }
 
