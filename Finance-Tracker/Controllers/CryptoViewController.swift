@@ -19,11 +19,6 @@ class CryptoViewController: UITableViewController {
     let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
-        
-        // Dismiss keyboard upon tap
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-//        view.addGestureRecognizer(tap)
-        
         tableView.register(UINib(nibName: K.assetCellIdentifier, bundle: nil), forCellReuseIdentifier: K.assetCellIdentifier)
         
         // Refresh functionality
@@ -77,7 +72,7 @@ class CryptoViewController: UITableViewController {
         if searchBar.isFirstResponder {
             searchBar.resignFirstResponder()
         } else {
-            performSegue(withIdentifier: "cryptoToInfo", sender: self)
+            performSegue(withIdentifier: K.crytpoToInfoSegue, sender: self)
         } 
     }
               
@@ -180,6 +175,24 @@ extension CryptoViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return fiatCurrencies[row]
     }
     
+}
+
+// MARK: - Segue methods
+
+extension CryptoViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case K.crytpoToInfoSegue:
+            let destinationVC = segue.destination as! GraphViewController
+            let selectedCurrency = crypto[tableView.indexPathForSelectedRow!.row]
+            let selectedCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as! AssetCell
+            destinationVC.price = selectedCell.priceLabel.text!
+            destinationVC.percentChange = selectedCell.percentLabel.text!
+            destinationVC.selectedCurrency = selectedCurrency
+        default:
+            fatalError("Segue identifier not handled")
+        }
+    }
 }
 
 // MARK: - Fiat currency methods

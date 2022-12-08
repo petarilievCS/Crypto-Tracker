@@ -9,6 +9,10 @@ import UIKit
 
 class GraphViewController: UIViewController {
     
+    var selectedCurrency: CryptoData? = nil
+    var price: String = ""
+    var percentChange: String = "" 
+    
     // Outlets
     @IBOutlet weak var highView: UIView!
     @IBOutlet weak var lowView: UIView!
@@ -17,9 +21,22 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var closedView: UIView!
     @IBOutlet weak var marketCapView: UIView!
     @IBOutlet weak var graphView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var symbolLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var percentChangeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Customize main info
+        symbolLabel.text = selectedCurrency?.symbol
+        nameLabel.text = selectedCurrency?.name
+        priceLabel.text = price
+        
+        // Customize percent change label
+        percentChangeLabel.text = percentChange
+        percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
         
         // Customize view
         highView.layer.cornerRadius = K.viewCornerRadius
@@ -31,11 +48,5 @@ class GraphViewController: UIViewController {
         graphView.layer.cornerRadius = K.viewCornerRadius
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        // Customize bar
-        tabBarController?.navigationItem.hidesBackButton = false
-        tabBarController?.navigationItem.title = "AAPL (Apple)"
-        tabBarController?.navigationItem.backButtonTitle = "Hey"
-    }
 }
  
