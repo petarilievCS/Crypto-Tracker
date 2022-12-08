@@ -8,14 +8,16 @@
 import Foundation
 
 struct Crypto : Codable {
-    let data : [CryptoData]
+    let data: [CryptoData]
 }
 
 struct CryptoData : Codable {
-    let id : Int
-    let name : String
-    let symbol : String
-    let quote : Quote
+    let id: Int
+    let name: String
+    let symbol: String
+    let circulating_supply: Int
+    let max_supply: Int
+    let quote: Quote
 }
 
 struct Quote : Codable {
