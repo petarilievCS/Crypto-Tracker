@@ -237,9 +237,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Favorites" id="9FH-f2-7Zs">
-                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="default"/>
                         <color key="badgeColor" name="Signature Green"/>
-                        <imageReference key="selectedImage" image="heart.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="heart.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Favorites" id="Jkh-Ff-8hR"/>
                 </tableViewController>
@@ -516,9 +516,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Crypto" id="Z1W-i6-iaL">
-                        <imageReference key="image" image="bitcoinsign.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="image" image="bitcoinsign.circle.fill" catalog="system" symbolScale="default"/>
                         <color key="badgeColor" name="Signature Green"/>
-                        <imageReference key="selectedImage" image="bitcoinsign.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="bitcoinsign.circle.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Crypto" largeTitleDisplayMode="always" id="59P-92-5hl"/>
                     <connections>
@@ -577,9 +577,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Stocks" id="UKq-ZN-aK6">
-                        <imageReference key="image" image="dollarsign.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="image" image="dollarsign.circle.fill" catalog="system" symbolScale="default"/>
                         <color key="badgeColor" name="Signature Green"/>
-                        <imageReference key="selectedImage" image="dollarsign.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="dollarsign.circle.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Stocks" id="Huq-um-pCQ"/>
                 </tableViewController>
