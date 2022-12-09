@@ -69,7 +69,7 @@ class GraphViewController: UIViewController {
         
         var supply = 0.0
         
-        if FD {
+        if !FD {
             supply = selectedCurrency!.circulating_supply
         } else {
             if let maxSupply = selectedCurrency!.max_supply {
@@ -91,7 +91,7 @@ class GraphViewController: UIViewController {
             return char == ","
         }
         
-        return Utilities.format(Int(Double(priceString)! * supply!), with: fiatCurrency)
+        return Utilities.format(Int(Double(priceString)! * supply), with: fiatCurrency)
     }
 }
  
