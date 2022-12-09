@@ -18,7 +18,7 @@ class GraphViewController: UIViewController {
     
     // Outlets
     @IBOutlet weak var mktCapView: UIView!
-    @IBOutlet weak var lowView: UIView!
+    @IBOutlet weak var fdMktCapView: UIView!
     @IBOutlet weak var openView: UIView!
     @IBOutlet weak var closedView: UIView!
     @IBOutlet weak var marketCapView: UIView!
@@ -31,6 +31,7 @@ class GraphViewController: UIViewController {
     
     @IBOutlet weak var mktCapLabel: UILabel!
     @IBOutlet weak var mktCapPriceLabel: UILabel!
+    @IBOutlet weak var fdMktCapPriceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,14 +47,15 @@ class GraphViewController: UIViewController {
         
         // Customize view
         mktCapView.layer.cornerRadius = K.viewCornerRadius
-        lowView.layer.cornerRadius = K.viewCornerRadius
+        fdMktCapView.layer.cornerRadius = K.viewCornerRadius
         openView.layer.cornerRadius = K.viewCornerRadius
         closedView.layer.cornerRadius = K.viewCornerRadius
         mktCapView.layer.cornerRadius = K.viewCornerRadius
         graphView.layer.cornerRadius = K.viewCornerRadius
         
         // Customize data views
-        mktCapPriceLabel.text = calculateMktCap()
+        mktCapPriceLabel.text = calculateMktCap(FD: false)
+        fdMktCapPriceLabel.text = calculateMktCap(FD: true)
     }
     
     // Add crypto to favorites 
@@ -63,8 +65,20 @@ class GraphViewController: UIViewController {
     }
     
     // Returns the market cap of the current crypto
-    func calculateMktCap() -> String {
-        let supply = selectedCurrency?.circulating_supply
+    func calculateMktCap(FD: Bool) -> String {
+        
+        var supply = 0.0
+        
+        if FD {
+            supply = selectedCurrency!.circulating_supply
+        } else {
+            if let maxSupply = selectedCurrency!.max_supply {
+                supply = Double(maxSupply)
+            } else {
+                supply = selectedCurrency!.total_supply
+            }
+        }
+        
         var priceString = priceLabel.text!
         var fiatCurrency = String(priceString.removeFirst())
     
