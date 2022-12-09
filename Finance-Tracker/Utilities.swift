@@ -27,4 +27,13 @@ class Utilities {
         return emailPred.evaluate(with: email)
     }
     
+    // Formats a double as a decimal
+    static func format(_ number: Int, with currency: String) -> String {
+        
+        // Format price
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return currency + numberFormatter.string(from: NSNumber(value: number))!
+    }
+    
 }

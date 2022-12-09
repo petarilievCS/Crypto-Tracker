@@ -17,9 +17,8 @@ class GraphViewController: UIViewController {
     var isFavorite: Bool = false
     
     // Outlets
-    @IBOutlet weak var highView: UIView!
+    @IBOutlet weak var mktCapView: UIView!
     @IBOutlet weak var lowView: UIView!
-    @IBOutlet weak var volumeView: UIView!
     @IBOutlet weak var openView: UIView!
     @IBOutlet weak var closedView: UIView!
     @IBOutlet weak var marketCapView: UIView!
@@ -29,6 +28,9 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var percentChangeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    
+    @IBOutlet weak var mktCapLabel: UILabel!
+    @IBOutlet weak var mktCapPriceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,19 +45,39 @@ class GraphViewController: UIViewController {
         percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
         
         // Customize view
-        highView.layer.cornerRadius = K.viewCornerRadius
+        mktCapView.layer.cornerRadius = K.viewCornerRadius
         lowView.layer.cornerRadius = K.viewCornerRadius
-        volumeView.layer.cornerRadius = K.viewCornerRadius
         openView.layer.cornerRadius = K.viewCornerRadius
         closedView.layer.cornerRadius = K.viewCornerRadius
-        marketCapView.layer.cornerRadius = K.viewCornerRadius
+        mktCapView.layer.cornerRadius = K.viewCornerRadius
         graphView.layer.cornerRadius = K.viewCornerRadius
+        
+        // Customize data views
+        mktCapPriceLabel.text = calculateMktCap()
     }
     
     // Add crypto to favorites 
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         favoriteButton.image = isFavorite ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
         isFavorite = !isFavorite
+    }
+    
+    // Returns the market cap of the current crypto
+    func calculateMktCap() -> String {
+        let supply = selectedCurrency?.circulating_supply
+        var priceString = priceLabel.text!
+        var fiatCurrency = String(priceString.removeFirst())
+    
+        // Brasilian Reals
+        if priceString.first! == "$" {
+            fiatCurrency += String(priceString.removeFirst())
+        }
+        
+        priceString.removeAll { char in
+            return char == ","
+        }
+        
+        return Utilities.format(Int(Double(priceString)! * supply!), with: fiatCurrency)
     }
 }
  

@@ -277,7 +277,7 @@ extension CryptoViewController {
             fiatSymbol += String(stringPrice.removeFirst())
         }
         
-        var doublePrice = Double(stringPrice)!
+        let doublePrice = Double(stringPrice)!
         cell.priceLabel.text = fiatSymbol + numberFormatter.string(from: NSNumber(value: doublePrice))!
     }
 }
