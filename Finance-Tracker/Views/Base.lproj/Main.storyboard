@@ -455,6 +455,7 @@
                         <outlet property="percentChangeLabel" destination="Afu-28-qap" id="Rb4-ic-xOs"/>
                         <outlet property="priceLabel" destination="3cN-pV-Z1c" id="I8h-9x-VCc"/>
                         <outlet property="symbolLabel" destination="WR5-i7-CeP" id="ald-YG-cOw"/>
+                        <outlet property="volumeLabel" destination="j0j-Pe-LoS" id="dOm-w8-RW5"/>
                         <outlet property="volumeView" destination="lAV-W3-P80" id="aqw-qq-EQl"/>
                     </connections>
                 </viewController>

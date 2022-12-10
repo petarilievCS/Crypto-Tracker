@@ -36,4 +36,56 @@ class Utilities {
         return currency + numberFormatter.string(from: NSNumber(value: number))!
     }
     
+    // Gets the rate in the current selected currency
+    static func getRate(for crypto: CryptoData, in fiat: String) -> Rate {
+        switch fiat {
+        case "AUD":
+            return crypto.quote.AUD
+        case "BRL":
+            return crypto.quote.BRL
+        case "CAD":
+            return crypto.quote.CAD
+        case "CHF":
+            return crypto.quote.CHF
+        case "EUR":
+            return crypto.quote.EUR
+        case "GBP":
+            return crypto.quote.GBP
+        case "HKD":
+            return crypto.quote.HKD
+        case "INR":
+            return crypto.quote.INR
+        case "JPY":
+            return crypto.quote.JPY
+        case "KRW":
+            return crypto.quote.KRW
+        case "TWD":
+            return crypto.quote.TWD
+        default:
+            return crypto.quote.USD 
+        }
+    }
+    
+    // Returns symbol for given fiat currency
+    static func getSymbol(for currency: String) -> String {
+        switch currency {
+        case "BRL":
+            return "R$"
+        case "CHF":
+            return "₣"
+        case "EUR":
+            return "€"
+        case "GBP":
+            return "£"
+        case "JPY":
+            return "¥"
+        case "KRW":
+            return "₩"
+        case "INR":
+            return "₹"
+        default:
+            return "$"
+        }
+    }
+    
 }

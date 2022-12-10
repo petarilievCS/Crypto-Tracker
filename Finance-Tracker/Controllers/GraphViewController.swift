@@ -10,11 +10,13 @@ import UIKit
 class GraphViewController: UIViewController {
     
     var selectedCurrency: CryptoData? = nil
+    var volume: Double = 0.0 
     var price: String = ""
     var percentChange: String = ""
     
     // TODO: Change to computed variable
     var isFavorite: Bool = false
+    let defaults = UserDefaults.standard
     
     // Outlets
     @IBOutlet weak var mktCapView: UIView!
@@ -34,6 +36,7 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var mktCapPriceLabel: UILabel!
     @IBOutlet weak var fdMktCapPriceLabel: UILabel!
     @IBOutlet weak var circulatingSupplyLabel: UILabel!
+    @IBOutlet weak var volumeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +64,9 @@ class GraphViewController: UIViewController {
         mktCapPriceLabel.text = calculateMktCap(FD: false)
         fdMktCapPriceLabel.text = calculateMktCap(FD: true)
         circulatingSupplyLabel.text = String(Utilities.format(Int(selectedCurrency!.circulating_supply), with: "")) + " \(selectedCurrency!.symbol)"
+        
+        let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat)!).volume_24h)
+        volumeLabel.text = Utilities.format(unformattedVolume, with: Utilities.getSymbol(for: defaults.string(forKey: K.defaultFiat)!))
         
     }
     

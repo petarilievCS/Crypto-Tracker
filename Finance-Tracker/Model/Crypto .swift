@@ -42,78 +42,79 @@ struct Quote : Codable {
         if let USD = try container.decodeIfPresent(Rate.self, forKey: .USD) {
             self.USD = USD
         } else {
-            self.USD = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.USD = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let EUR = try container.decodeIfPresent(Rate.self, forKey: .EUR) {
             self.EUR = EUR
         } else {
-            self.EUR = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.EUR = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let GBP = try container.decodeIfPresent(Rate.self, forKey: .GBP) {
             self.GBP = GBP
         } else {
-            self.GBP = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.GBP = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let JPY = try container.decodeIfPresent(Rate.self, forKey: .JPY) {
             self.JPY = JPY
         } else {
-            self.JPY = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.JPY = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let CAD = try container.decodeIfPresent(Rate.self, forKey: .CAD) {
             self.CAD = CAD
         } else {
-            self.CAD = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.CAD = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let CHF = try container.decodeIfPresent(Rate.self, forKey: .CHF) {
             self.CHF = CHF
         } else {
-            self.CHF = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.CHF = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let KRW = try container.decodeIfPresent(Rate.self, forKey: .KRW) {
             self.KRW = KRW
         } else {
-            self.KRW = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.KRW = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let INR = try container.decodeIfPresent(Rate.self, forKey: .INR) {
             self.INR = INR
         } else {
-            self.INR = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.INR = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let HKD = try container.decodeIfPresent(Rate.self, forKey: .HKD) {
             self.HKD = HKD
         } else {
-            self.HKD = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.HKD = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let AUD = try container.decodeIfPresent(Rate.self, forKey: .AUD) {
             self.AUD = AUD
         } else {
-            self.AUD = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.AUD = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let TWD = try container.decodeIfPresent(Rate.self, forKey: .TWD) {
             self.TWD = TWD
         } else {
-            self.TWD = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.TWD = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
         
         if let BRL = try container.decodeIfPresent(Rate.self, forKey: .BRL) {
             self.BRL = BRL
         } else {
-            self.BRL = Rate(price: 0.0, percent_change_24h: 0.0)
+            self.BRL = Rate(price: 0.0, percent_change_24h: 0.0, volume_24h: 0.0)
         }
     }
 }
 
-struct Rate : Codable {
-    let price : Double
-    let percent_change_24h : Double
+struct Rate: Codable {
+    let price: Double
+    let percent_change_24h: Double
+    let volume_24h: Double
 }
