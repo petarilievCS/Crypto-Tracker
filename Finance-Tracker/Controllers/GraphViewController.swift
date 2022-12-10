@@ -28,10 +28,12 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var percentChangeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
-    
+    @IBOutlet weak var circulatingSupplyView: UIView!
+    @IBOutlet weak var volumeView: UIView!
     @IBOutlet weak var mktCapLabel: UILabel!
     @IBOutlet weak var mktCapPriceLabel: UILabel!
     @IBOutlet weak var fdMktCapPriceLabel: UILabel!
+    @IBOutlet weak var circulatingSupplyLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +54,14 @@ class GraphViewController: UIViewController {
         closedView.layer.cornerRadius = K.viewCornerRadius
         mktCapView.layer.cornerRadius = K.viewCornerRadius
         graphView.layer.cornerRadius = K.viewCornerRadius
+        volumeView.layer.cornerRadius = K.viewCornerRadius
+        circulatingSupplyView.layer.cornerRadius = K.viewCornerRadius
         
         // Customize data views
         mktCapPriceLabel.text = calculateMktCap(FD: false)
         fdMktCapPriceLabel.text = calculateMktCap(FD: true)
+        circulatingSupplyLabel.text = String(Utilities.format(Int(selectedCurrency!.circulating_supply), with: "")) + " \(selectedCurrency!.symbol)"
+        
     }
     
     // Add crypto to favorites 
