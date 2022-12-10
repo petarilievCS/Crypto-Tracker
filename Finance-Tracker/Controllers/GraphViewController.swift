@@ -21,9 +21,6 @@ class GraphViewController: UIViewController {
     // Outlets
     @IBOutlet weak var mktCapView: UIView!
     @IBOutlet weak var fdMktCapView: UIView!
-    @IBOutlet weak var openView: UIView!
-    @IBOutlet weak var closedView: UIView!
-    @IBOutlet weak var marketCapView: UIView!
     @IBOutlet weak var graphView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
@@ -37,6 +34,10 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var fdMktCapPriceLabel: UILabel!
     @IBOutlet weak var circulatingSupplyLabel: UILabel!
     @IBOutlet weak var volumeLabel: UILabel!
+    @IBOutlet weak var maxSupplyView: UIView!
+    @IBOutlet weak var maxSupplyLabel: UILabel!
+    @IBOutlet weak var totalSupplyView: UILabel!
+    @IBOutlet weak var totalSupplyLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,20 +54,28 @@ class GraphViewController: UIViewController {
         // Customize view
         mktCapView.layer.cornerRadius = K.viewCornerRadius
         fdMktCapView.layer.cornerRadius = K.viewCornerRadius
-        openView.layer.cornerRadius = K.viewCornerRadius
-        closedView.layer.cornerRadius = K.viewCornerRadius
         mktCapView.layer.cornerRadius = K.viewCornerRadius
         graphView.layer.cornerRadius = K.viewCornerRadius
         volumeView.layer.cornerRadius = K.viewCornerRadius
         circulatingSupplyView.layer.cornerRadius = K.viewCornerRadius
+        maxSupplyView.layer.cornerRadius = K.viewCornerRadius
+        totalSupplyView.layer.cornerRadius = K.viewCornerRadius
         
         // Customize data views
         mktCapPriceLabel.text = calculateMktCap(FD: false)
         fdMktCapPriceLabel.text = calculateMktCap(FD: true)
         circulatingSupplyLabel.text = String(Utilities.format(Int(selectedCurrency!.circulating_supply), with: "")) + " \(selectedCurrency!.symbol)"
+        totalSupplyLabel.text = Utilities.format(Int(selectedCurrency!.total_supply), with: "") + " \(selectedCurrency!.symbol)"
         
         let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat)!).volume_24h)
         volumeLabel.text = Utilities.format(unformattedVolume, with: Utilities.getSymbol(for: defaults.string(forKey: K.defaultFiat)!))
+        
+        if let maxSupply = selectedCurrency?.max_supply {
+            maxSupplyLabel.text = Utilities.format(maxSupply, with: "") + " \(selectedCurrency!.symbol)"
+        } else {
+            maxSupplyLabel.text = "--"
+        }
+       
         
     }
     
