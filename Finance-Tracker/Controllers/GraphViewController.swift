@@ -38,6 +38,10 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var maxSupplyLabel: UILabel!
     @IBOutlet weak var totalSupplyView: UILabel!
     @IBOutlet weak var totalSupplyLabel: UILabel!
+    @IBOutlet weak var rankView: UIView!
+    @IBOutlet weak var rankLabel: UIView!
+    @IBOutlet weak var dominanceLabel: UILabel!
+    @IBOutlet weak var dominanceView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +64,8 @@ class GraphViewController: UIViewController {
         circulatingSupplyView.layer.cornerRadius = K.viewCornerRadius
         maxSupplyView.layer.cornerRadius = K.viewCornerRadius
         totalSupplyView.layer.cornerRadius = K.viewCornerRadius
+        rankView.layer.cornerRadius = K.viewCornerRadius
+        dominanceView.layer.cornerRadius = K.viewCornerRadius
         
         // Customize data views
         mktCapPriceLabel.text = calculateMktCap(FD: false)

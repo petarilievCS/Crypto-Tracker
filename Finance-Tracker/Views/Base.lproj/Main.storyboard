@@ -407,6 +407,46 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sAO-AO-pzf">
+                                <rect key="frame" x="18" y="725" width="171" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnG-yu-lKs">
+                                        <rect key="frame" x="8" y="14" width="40" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1I-gR-Fp9">
+                                        <rect key="frame" x="8" y="38" width="150" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ic9-mG-MuU">
+                                <rect key="frame" x="200" y="725" width="171" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dominance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfy-19-vhb">
+                                        <rect key="frame" x="8" y="14" width="89" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="39%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNM-Wg-7ng">
+                                        <rect key="frame" x="8" y="38" width="155" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g5X-hL-pnt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -421,6 +461,8 @@
                     <connections>
                         <outlet property="circulatingSupplyLabel" destination="mOS-2k-ZSJ" id="Ydy-fG-XGQ"/>
                         <outlet property="circulatingSupplyView" destination="zu3-dl-3XM" id="zcW-4N-hKZ"/>
+                        <outlet property="dominanceLabel" destination="FNM-Wg-7ng" id="kfg-5R-WR6"/>
+                        <outlet property="dominanceView" destination="ic9-mG-MuU" id="HW8-WY-Uva"/>
                         <outlet property="favoriteButton" destination="KAP-SV-xaY" id="xPO-YO-aV5"/>
                         <outlet property="fdMktCapPriceLabel" destination="b8U-wg-xrX" id="xUd-Kp-NJd"/>
                         <outlet property="fdMktCapView" destination="K9F-bq-Dr4" id="qtl-eb-ncK"/>
@@ -433,6 +475,8 @@
                         <outlet property="nameLabel" destination="5F7-yz-pqv" id="06N-vr-mWA"/>
                         <outlet property="percentChangeLabel" destination="Afu-28-qap" id="Rb4-ic-xOs"/>
                         <outlet property="priceLabel" destination="3cN-pV-Z1c" id="I8h-9x-VCc"/>
+                        <outlet property="rankLabel" destination="sAO-AO-pzf" id="xO9-Co-vrc"/>
+                        <outlet property="rankView" destination="sAO-AO-pzf" id="WMO-K7-eWh"/>
                         <outlet property="symbolLabel" destination="WR5-i7-CeP" id="ald-YG-cOw"/>
                         <outlet property="totalSupplyLabel" destination="q76-OK-8ZS" id="Eq1-Z5-jsa"/>
                         <outlet property="totalSupplyView" destination="OEm-eT-dIF" id="jGi-28-WIw"/>
