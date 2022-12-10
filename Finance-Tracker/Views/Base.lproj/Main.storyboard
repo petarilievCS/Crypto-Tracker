@@ -435,7 +435,7 @@
                         <outlet property="priceLabel" destination="3cN-pV-Z1c" id="I8h-9x-VCc"/>
                         <outlet property="symbolLabel" destination="WR5-i7-CeP" id="ald-YG-cOw"/>
                         <outlet property="totalSupplyLabel" destination="q76-OK-8ZS" id="Eq1-Z5-jsa"/>
-                        <outlet property="totalSupplyView" destination="zVa-A6-VUw" id="WHt-hm-gQX"/>
+                        <outlet property="totalSupplyView" destination="OEm-eT-dIF" id="jGi-28-WIw"/>
                         <outlet property="volumeLabel" destination="j0j-Pe-LoS" id="dOm-w8-RW5"/>
                         <outlet property="volumeView" destination="lAV-W3-P80" id="aqw-qq-EQl"/>
                     </connections>
