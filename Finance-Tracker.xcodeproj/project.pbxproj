@@ -32,6 +32,8 @@
 		E6A50192293D0C2900E5C36F /* Crypto .swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50191293D0C2900E5C36F /* Crypto .swift */; };
 		E6A50194293D0CFB00E5C36F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50193293D0CFA00E5C36F /* Keys.swift */; };
 		E6A50196293D0EAC00E5C36F /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50195293D0EAC00E5C36F /* CryptoManager.swift */; };
+		E6B1A6AE29478958006776E3 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6AD29478958006776E3 /* Algorithms */; };
+		E6B1A6B629478C45006776E3 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6B529478C45006776E3 /* Charts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,8 +68,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6A50187293BD29700E5C36F /* FirebaseAuth in Frameworks */,
+				E6B1A6B629478C45006776E3 /* Charts in Frameworks */,
 				E6A5018E293CFCA300E5C36F /* IQKeyboardManagerSwift in Frameworks */,
 				E6A50189293BD29800E5C36F /* FirebaseFirestore in Frameworks */,
+				E6B1A6AE29478958006776E3 /* Algorithms in Frameworks */,
 				E6A5018B293BD29800E5C36F /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +169,8 @@
 				E6A50188293BD29800E5C36F /* FirebaseFirestore */,
 				E6A5018A293BD29800E5C36F /* FirebaseFirestoreSwift */,
 				E6A5018D293CFCA300E5C36F /* IQKeyboardManagerSwift */,
+				E6B1A6AD29478958006776E3 /* Algorithms */,
+				E6B1A6B529478C45006776E3 /* Charts */,
 			);
 			productName = "Finance-Tracker";
 			productReference = E6A5014E2937DED100E5C36F /* Finance-Tracker.app */;
@@ -197,6 +203,8 @@
 			packageReferences = (
 				E6A50185293BD29700E5C36F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E6A5018C293CFCA200E5C36F /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				E6B1A6AC29478958006776E3 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				E6B1A6B429478C45006776E3 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = E6A5014F2937DED100E5C36F /* Products */;
 			projectDirPath = "";
@@ -478,6 +486,22 @@
 				minimumVersion = 6.5.0;
 			};
 		};
+		E6B1A6AC29478958006776E3 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		E6B1A6B429478C45006776E3 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -500,6 +524,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E6A5018C293CFCA200E5C36F /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		E6B1A6AD29478958006776E3 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6B1A6AC29478958006776E3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		E6B1A6B529478C45006776E3 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6B1A6B429478C45006776E3 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
 
