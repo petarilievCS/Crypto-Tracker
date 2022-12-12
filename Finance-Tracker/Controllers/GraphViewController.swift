@@ -39,7 +39,7 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var totalSupplyView: UILabel!
     @IBOutlet weak var totalSupplyLabel: UILabel!
     @IBOutlet weak var rankView: UIView!
-    @IBOutlet weak var rankLabel: UIView!
+    @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var dominanceLabel: UILabel!
     @IBOutlet weak var dominanceView: UIView!
     
@@ -70,6 +70,7 @@ class GraphViewController: UIViewController {
         // Customize data views
         mktCapPriceLabel.text = calculateMktCap(FD: false)
         fdMktCapPriceLabel.text = calculateMktCap(FD: true)
+        rankLabel.text = "#\(String(selectedCurrency!.cmc_rank))"
         circulatingSupplyLabel.text = String(Utilities.format(Int(selectedCurrency!.circulating_supply), with: "")) + " \(selectedCurrency!.symbol)"
         totalSupplyLabel.text = Utilities.format(Int(selectedCurrency!.total_supply), with: "") + " \(selectedCurrency!.symbol)"
         

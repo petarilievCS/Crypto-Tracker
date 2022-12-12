@@ -475,8 +475,8 @@
                         <outlet property="nameLabel" destination="5F7-yz-pqv" id="06N-vr-mWA"/>
                         <outlet property="percentChangeLabel" destination="Afu-28-qap" id="Rb4-ic-xOs"/>
                         <outlet property="priceLabel" destination="3cN-pV-Z1c" id="I8h-9x-VCc"/>
-                        <outlet property="rankLabel" destination="sAO-AO-pzf" id="xO9-Co-vrc"/>
-                        <outlet property="rankView" destination="sAO-AO-pzf" id="WMO-K7-eWh"/>
+                        <outlet property="rankLabel" destination="R1I-gR-Fp9" id="QfK-LS-v3N"/>
+                        <outlet property="rankView" destination="sAO-AO-pzf" id="qBy-nx-r0O"/>
                         <outlet property="symbolLabel" destination="WR5-i7-CeP" id="ald-YG-cOw"/>
                         <outlet property="totalSupplyLabel" destination="q76-OK-8ZS" id="Eq1-Z5-jsa"/>
                         <outlet property="totalSupplyView" destination="OEm-eT-dIF" id="jGi-28-WIw"/>

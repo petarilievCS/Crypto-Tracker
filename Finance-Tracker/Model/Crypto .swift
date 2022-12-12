@@ -17,7 +17,8 @@ struct CryptoData : Codable {
     let symbol: String
     let circulating_supply: Double
     let total_supply: Double
-    let max_supply: Int? 
+    let max_supply: Int?
+    let cmc_rank: Int
     let quote: Quote
 }
 
