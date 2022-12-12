@@ -6,8 +6,16 @@
 //
 
 import UIKit
+import Charts
 
 class GraphViewController: UIViewController {
+    
+    // View used for graph
+    lazy var lineChartView: LineChartView = {
+        let chartV = LineChartView()
+        chartV.backgroundColor = .systemGray2
+        return chartV
+    }()
     
     var selectedCurrency: CryptoData? = nil
     var volume: Double = 0.0 
@@ -21,7 +29,6 @@ class GraphViewController: UIViewController {
     // Outlets
     @IBOutlet weak var mktCapView: UIView!
     @IBOutlet weak var fdMktCapView: UIView!
-    @IBOutlet weak var graphView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -42,6 +49,7 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var dominanceLabel: UILabel!
     @IBOutlet weak var dominanceView: UIView!
+    @IBOutlet weak var chartView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +67,6 @@ class GraphViewController: UIViewController {
         mktCapView.layer.cornerRadius = K.viewCornerRadius
         fdMktCapView.layer.cornerRadius = K.viewCornerRadius
         mktCapView.layer.cornerRadius = K.viewCornerRadius
-        graphView.layer.cornerRadius = K.viewCornerRadius
         volumeView.layer.cornerRadius = K.viewCornerRadius
         circulatingSupplyView.layer.cornerRadius = K.viewCornerRadius
         maxSupplyView.layer.cornerRadius = K.viewCornerRadius
@@ -84,7 +91,12 @@ class GraphViewController: UIViewController {
         }
         
         let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat)!).market_cap_dominance
-        dominanceLabel.text = String(format: "%.1f", dominance) + "%" 
+        dominanceLabel.text = String(format: "%.1f", dominance) + "%"
+        
+        chartView.addSubview(lineChartView)
+        lineChartView.centerInSuperview()
+        lineChartView.frame.size.width = chartView.frame.size.width
+        lineChartView.frame.size.height = chartView.frame.size.height
         
     }
     
@@ -125,3 +137,24 @@ class GraphViewController: UIViewController {
     }
 }
  
+// MARK: - UI View methods
+
+extension UIView {
+    
+    func centerInSuperview() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.centerHorizontallyInSuperview()
+        self.centerVerticallyInSuperview()
+    }
+    
+    func centerHorizontallyInSuperview(){
+        let c: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: self.superview, attribute: .centerX, multiplier: 1, constant: 0)
+        self.superview?.addConstraint(c)
+    }
+    
+    func centerVerticallyInSuperview(){
+        let c: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: self.superview, attribute: .centerY, multiplier: 1, constant: 0)
+        self.superview?.addConstraint(c)
+    }
+    
+}

@@ -303,10 +303,6 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Stocks Image" translatesAutoresizingMaskIntoConstraints="NO" id="B1N-9v-R7j">
-                                <rect key="frame" x="16" y="373" width="361" height="270"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K9F-bq-Dr4">
                                 <rect key="frame" x="200" y="216" width="171" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -447,6 +443,11 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljd-xc-K7S">
+                                <rect key="frame" x="18" y="392" width="353" height="229"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g5X-hL-pnt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -459,6 +460,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chartView" destination="ljd-xc-K7S" id="juh-Rm-AhZ"/>
                         <outlet property="circulatingSupplyLabel" destination="mOS-2k-ZSJ" id="Ydy-fG-XGQ"/>
                         <outlet property="circulatingSupplyView" destination="zu3-dl-3XM" id="zcW-4N-hKZ"/>
                         <outlet property="dominanceLabel" destination="FNM-Wg-7ng" id="kfg-5R-WR6"/>
@@ -466,7 +468,6 @@
                         <outlet property="favoriteButton" destination="KAP-SV-xaY" id="xPO-YO-aV5"/>
                         <outlet property="fdMktCapPriceLabel" destination="b8U-wg-xrX" id="xUd-Kp-NJd"/>
                         <outlet property="fdMktCapView" destination="K9F-bq-Dr4" id="qtl-eb-ncK"/>
-                        <outlet property="graphView" destination="B1N-9v-R7j" id="tEL-Ws-f1D"/>
                         <outlet property="maxSupplyLabel" destination="roY-1h-XAY" id="vW2-ac-LdV"/>
                         <outlet property="maxSupplyView" destination="vj4-fB-VSv" id="r9g-dc-DUX"/>
                         <outlet property="mktCapLabel" destination="ydc-hx-sdN" id="7LN-o5-90g"/>
@@ -652,7 +653,6 @@
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
     <resources>
-        <image name="Stocks Image" width="473" height="248"/>
         <image name="bitcoinsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="dollarsign" catalog="system" width="89" height="128"/>
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="123"/>
