@@ -82,7 +82,9 @@ class GraphViewController: UIViewController {
         } else {
             maxSupplyLabel.text = "--"
         }
-       
+        
+        let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat)!).market_cap_dominance
+        dominanceLabel.text = String(format: "%.1f", dominance) + "%" 
         
     }
     
