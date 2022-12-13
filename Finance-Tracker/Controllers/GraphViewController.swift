@@ -15,8 +15,25 @@ class GraphViewController: UIViewController {
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
         chartView.backgroundColor = .systemGray6
+        chartView.rightAxis.enabled = false
+        chartView.xAxis.labelPosition = .bottom
+        chartView.animate(xAxisDuration: 1.5)
         return chartView
     }()
+    
+    let yValue: [ChartDataEntry] = [
+        ChartDataEntry(x: 0.0, y: 5.0),
+        ChartDataEntry(x: 1.0, y: 10.0),
+        ChartDataEntry(x: 2.0, y: 12.0),
+        ChartDataEntry(x: 3.0, y: 15.0),
+        ChartDataEntry(x: 4.0, y: 9.0),
+        ChartDataEntry(x: 5.0, y: 7.0),
+        ChartDataEntry(x: 6.0, y: 10.0),
+        ChartDataEntry(x: 7.0, y: 5.0),
+        ChartDataEntry(x: 8.0, y: 4.0),
+        ChartDataEntry(x: 9.0, y: 0.0),
+        ChartDataEntry(x: 10.0, y: 5.0)
+    ]
     
     var selectedCurrency: CryptoData? = nil
     var volume: Double = 0.0 
@@ -98,7 +115,25 @@ class GraphViewController: UIViewController {
         lineChartView.centerInSuperview()
         lineChartView.width(to: chartView)
         lineChartView.height(to: chartView)
+        setData()
                 
+    }
+    
+    // Sets data in chart view
+    func setData() {
+        let set1 = LineChartDataSet(entries: yValue, label: "Y Values")
+        set1.mode = .cubicBezier
+        set1.drawCirclesEnabled = false
+        set1.lineWidth = 2
+        set1.setColor(UIColor(named: "Signature Green")!)
+        set1.fillColor = UIColor(named: "Signature Green")!
+        set1.fillAlpha = 0.5
+        set1.drawFilledEnabled = true
+        set1.drawHorizontalHighlightIndicatorEnabled = false
+        set1.drawVerticalHighlightIndicatorEnabled = false 
+        let data = LineChartData(dataSet: set1)
+        data.setDrawValues(false)
+        lineChartView.data = data
     }
     
     // Add crypto to favorites 
@@ -138,3 +173,12 @@ class GraphViewController: UIViewController {
     }
 }
  
+// MARK: - Chart View Delegate methods
+
+extension GraphViewController: ChartViewDelegate {
+    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        print(entry)
+    }
+    
+}
