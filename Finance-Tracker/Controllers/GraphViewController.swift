@@ -17,11 +17,10 @@ class GraphViewController: UIViewController {
         chartView.backgroundColor = .systemGray6
         chartView.rightAxis.enabled = false
         chartView.xAxis.labelPosition = .bottom
-        chartView.animate(xAxisDuration: 1.5)
         return chartView
     }()
     
-    let yValue: [ChartDataEntry] = [
+    var yValue: [ChartDataEntry] = [
         ChartDataEntry(x: 0.0, y: 5.0),
         ChartDataEntry(x: 1.0, y: 10.0),
         ChartDataEntry(x: 2.0, y: 12.0),
@@ -39,6 +38,7 @@ class GraphViewController: UIViewController {
     var volume: Double = 0.0 
     var price: String = ""
     var percentChange: String = ""
+    let cryptoManager = CryptoManager()
     
     // TODO: Change to computed variable
     var isFavorite: Bool = false
@@ -71,6 +71,7 @@ class GraphViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cryptoManager.delegate = self
         
         // Customize main info
         symbolLabel.text = selectedCurrency?.symbol
@@ -121,7 +122,7 @@ class GraphViewController: UIViewController {
     
     // Sets data in chart view
     func setData() {
-        let set1 = LineChartDataSet(entries: yValue, label: "Y Values")
+        let set1 =  LineChartDataSet(entries: yValue, label: "Price")
         set1.mode = .cubicBezier
         set1.drawCirclesEnabled = false
         set1.lineWidth = 2
@@ -130,7 +131,7 @@ class GraphViewController: UIViewController {
         set1.fillAlpha = 0.5
         set1.drawFilledEnabled = true
         set1.drawHorizontalHighlightIndicatorEnabled = false
-        set1.drawVerticalHighlightIndicatorEnabled = false 
+        set1.drawVerticalHighlightIndicatorEnabled = false
         let data = LineChartData(dataSet: set1)
         data.setDrawValues(false)
         lineChartView.data = data
@@ -138,6 +139,9 @@ class GraphViewController: UIViewController {
     
     // Add crypto to favorites 
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        cryptoManager.performCoinAPIRequest()
+        
+        
         favoriteButton.image = isFavorite ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
         isFavorite = !isFavorite
     }
@@ -181,4 +185,20 @@ extension GraphViewController: ChartViewDelegate {
         print(entry)
     }
     
+}
+
+// MARK: - Crypto Manager Delegate methods
+
+extension GraphViewController: CryptoManagerDelegate {
+    func receivedInformation() {
+        if let history = cryptoManager.cryptoHistory {
+            yValue = []
+            var counter = 0.0
+            for quote in history {
+                yValue.append(ChartDataEntry(x: counter, y: quote.rate_open))
+                counter += 1.0
+            }
+            setData()
+        }
+    }
 }
