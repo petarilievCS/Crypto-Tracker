@@ -23,11 +23,11 @@ class CryptoManager {
     var cryptoHistory: [CryptoQuote]? = []
     
     // Performs single HTTP request to CoinAPI
-    func performCoinAPIRequest(for cryptoCurrency: String, in fiatCurrency: String) {
+    func performCoinAPIRequest(for cryptoCurrency: String, in fiatCurrency: String, _ timePeriod: Period) {
         
         let today = getToday().replacingOccurrences(of: "+0000", with: "")
-        let lastWeek = getLastWeek().replacingOccurrences(of: "+0000", with: "")
-        let URLString = createCoinAPIURL(for: cryptoCurrency, in: fiatCurrency, from: lastWeek, to: today)
+        let start = getStart(for: timePeriod).replacingOccurrences(of: "+0000", with: "")
+        let URLString = createCoinAPIURL(for: cryptoCurrency, in: fiatCurrency, from: start, to: today, timePeriod)
         
         if let URL = URL(string: URLString) {
             var request = URLRequest(url: URL)
@@ -51,17 +51,49 @@ class CryptoManager {
         
     }
     
-    func createCoinAPIURL(for cryptoCurrency: String, in fiatCurrency: String, from start: String, to end: String) -> String {
-        return  "https://rest.coinapi.io/v1/exchangerate/\(cryptoCurrency)/\(fiatCurrency)/history?period_id=1DAY&time_start=\(start)&time_end=\(end)"
+    // Creates URL for CoinAPI with given parameters
+    func createCoinAPIURL(for cryptoCurrency: String, in fiatCurrency: String, from start: String, to end: String, _ timePeriod: Period) -> String {
+        
+        var frequency = ""
+        switch timePeriod {
+        case .day:
+            frequency = "1HRS"
+        case .fiveDays:
+            frequency = "8HRS"
+        case .month:
+            frequency = "2DAY"
+        default:
+            frequency = "10DAY"
+        }
+        
+        return  "https://rest.coinapi.io/v1/exchangerate/\(cryptoCurrency)/\(fiatCurrency)/history?period_id=\(frequency)&time_start=\(start)&time_end=\(end)"
     }
     
-    // Returns date one week ago in ISO format
-    func getLastWeek() -> String {
+    // Gets starting date depending on time period
+    func getStart(for timePeriod: Period) -> String {
         setupFormatter()
-        let date = Date()
+        let currentDate = Date()
         let calendar = Calendar.current
-        let lastWeek = calendar.date(byAdding: .day, value: -7, to: date)
-        return dateFormatter.string(from: lastWeek!)
+        var startDate = Date()
+        
+        switch timePeriod {
+        case .day:
+            startDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!
+        case .fiveDays:
+            startDate = calendar.date(byAdding: .day, value: -5, to: currentDate)!
+        case .month:
+            startDate = calendar.date(byAdding: .month, value: -1, to: currentDate)!
+        case .sixMonths:
+            startDate = calendar.date(byAdding: .month, value: -6, to: currentDate)!
+        case .year:
+            startDate = calendar.date(byAdding: .year, value: -1, to: currentDate)!
+        case .fiveYears:
+            startDate = calendar.date(byAdding: .year, value: -5, to: currentDate)!
+        case .max:
+            // TODO: Change
+            startDate = calendar.date(byAdding: .year, value: -5, to: currentDate)!
+        }
+        return dateFormatter.string(from: startDate)
     }
     
     // Gets current date in ISO format

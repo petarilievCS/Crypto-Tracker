@@ -9,6 +9,16 @@ import UIKit
 import Charts
 import TinyConstraints
 
+enum Period {
+    case day
+    case fiveDays
+    case month
+    case sixMonths
+    case year
+    case fiveYears
+    case max
+}
+
 class GraphViewController: UIViewController {
     
     // Chart view
@@ -24,6 +34,7 @@ class GraphViewController: UIViewController {
     }()
     
     var yValue: [ChartDataEntry] = []
+    var timePeriod: Period = .day
     
     var selectedCurrency: CryptoData? = nil
     var volume: Double = 0.0 
@@ -130,7 +141,7 @@ class GraphViewController: UIViewController {
         lineChartView.centerInSuperview()
         lineChartView.width(to: chartView)
         lineChartView.height(to: chartView)
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!)
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
                 
     }
     
@@ -192,36 +203,50 @@ class GraphViewController: UIViewController {
     @IBAction func dayButtonPressed(_ sender: UIButton) {
         deselectButtons()
         dayButton.backgroundColor = .systemGray5
+        timePeriod = .day
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
     
     @IBAction func fiveDaysButtonPressed(_ sender: UIButton) {
         deselectButtons()
         fiveDaysButton.backgroundColor = .systemGray5
+        timePeriod = .fiveDays
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
     
     @IBAction func monthButtonPressed(_ sender: UIButton) {
         deselectButtons()
         monthButton.backgroundColor = .systemGray5
+        timePeriod = .month
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
     
     @IBAction func sixMonthsButtonPressed(_ sender: UIButton) {
         deselectButtons()
         sixMonthsButton.backgroundColor = .systemGray5
+        timePeriod = .sixMonths
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
     
     @IBAction func yearButtonPressed(_ sender: UIButton) {
         deselectButtons()
         yearButton.backgroundColor = .systemGray5
+        timePeriod = .year
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
 
     @IBAction func fiveYearsButtonPressed(_ sender: UIButton) {
         deselectButtons()
         fiveYearsButton.backgroundColor = .systemGray5
+        timePeriod = .fiveYears
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
     
     @IBAction func maxButtonPressed(_ sender: UIButton) {
         deselectButtons()
         maxButton.backgroundColor = .systemGray5
+        timePeriod = .max
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
     
     func deselectButtons() {
