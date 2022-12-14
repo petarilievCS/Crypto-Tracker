@@ -92,12 +92,19 @@ class GraphViewController: UIViewController {
         rankView.layer.cornerRadius = K.viewCornerRadius
         dominanceView.layer.cornerRadius = K.viewCornerRadius
         dayButton.layer.cornerRadius = K.viewCornerRadius
+        dayButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         fiveDaysButton.layer.cornerRadius = K.viewCornerRadius
+        fiveDaysButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         monthButton.layer.cornerRadius = K.viewCornerRadius
+        monthButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         sixMonthsButton.layer.cornerRadius = K.viewCornerRadius
+        sixMonthsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         yearButton.layer.cornerRadius = K.viewCornerRadius
+        yearButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         fiveYearsButton.layer.cornerRadius = K.viewCornerRadius
+        fiveYearsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         maxButton.layer.cornerRadius = K.viewCornerRadius
+        maxButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         
         // Customize data views
         mktCapPriceLabel.text = calculateMktCap(FD: false)
@@ -179,6 +186,54 @@ class GraphViewController: UIViewController {
         
         return Utilities.format(Int(Double(priceString)! * supply), with: fiatCurrency)
     }
+    
+    // MARK: - Button Actions
+    
+    @IBAction func dayButtonPressed(_ sender: UIButton) {
+        deselectButtons()
+        dayButton.backgroundColor = .systemGray5
+    }
+    
+    @IBAction func fiveDaysButtonPressed(_ sender: UIButton) {
+        deselectButtons()
+        fiveDaysButton.backgroundColor = .systemGray5
+    }
+    
+    @IBAction func monthButtonPressed(_ sender: UIButton) {
+        deselectButtons()
+        monthButton.backgroundColor = .systemGray5
+    }
+    
+    @IBAction func sixMonthsButtonPressed(_ sender: UIButton) {
+        deselectButtons()
+        sixMonthsButton.backgroundColor = .systemGray5
+    }
+    
+    @IBAction func yearButtonPressed(_ sender: UIButton) {
+        deselectButtons()
+        yearButton.backgroundColor = .systemGray5
+    }
+
+    @IBAction func fiveYearsButtonPressed(_ sender: UIButton) {
+        deselectButtons()
+        fiveYearsButton.backgroundColor = .systemGray5
+    }
+    
+    @IBAction func maxButtonPressed(_ sender: UIButton) {
+        deselectButtons()
+        maxButton.backgroundColor = .systemGray5
+    }
+    
+    func deselectButtons() {
+        dayButton.backgroundColor = .systemBackground
+        fiveDaysButton.backgroundColor = .systemBackground
+        monthButton.backgroundColor = .systemBackground
+        sixMonthsButton.backgroundColor = .systemBackground
+        yearButton.backgroundColor = .systemBackground
+        fiveYearsButton.backgroundColor = .systemBackground
+        maxButton.backgroundColor = .systemBackground
+    }
+    
 }
  
 // MARK: - Chart View Delegate methods
@@ -199,11 +254,6 @@ extension GraphViewController: CryptoManagerDelegate {
             yValue = []
             var counter = 0.0
             for quote in history {
-//                var price = quote.rate_open * 1000.0
-//                print("Before: \(price)")
-//                let intPrice = Int(price)
-//                price = Double(intPrice) / 1000.0
-//                print("After: \(price)")
                 yValue.append(ChartDataEntry(x: counter, y: quote.rate_open))
                 counter += 1.0
             }
