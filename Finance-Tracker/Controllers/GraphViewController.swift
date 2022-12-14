@@ -112,11 +112,12 @@ class GraphViewController: UIViewController {
         let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat)!).market_cap_dominance
         dominanceLabel.text = String(format: "%.1f", dominance) + "%"
         
+        // Setup chart view
         chartView.addSubview(lineChartView)
         lineChartView.centerInSuperview()
         lineChartView.width(to: chartView)
         lineChartView.height(to: chartView)
-        setData()
+        cryptoManager.performCoinAPIRequest()
                 
     }
     
@@ -139,9 +140,6 @@ class GraphViewController: UIViewController {
     
     // Add crypto to favorites 
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
-        cryptoManager.performCoinAPIRequest()
-        
-        
         favoriteButton.image = isFavorite ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
         isFavorite = !isFavorite
     }

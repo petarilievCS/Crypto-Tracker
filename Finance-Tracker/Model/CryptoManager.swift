@@ -12,19 +12,27 @@ protocol CryptoManagerDelegate {
 }
 
 class CryptoManager {
-
+    
+    
+    
+    let dateFormatter = DateFormatter()
     var delegate : CryptoManagerDelegate?
     let defaults = UserDefaults.standard
     
     var urlString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=5&convert="
-    var coinAPIString = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=1DAY&time_start=2022-11-01T00:00:00&time_end=2022-11-08T00:00:00"
     var returnArray: [CryptoData] = []
     var cryptoResponse: Crypto? = nil
     var cryptoHistory: [CryptoQuote]? = []
     
     // Performs single HTTP request to CoinAPI
     func performCoinAPIRequest() {
-        let URLString = coinAPIString
+        
+        let today = getToday().replacingOccurrences(of: "+0000", with: "")
+        let lastWeek = getLastWeek().replacingOccurrences(of: "+0000", with: "")
+        print(lastWeek)
+        print(today)
+        let URLString = createCoinAPIURL(from: lastWeek, to: today)
+        
         if let URL = URL(string: URLString) {
             var request = URLRequest(url: URL)
             request.setValue(Keys.coinAPI, forHTTPHeaderField: "X-CoinAPI-Key")
@@ -45,6 +53,33 @@ class CryptoManager {
             task.resume()
         }
         
+    }
+    
+    func createCoinAPIURL(from start: String, to end: String) -> String {
+        return  "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=1DAY&time_start=\(start)&time_end=\(end)"
+    }
+    
+    // Returns date one week ago in ISO format
+    func getLastWeek() -> String {
+        setupFormatter()
+        let date = Date()
+        let calendar = Calendar.current
+        let lastWeek = calendar.date(byAdding: .day, value: -7, to: date)
+        return dateFormatter.string(from: lastWeek!)
+    }
+    
+    // Gets current date in ISO format
+    func getToday() -> String {
+        setupFormatter()
+        let currentDate = Date()
+        return dateFormatter.string(from: currentDate)
+    }
+    
+    // Sets up date formatter
+    func setupFormatter() {
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
     }
     
     // Performs single HTTP request to CoinMarketCap API
