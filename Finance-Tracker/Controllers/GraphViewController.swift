@@ -14,25 +14,16 @@ class GraphViewController: UIViewController {
     // Chart view
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
-        chartView.backgroundColor = .systemGray6
+        chartView.backgroundColor = .black
         chartView.rightAxis.enabled = false
         chartView.xAxis.labelPosition = .bottom
+        chartView.xAxis.drawGridLinesEnabled = false
+        chartView.leftAxis.drawAxisLineEnabled = false
+        chartView.legend.enabled = false
         return chartView
     }()
     
-    var yValue: [ChartDataEntry] = [
-        ChartDataEntry(x: 0.0, y: 5.0),
-        ChartDataEntry(x: 1.0, y: 10.0),
-        ChartDataEntry(x: 2.0, y: 12.0),
-        ChartDataEntry(x: 3.0, y: 15.0),
-        ChartDataEntry(x: 4.0, y: 9.0),
-        ChartDataEntry(x: 5.0, y: 7.0),
-        ChartDataEntry(x: 6.0, y: 10.0),
-        ChartDataEntry(x: 7.0, y: 5.0),
-        ChartDataEntry(x: 8.0, y: 4.0),
-        ChartDataEntry(x: 9.0, y: 0.0),
-        ChartDataEntry(x: 10.0, y: 5.0)
-    ]
+    var yValue: [ChartDataEntry] = []
     
     var selectedCurrency: CryptoData? = nil
     var volume: Double = 0.0 
@@ -127,8 +118,8 @@ class GraphViewController: UIViewController {
         set1.mode = .cubicBezier
         set1.drawCirclesEnabled = false
         set1.lineWidth = 2
-        set1.setColor(UIColor(named: "Signature Green")!)
-        set1.fillColor = UIColor(named: "Signature Green")!
+        set1.setColor(percentChangeLabel.textColor)
+        set1.fillColor = percentChangeLabel.textColor
         set1.fillAlpha = 0.5
         set1.drawFilledEnabled = true
         set1.drawHorizontalHighlightIndicatorEnabled = false
@@ -193,6 +184,11 @@ extension GraphViewController: CryptoManagerDelegate {
             yValue = []
             var counter = 0.0
             for quote in history {
+//                var price = quote.rate_open * 1000.0
+//                print("Before: \(price)")
+//                let intPrice = Int(price)
+//                price = Double(intPrice) / 1000.0
+//                print("After: \(price)")
                 yValue.append(ChartDataEntry(x: counter, y: quote.rate_open))
                 counter += 1.0
             }
