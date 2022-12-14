@@ -59,6 +59,14 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var dominanceLabel: UILabel!
     @IBOutlet weak var dominanceView: UIView!
     @IBOutlet weak var chartView: UIView!
+    @IBOutlet weak var dayButton: UIButton!
+    @IBOutlet weak var fiveDaysButton: UIButton!
+    @IBOutlet weak var monthButton: UIButton!
+    @IBOutlet weak var sixMonthsButton: UIButton!
+    @IBOutlet weak var yearButton: UIButton!
+    @IBOutlet weak var fiveYearsButton: UIButton!
+    @IBOutlet weak var maxButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +91,13 @@ class GraphViewController: UIViewController {
         totalSupplyView.layer.cornerRadius = K.viewCornerRadius
         rankView.layer.cornerRadius = K.viewCornerRadius
         dominanceView.layer.cornerRadius = K.viewCornerRadius
+        dayButton.layer.cornerRadius = K.viewCornerRadius
+        fiveDaysButton.layer.cornerRadius = K.viewCornerRadius
+        monthButton.layer.cornerRadius = K.viewCornerRadius
+        sixMonthsButton.layer.cornerRadius = K.viewCornerRadius
+        yearButton.layer.cornerRadius = K.viewCornerRadius
+        fiveYearsButton.layer.cornerRadius = K.viewCornerRadius
+        maxButton.layer.cornerRadius = K.viewCornerRadius
         
         // Customize data views
         mktCapPriceLabel.text = calculateMktCap(FD: false)
