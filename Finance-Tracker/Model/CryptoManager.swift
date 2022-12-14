@@ -13,8 +13,6 @@ protocol CryptoManagerDelegate {
 
 class CryptoManager {
     
-    
-    
     let dateFormatter = DateFormatter()
     var delegate : CryptoManagerDelegate?
     let defaults = UserDefaults.standard
@@ -25,13 +23,11 @@ class CryptoManager {
     var cryptoHistory: [CryptoQuote]? = []
     
     // Performs single HTTP request to CoinAPI
-    func performCoinAPIRequest() {
+    func performCoinAPIRequest(for cryptoCurrency: String, in fiatCurrency: String) {
         
         let today = getToday().replacingOccurrences(of: "+0000", with: "")
         let lastWeek = getLastWeek().replacingOccurrences(of: "+0000", with: "")
-        print(lastWeek)
-        print(today)
-        let URLString = createCoinAPIURL(from: lastWeek, to: today)
+        let URLString = createCoinAPIURL(for: cryptoCurrency, in: fiatCurrency, from: lastWeek, to: today)
         
         if let URL = URL(string: URLString) {
             var request = URLRequest(url: URL)
@@ -55,8 +51,8 @@ class CryptoManager {
         
     }
     
-    func createCoinAPIURL(from start: String, to end: String) -> String {
-        return  "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=1DAY&time_start=\(start)&time_end=\(end)"
+    func createCoinAPIURL(for cryptoCurrency: String, in fiatCurrency: String, from start: String, to end: String) -> String {
+        return  "https://rest.coinapi.io/v1/exchangerate/\(cryptoCurrency)/\(fiatCurrency)/history?period_id=1DAY&time_start=\(start)&time_end=\(end)"
     }
     
     // Returns date one week ago in ISO format

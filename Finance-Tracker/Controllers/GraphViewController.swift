@@ -117,7 +117,7 @@ class GraphViewController: UIViewController {
         lineChartView.centerInSuperview()
         lineChartView.width(to: chartView)
         lineChartView.height(to: chartView)
-        cryptoManager.performCoinAPIRequest()
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!)
                 
     }
     
