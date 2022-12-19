@@ -98,21 +98,21 @@ class Utilities {
             // format with M
             print(number)
             let millions = number / 1000000
-            var roundedDouble = Double(Int(millions * 100)) / 100
+            let roundedDouble = Double(Int(millions * 100)) / 100
             print("\(currency)\(roundedDouble)M")
             return "\(currency)\(roundedDouble) M"
         case 1000000000..<1000000000000:
             // format with B
             print(number)
             let billions = number / 1000000000
-            var roundedDouble = Double(Int(billions * 100)) / 100
+            let roundedDouble = Double(Int(billions * 100)) / 100
             print("\(currency)\(roundedDouble)B")
             return "\(currency)\(roundedDouble) B"
         default:
             // format with T
             print(number)
             let trillions = number / 1000000000000
-            var roundedDouble = Double(Int(trillions * 100)) / 100
+            let roundedDouble = Double(Int(trillions * 100)) / 100
             print("\(currency)\(roundedDouble)T")
             return "\(currency)\(roundedDouble) T"
         }

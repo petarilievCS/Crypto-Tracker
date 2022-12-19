@@ -57,11 +57,11 @@ class CryptoManager {
         var frequency = ""
         switch timePeriod {
         case .day:
-            frequency = "1HRS"
+            frequency = "15MIN"
         case .fiveDays:
-            frequency = "8HRS"
+            frequency = "1HRS"
         case .month:
-            frequency = "2DAY"
+            frequency = "8HRS"
         default:
             frequency = "10DAY"
         }
