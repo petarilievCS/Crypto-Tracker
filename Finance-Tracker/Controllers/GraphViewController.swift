@@ -121,14 +121,14 @@ class GraphViewController: UIViewController {
         mktCapPriceLabel.text = calculateMktCap(FD: false)
         fdMktCapPriceLabel.text = calculateMktCap(FD: true)
         rankLabel.text = "#\(String(selectedCurrency!.cmc_rank))"
-        circulatingSupplyLabel.text = String(Utilities.format(Int(selectedCurrency!.circulating_supply), with: "")) + " \(selectedCurrency!.symbol)"
-        totalSupplyLabel.text = Utilities.format(Int(selectedCurrency!.total_supply), with: "") + " \(selectedCurrency!.symbol)"
+        circulatingSupplyLabel.text = String(Utilities.formatDecimal(selectedCurrency!.circulating_supply, with: ""))
+        totalSupplyLabel.text = Utilities.formatDecimal(selectedCurrency!.total_supply, with: "")
         
         let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat)!).volume_24h)
-        volumeLabel.text = Utilities.format(unformattedVolume, with: Utilities.getSymbol(for: defaults.string(forKey: K.defaultFiat)!))
+        volumeLabel.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
         
         if let maxSupply = selectedCurrency?.max_supply {
-            maxSupplyLabel.text = Utilities.format(maxSupply, with: "") + " \(selectedCurrency!.symbol)"
+            maxSupplyLabel.text = Utilities.formatDecimal(Double(maxSupply), with: "")
         } else {
             maxSupplyLabel.text = "--"
         }
@@ -195,7 +195,7 @@ class GraphViewController: UIViewController {
             return char == ","
         }
         
-        return Utilities.format(Int(Double(priceString)! * supply), with: fiatCurrency)
+        return Utilities.formatDecimal(Double(priceString)! * supply, with: "")
     }
     
     // MARK: - Button Actions
