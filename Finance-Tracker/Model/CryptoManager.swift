@@ -17,7 +17,7 @@ class CryptoManager {
     var delegate : CryptoManagerDelegate?
     let defaults = UserDefaults.standard
     
-    var urlString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=150&convert="
+    var urlString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=200&convert="
     var returnArray: [CryptoData] = []
     var cryptoResponse: Crypto? = nil
     var cryptoHistory: [CryptoQuote]? = []
