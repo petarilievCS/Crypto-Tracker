@@ -537,11 +537,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ohv-0q-WBg">
-                        <barButtonItem key="rightBarButtonItem" image="heart" catalog="system" id="KAP-SV-xaY">
-                            <connections>
-                                <action selector="favoriteButtonPressed:" destination="Aep-eb-tai" id="fsh-H0-jmE"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="heart" catalog="system" id="KAP-SV-xaY">
+                                <connections>
+                                    <action selector="favoriteButtonPressed:" destination="Aep-eb-tai" id="fsh-H0-jmE"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="NRF-OH-eQR">
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="Aep-eb-tai" id="k2b-hW-UDC"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="chartView" destination="ljd-xc-K7S" id="juh-Rm-AhZ"/>

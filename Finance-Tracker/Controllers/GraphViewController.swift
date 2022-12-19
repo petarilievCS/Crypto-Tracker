@@ -41,6 +41,7 @@ class GraphViewController: UIViewController {
     var price: String = ""
     var percentChange: String = ""
     let cryptoManager = CryptoManager()
+    var crypto: [CryptoData] = []
     
     // TODO: Change to computed variable
     var isFavorite: Bool = false
@@ -82,66 +83,7 @@ class GraphViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         cryptoManager.delegate = self
-        
-        // Customize main info
-        symbolLabel.text = selectedCurrency?.symbol
-        nameLabel.text = selectedCurrency?.name
-        priceLabel.text = price
-        
-        // Customize percent change label
-        percentChangeLabel.text = percentChange
-        percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
-        
-        // Customize view
-        mktCapView.layer.cornerRadius = K.viewCornerRadius
-        fdMktCapView.layer.cornerRadius = K.viewCornerRadius
-        mktCapView.layer.cornerRadius = K.viewCornerRadius
-        volumeView.layer.cornerRadius = K.viewCornerRadius
-        circulatingSupplyView.layer.cornerRadius = K.viewCornerRadius
-        maxSupplyView.layer.cornerRadius = K.viewCornerRadius
-        totalSupplyView.layer.cornerRadius = K.viewCornerRadius
-        rankView.layer.cornerRadius = K.viewCornerRadius
-        dominanceView.layer.cornerRadius = K.viewCornerRadius
-        dayButton.layer.cornerRadius = K.viewCornerRadius
-        dayButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        fiveDaysButton.layer.cornerRadius = K.viewCornerRadius
-        fiveDaysButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        monthButton.layer.cornerRadius = K.viewCornerRadius
-        monthButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        sixMonthsButton.layer.cornerRadius = K.viewCornerRadius
-        sixMonthsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        yearButton.layer.cornerRadius = K.viewCornerRadius
-        yearButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        threeMonthsButton.layer.cornerRadius = K.viewCornerRadius
-        threeMonthsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        twoYearsButton.layer.cornerRadius = K.viewCornerRadius
-        twoYearsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        
-        // Customize data views
-        mktCapPriceLabel.text = calculateMktCap(FD: false)
-        fdMktCapPriceLabel.text = calculateMktCap(FD: true)
-        rankLabel.text = "#\(String(selectedCurrency!.cmc_rank))"
-        circulatingSupplyLabel.text = String(Utilities.formatDecimal(selectedCurrency!.circulating_supply, with: ""))
-        totalSupplyLabel.text = Utilities.formatDecimal(selectedCurrency!.total_supply, with: "")
-        
-        let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat)!).volume_24h)
-        volumeLabel.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
-        
-        if let maxSupply = selectedCurrency?.max_supply {
-            maxSupplyLabel.text = Utilities.formatDecimal(Double(maxSupply), with: "")
-        } else {
-            maxSupplyLabel.text = "--"
-        }
-        
-        let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat)!).market_cap_dominance
-        dominanceLabel.text = String(format: "%.1f", dominance) + "%"
-        
-        // Setup chart view
-        chartView.addSubview(lineChartView)
-        lineChartView.centerInSuperview()
-        lineChartView.width(to: chartView)
-        lineChartView.height(to: chartView)
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
+        refreshInformation()
                 
     }
     
@@ -162,7 +104,12 @@ class GraphViewController: UIViewController {
         lineChartView.data = data
     }
     
-    // Add crypto to favorites 
+    // Refreshes information
+    @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
+        cryptoManager.performRequest()
+    }
+    
+    // Add crypto to favorites
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         favoriteButton.image = isFavorite ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
         isFavorite = !isFavorite
@@ -259,6 +206,71 @@ class GraphViewController: UIViewController {
         twoYearsButton.backgroundColor = .systemBackground
     }
     
+    // MARK: - Refreshing information methods
+    func refreshInformation() {
+        
+        // Customize main info
+        symbolLabel.text = selectedCurrency?.symbol
+        nameLabel.text = selectedCurrency?.name
+        priceLabel.text = price
+        
+        // Customize percent change label
+        percentChangeLabel.text = percentChange
+        percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
+        
+        // Customize view
+        mktCapView.layer.cornerRadius = K.viewCornerRadius
+        fdMktCapView.layer.cornerRadius = K.viewCornerRadius
+        mktCapView.layer.cornerRadius = K.viewCornerRadius
+        volumeView.layer.cornerRadius = K.viewCornerRadius
+        circulatingSupplyView.layer.cornerRadius = K.viewCornerRadius
+        maxSupplyView.layer.cornerRadius = K.viewCornerRadius
+        totalSupplyView.layer.cornerRadius = K.viewCornerRadius
+        rankView.layer.cornerRadius = K.viewCornerRadius
+        dominanceView.layer.cornerRadius = K.viewCornerRadius
+        dayButton.layer.cornerRadius = K.viewCornerRadius
+        dayButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
+        fiveDaysButton.layer.cornerRadius = K.viewCornerRadius
+        fiveDaysButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
+        monthButton.layer.cornerRadius = K.viewCornerRadius
+        monthButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
+        sixMonthsButton.layer.cornerRadius = K.viewCornerRadius
+        sixMonthsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
+        yearButton.layer.cornerRadius = K.viewCornerRadius
+        yearButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
+        threeMonthsButton.layer.cornerRadius = K.viewCornerRadius
+        threeMonthsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
+        twoYearsButton.layer.cornerRadius = K.viewCornerRadius
+        twoYearsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
+        
+        // Customize data views
+        mktCapPriceLabel.text = calculateMktCap(FD: false)
+        fdMktCapPriceLabel.text = calculateMktCap(FD: true)
+        rankLabel.text = "#\(String(selectedCurrency!.cmc_rank))"
+        circulatingSupplyLabel.text = String(Utilities.formatDecimal(selectedCurrency!.circulating_supply, with: ""))
+        totalSupplyLabel.text = Utilities.formatDecimal(selectedCurrency!.total_supply, with: "")
+        
+        let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat)!).volume_24h)
+        volumeLabel.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
+        
+        if let maxSupply = selectedCurrency?.max_supply {
+            maxSupplyLabel.text = Utilities.formatDecimal(Double(maxSupply), with: "")
+        } else {
+            maxSupplyLabel.text = "--"
+        }
+        
+        let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat)!).market_cap_dominance
+        dominanceLabel.text = String(format: "%.1f", dominance) + "%"
+        
+        // Setup chart view
+        chartView.addSubview(lineChartView)
+        lineChartView.centerInSuperview()
+        lineChartView.width(to: chartView)
+        lineChartView.height(to: chartView)
+        // cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
+                
+    }
+    
 }
  
 // MARK: - Chart View Delegate methods
@@ -284,5 +296,21 @@ extension GraphViewController: CryptoManagerDelegate {
             }
             setData()
         }
+        crypto = cryptoManager.returnArray
+        // Find selected currency
+        let selectedCurrencySymbol = selectedCurrency!.symbol
+        let currentFiat = defaults.string(forKey: K.defaultFiat)!
+        let currentRate = Utilities.getRate(for: selectedCurrency!, in: currentFiat)
+        for cryptoCurrency in crypto {
+            if cryptoCurrency.symbol == selectedCurrencySymbol {
+                self.selectedCurrency = cryptoCurrency
+                self.price = Utilities.formatPriceLabel(String(format: "%.2f", currentRate.price), with: Utilities.getSymbol(for: currentFiat))
+                self.percentChange = String(format: "%.2f", currentRate.percent_change_24h) + "%"
+                break
+            }
+        }
+        refreshInformation()
     }
 }
+
+

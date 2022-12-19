@@ -119,4 +119,13 @@ class Utilities {
         
     }
     
+    // Formats price label
+    static func formatPriceLabel(_ stringPrice: String, with fiatSymbol: String) -> String {
+        // Format price
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let doublePrice = Double(stringPrice)!
+        return fiatSymbol + numberFormatter.string(from: NSNumber(value: doublePrice))!
+    }
+    
 }
