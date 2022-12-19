@@ -13,10 +13,10 @@ enum Period {
     case day
     case fiveDays
     case month
+    case threeMonths
     case sixMonths
     case year
-    case fiveYears
-    case max
+    case twoYears
 }
 
 class GraphViewController: UIViewController {
@@ -75,8 +75,8 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var sixMonthsButton: UIButton!
     @IBOutlet weak var yearButton: UIButton!
-    @IBOutlet weak var fiveYearsButton: UIButton!
-    @IBOutlet weak var maxButton: UIButton!
+    @IBOutlet weak var threeMonthsButton: UIButton!
+    @IBOutlet weak var twoYearsButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -112,10 +112,10 @@ class GraphViewController: UIViewController {
         sixMonthsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         yearButton.layer.cornerRadius = K.viewCornerRadius
         yearButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        fiveYearsButton.layer.cornerRadius = K.viewCornerRadius
-        fiveYearsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        maxButton.layer.cornerRadius = K.viewCornerRadius
-        maxButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
+        threeMonthsButton.layer.cornerRadius = K.viewCornerRadius
+        threeMonthsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
+        twoYearsButton.layer.cornerRadius = K.viewCornerRadius
+        twoYearsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         
         // Customize data views
         mktCapPriceLabel.text = calculateMktCap(FD: false)
@@ -235,17 +235,17 @@ class GraphViewController: UIViewController {
         cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
 
-    @IBAction func fiveYearsButtonPressed(_ sender: UIButton) {
+    @IBAction func threeMonthsButtonPressed(_ sender: Any) {
         deselectButtons()
-        fiveYearsButton.backgroundColor = .systemGray5
-        timePeriod = .fiveYears
+        threeMonthsButton.backgroundColor = .systemGray5
+        timePeriod = .threeMonths
         cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
     
-    @IBAction func maxButtonPressed(_ sender: UIButton) {
+    @IBAction func twoYearsButtonPressed(_ sender: UIButton) {
         deselectButtons()
-        maxButton.backgroundColor = .systemGray5
-        timePeriod = .max
+        twoYearsButton.backgroundColor = .systemGray5
+        timePeriod = .twoYears
         cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
     }
     
@@ -255,8 +255,8 @@ class GraphViewController: UIViewController {
         monthButton.backgroundColor = .systemBackground
         sixMonthsButton.backgroundColor = .systemBackground
         yearButton.backgroundColor = .systemBackground
-        fiveYearsButton.backgroundColor = .systemBackground
-        maxButton.backgroundColor = .systemBackground
+        threeMonthsButton.backgroundColor = .systemBackground
+        twoYearsButton.backgroundColor = .systemBackground
     }
     
 }

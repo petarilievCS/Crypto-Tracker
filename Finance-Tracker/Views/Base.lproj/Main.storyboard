@@ -485,7 +485,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoB-sF-RiC">
-                                <rect key="frame" x="170" y="384" width="49" height="35"/>
+                                <rect key="frame" x="224" y="384" width="49" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -497,7 +497,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjD-fe-GB5">
-                                <rect key="frame" x="225" y="384" width="43" height="35"/>
+                                <rect key="frame" x="279" y="384" width="43" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -508,18 +508,6 @@
                                     <action selector="yearButtonPressed:" destination="Aep-eb-tai" eventType="touchUpInside" id="k1j-KH-prn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ad-hQ-0LR">
-                                <rect key="frame" x="275" y="384" width="45" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="5Y"/>
-                                <connections>
-                                    <action selector="fiveYearsButtonPressed:" destination="Aep-eb-tai" eventType="touchUpInside" id="hAl-4W-syT"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itH-aq-mlZ">
                                 <rect key="frame" x="326" y="384" width="48" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -527,9 +515,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Ma"/>
+                                <state key="normal" title="2Y"/>
                                 <connections>
-                                    <action selector="maxButtonPressed:" destination="Aep-eb-tai" eventType="touchUpInside" id="nwZ-rg-h0Q"/>
+                                    <action selector="twoYearsButtonPressed:" destination="Aep-eb-tai" eventType="touchUpInside" id="K73-Vj-esn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ad-hQ-0LR">
+                                <rect key="frame" x="172" y="384" width="45" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="3M"/>
+                                <connections>
+                                    <action selector="threeMonthsButtonPressed:" destination="Aep-eb-tai" eventType="touchUpInside" id="Jki-oo-9fe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -554,8 +554,6 @@
                         <outlet property="fdMktCapPriceLabel" destination="b8U-wg-xrX" id="xUd-Kp-NJd"/>
                         <outlet property="fdMktCapView" destination="K9F-bq-Dr4" id="qtl-eb-ncK"/>
                         <outlet property="fiveDaysButton" destination="pq9-sj-9nh" id="day-al-p4E"/>
-                        <outlet property="fiveYearsButton" destination="5Ad-hQ-0LR" id="GgY-BB-yfo"/>
-                        <outlet property="maxButton" destination="itH-aq-mlZ" id="dw3-sC-jC9"/>
                         <outlet property="maxSupplyLabel" destination="roY-1h-XAY" id="vW2-ac-LdV"/>
                         <outlet property="maxSupplyView" destination="vj4-fB-VSv" id="r9g-dc-DUX"/>
                         <outlet property="mktCapLabel" destination="ydc-hx-sdN" id="7LN-o5-90g"/>
@@ -569,8 +567,10 @@
                         <outlet property="rankView" destination="sAO-AO-pzf" id="qBy-nx-r0O"/>
                         <outlet property="sixMonthsButton" destination="RoB-sF-RiC" id="J3w-23-8Da"/>
                         <outlet property="symbolLabel" destination="WR5-i7-CeP" id="ald-YG-cOw"/>
+                        <outlet property="threeMonthsButton" destination="5Ad-hQ-0LR" id="GgY-BB-yfo"/>
                         <outlet property="totalSupplyLabel" destination="q76-OK-8ZS" id="Eq1-Z5-jsa"/>
                         <outlet property="totalSupplyView" destination="OEm-eT-dIF" id="jGi-28-WIw"/>
+                        <outlet property="twoYearsButton" destination="itH-aq-mlZ" id="dw3-sC-jC9"/>
                         <outlet property="volumeLabel" destination="j0j-Pe-LoS" id="dOm-w8-RW5"/>
                         <outlet property="volumeView" destination="lAV-W3-P80" id="aqw-qq-EQl"/>
                         <outlet property="yearButton" destination="pjD-fe-GB5" id="IxQ-OI-IDV"/>

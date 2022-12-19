@@ -62,8 +62,14 @@ class CryptoManager {
             frequency = "1HRS"
         case .month:
             frequency = "8HRS"
-        default:
-            frequency = "10DAY"
+        case .threeMonths:
+            frequency = "1DAY"
+        case .sixMonths:
+            frequency = "2DAY"
+        case .year:
+            frequency = "3DAY"
+        case .twoYears:
+            frequency = "7DAY"
         }
         
         return  "https://rest.coinapi.io/v1/exchangerate/\(cryptoCurrency)/\(fiatCurrency)/history?period_id=\(frequency)&time_start=\(start)&time_end=\(end)"
@@ -83,15 +89,14 @@ class CryptoManager {
             startDate = calendar.date(byAdding: .day, value: -5, to: currentDate)!
         case .month:
             startDate = calendar.date(byAdding: .month, value: -1, to: currentDate)!
+        case .threeMonths:
+            startDate = calendar.date(byAdding: .month, value: -3, to: currentDate)!
         case .sixMonths:
             startDate = calendar.date(byAdding: .month, value: -6, to: currentDate)!
         case .year:
             startDate = calendar.date(byAdding: .year, value: -1, to: currentDate)!
-        case .fiveYears:
-            startDate = calendar.date(byAdding: .year, value: -5, to: currentDate)!
-        case .max:
-            // TODO: Change
-            startDate = calendar.date(byAdding: .year, value: -5, to: currentDate)!
+        case .twoYears:
+            startDate = calendar.date(byAdding: .year, value: -2, to: currentDate)!
         }
         return dateFormatter.string(from: startDate)
     }
