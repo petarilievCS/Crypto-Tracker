@@ -50,7 +50,7 @@
                         <color key="textColor" name="Signature Red"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Apple" translatesAutoresizingMaskIntoConstraints="NO" id="BEO-k7-XDb">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="74 1" translatesAutoresizingMaskIntoConstraints="NO" id="BEO-k7-XDb">
                         <rect key="frame" x="15" y="11" width="46" height="51"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -70,7 +70,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Apple" width="600" height="600"/>
+        <image name="74 1" width="32" height="32"/>
         <namedColor name="Signature Red">
             <color red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

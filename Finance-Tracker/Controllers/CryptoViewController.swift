@@ -59,7 +59,14 @@ class CryptoViewController: UITableViewController {
         cell.companyLabel.text = currentCrypto.name
         
         setCurrencyInCell(cell, for: currentCrypto)
-        cell.logoImaeView.image = UIImage(named: "\(currentCrypto.id).png")
+        
+        if let cryptoIcon = UIImage(named: "\(currentCrypto.symbol.lowercased()).png") {
+            cell.logoImaeView.contentMode = .scaleAspectFit
+            cell.logoImaeView.image = cryptoIcon
+        } else {
+            cell.logoImaeView.image = UIImage(named: "generic.svg")
+        }
+         
         
         return cell
     }
