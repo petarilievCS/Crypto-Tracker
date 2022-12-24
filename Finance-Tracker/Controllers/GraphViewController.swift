@@ -24,7 +24,7 @@ class GraphViewController: UIViewController {
     // Chart view
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
-        chartView.backgroundColor = .black
+        chartView.backgroundColor = .clear
         chartView.rightAxis.enabled = false
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.drawGridLinesEnabled = false
@@ -82,9 +82,9 @@ class GraphViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
         cryptoManager.delegate = self
         refreshInformation()
-                
     }
     
     // Sets data in chart view

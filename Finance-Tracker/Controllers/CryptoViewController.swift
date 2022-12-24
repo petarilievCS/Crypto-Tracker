@@ -80,7 +80,8 @@ class CryptoViewController: UITableViewController {
             searchBar.resignFirstResponder()
         } else {
             performSegue(withIdentifier: K.crytpoToInfoSegue, sender: self)
-        } 
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
               
     // Dismiss keyboard upon tap
