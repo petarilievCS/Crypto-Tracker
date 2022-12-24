@@ -51,7 +51,6 @@ class FavoritesViewController: CryptoViewController {
             cell.logoImaeView.image = UIImage(named: "generic.svg")
         }
          
-        
         return cell
     }
     

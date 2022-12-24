@@ -137,7 +137,7 @@ class CryptoViewController: UITableViewController {
 extension CryptoViewController: CryptoManagerDelegate {
     func receivedInformation() {
         crypto = cryptoManager.returnArray
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
 }
 
@@ -152,7 +152,7 @@ extension CryptoViewController: UISearchBarDelegate {
             let coinSymbol = coin.symbol.lowercased()
             return coinName.contains(query) || coinSymbol.contains(query)
         })
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
