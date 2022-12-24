@@ -208,83 +208,39 @@ extension CryptoViewController {
     
     // Changes the rates according to the new currency
     func setCurrencyInCell(_ cell: AssetCell, for currentCrypto: CryptoData) {
+        
         let fiatCurrency = defaults.string(forKey: K.defaultFiat) ?? "USD"
-        switch fiatCurrency {
-        case "EUR":
-            cell.priceLabel.text = "€" + String(format: "%.2f", currentCrypto.quote.EUR.price)
-            let percentChange = currentCrypto.quote.EUR.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.EUR.percent_change_24h) + "%"
-        case "GBP":
-            cell.priceLabel.text = "£" + String(format: "%.2f", currentCrypto.quote.GBP.price)
-            let percentChange = currentCrypto.quote.GBP.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.GBP.percent_change_24h) + "%"
-        case "JPY":
-            cell.priceLabel.text = "¥" + String(format: "%.2f", currentCrypto.quote.JPY.price)
-            let percentChange = currentCrypto.quote.JPY.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.JPY.percent_change_24h) + "%"
-        case "CAD":
-            cell.priceLabel.text = "$" + String(format: "%.2f", currentCrypto.quote.CAD.price)
-            let percentChange = currentCrypto.quote.CAD.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.CAD.percent_change_24h) + "%"
-        case "CHF":
-            cell.priceLabel.text = "₣" + String(format: "%.2f", currentCrypto.quote.CHF.price)
-            let percentChange = currentCrypto.quote.CHF.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.CHF.percent_change_24h) + "%"
-        case "KRW":
-            cell.priceLabel.text = "₩" + String(format: "%.2f", currentCrypto.quote.KRW.price)
-            let percentChange = currentCrypto.quote.KRW.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.KRW.percent_change_24h) + "%"
-        case "INR":
-            cell.priceLabel.text = "₹" + String(format: "%.2f", currentCrypto.quote.INR.price)
-            let percentChange = currentCrypto.quote.INR.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.INR.percent_change_24h) + "%"
-        case "HKD":
-            cell.priceLabel.text = "$" + String(format: "%.2f", currentCrypto.quote.HKD.price)
-            let percentChange = currentCrypto.quote.HKD.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.HKD.percent_change_24h) + "%"
-        case "AUD":
-            cell.priceLabel.text = "$" + String(format: "%.2f", currentCrypto.quote.AUD.price)
-            let percentChange = currentCrypto.quote.AUD.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.AUD.percent_change_24h) + "%"
-        case "TWD":
-            cell.priceLabel.text = "$" + String(format: "%.2f", currentCrypto.quote.TWD.price)
-            let percentChange = currentCrypto.quote.TWD.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.TWD.percent_change_24h) + "%"
-        case "BRL":
-            cell.priceLabel.text = "R$" + String(format: "%.2f", currentCrypto.quote.BRL.price)
-            let percentChange = currentCrypto.quote.BRL.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.BRL.percent_change_24h) + "%"
-        default:
-            cell.priceLabel.text = "$" + String(format: "%.2f", currentCrypto.quote.USD.price)
-            let percentChange = currentCrypto.quote.USD.percent_change_24h
-            cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
-            cell.percentLabel.text = String(format: "%.2f", currentCrypto.quote.USD.percent_change_24h) + "%"
+        let symbol = Utilities.getSymbol(for: fiatCurrency)
+        let rate = Utilities.getRate(for: currentCrypto, in: fiatCurrency)
+        
+        if rate.price > 1 {
+            cell.priceLabel.text = symbol + String(format: "%.2f", rate.price)
+        } else {
+            cell.priceLabel.text = symbol + String(format: "%.5f", rate.price)
+            while cell.priceLabel.text?.last == "0" {
+                cell.priceLabel.text?.removeLast()
+            }
         }
         
-        // Format price
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        var stringPrice = cell.priceLabel.text!
-        var fiatSymbol = ""
-        fiatSymbol += String(stringPrice.removeFirst())
+        let percentChange = rate.percent_change_24h
+        cell.percentLabel.textColor = percentChange >= 0 ? UIColor(named: "Signature Green") : UIColor(named: "Signature Red")
+        cell.percentLabel.text = String(format: "%.2f", rate.percent_change_24h) + "%"
         
-        // BRL currency has two characters
-        if fiatCurrency == "BRL" {
+        if rate.price > 1 {
+            // Format price
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            var stringPrice = cell.priceLabel.text!
+            var fiatSymbol = ""
             fiatSymbol += String(stringPrice.removeFirst())
+            
+            // BRL currency has two characters
+            if fiatCurrency == "BRL" {
+                fiatSymbol += String(stringPrice.removeFirst())
+            }
+            
+            let doublePrice = Double(stringPrice)!
+            cell.priceLabel.text = fiatSymbol + numberFormatter.string(from: NSNumber(value: doublePrice))!
         }
-        
-        let doublePrice = Double(stringPrice)!
-        cell.priceLabel.text = fiatSymbol + numberFormatter.string(from: NSNumber(value: doublePrice))!
     }
 }
