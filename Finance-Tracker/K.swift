@@ -13,4 +13,5 @@ struct K {
     static let assetCellIdentifier = "AssetCell"
     static let crytpoToInfoSegue = "cryptoToInfo"
     static let defaultFiat = "fiat"
+    static let defaultFavorites = "favorites"
 }

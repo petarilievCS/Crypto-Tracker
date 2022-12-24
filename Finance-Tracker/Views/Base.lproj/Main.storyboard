@@ -242,6 +242,10 @@
                         <imageReference key="selectedImage" image="heart.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Favorites" id="Jkh-Ff-8hR"/>
+                    <connections>
+                        <outlet property="favoritesSearchBar" destination="Zdq-1F-WwQ" id="xDw-q6-0En"/>
+                        <segue destination="Aep-eb-tai" kind="show" identifier="cryptoToInfo" id="Q3e-bB-jde"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Glv-qn-0vh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -768,6 +772,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Unm-Fo-Pa7"/>
+        <segue reference="Q3e-bB-jde"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
     <resources>

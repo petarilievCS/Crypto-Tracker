@@ -7,59 +7,72 @@
 
 import UIKit
 
-class FavoritesViewController: UITableViewController {
-
+class FavoritesViewController: CryptoViewController {
+    
+    @IBOutlet weak var favoritesSearchBar: UISearchBar!
+    
     override func viewDidLoad() {
+        self.searchBar = favoritesSearchBar
         super.viewDidLoad()
-
-        // Dismiss keyboard upon tap
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-
-        tableView.register(UINib(nibName: K.assetCellIdentifier, bundle: nil), forCellReuseIdentifier: K.assetCellIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // Customize bar
-        tabBarController?.navigationItem.hidesBackButton = true
         tabBarController?.navigationItem.title = "Favorites"
     }
     
-    // Dismiss keyboard upon tap
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    // MARK: - Table View Methods
+    // UITableView methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        let favorites: [String] = (defaults.array(forKey: K.defaultFavorites) as? [String]) ?? []
+        var count = 0
+        for cryptoData in crypto {
+            if favorites.contains(where: { str in
+                return str == cryptoData.symbol
+            }) {
+                count += 1
+            }
+        }
+        return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.assetCellIdentifier, for: indexPath) as! AssetCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.assetCellIdentifier) as! AssetCell
+        let currentCrypto = findFavorite(at: indexPath.row)
         cell.circleImageView.layer.cornerRadius = 32.0
+        cell.stockLabel.text = currentCrypto.symbol
+        cell.companyLabel.text = currentCrypto.name
         
-        // For UI purposes
-        switch indexPath.row {
-        case 1:
-            cell.stockLabel.text = "NKE"
-            cell.companyLabel.text = "Nike Inc."
-            cell.priceLabel.text = "$110.45"
-            cell.percentLabel.text = "-17.28%"
-            return cell
-        case 2:
-            cell.stockLabel.text = "TSLA"
-            cell.companyLabel.text = "Tesla"
-            cell.priceLabel.text = "$240.45"
-            cell.percentLabel.text = "-10.34%"
-        default:
-            break
+        setCurrencyInCell(cell, for: currentCrypto)
+        
+        if let cryptoIcon = UIImage(named: "\(currentCrypto.symbol.lowercased()).png") {
+            cell.logoImaeView.contentMode = .scaleAspectFit
+            cell.logoImaeView.image = cryptoIcon
+        } else {
+            cell.logoImaeView.image = UIImage(named: "generic.svg")
         }
+         
+        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75.0
+    // Finds favorite crypto at given position
+    func findFavorite(at position: Int) -> CryptoData {
+        var current = 0
+        var currentCrypto: CryptoData? = nil
+        let favorites = defaults.array(forKey: K.defaultFavorites) as! [String]
+        
+        for cryptoData in crypto {
+            if favorites.contains(where: { str in
+                return str == cryptoData.symbol
+            }) {
+                if position == current {
+                    currentCrypto = cryptoData
+                    break
+                }
+                current += 1
+            }
+        }
+        return currentCrypto!
     }
-
+    
 }

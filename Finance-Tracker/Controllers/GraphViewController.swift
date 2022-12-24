@@ -79,12 +79,25 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var threeMonthsButton: UIButton!
     @IBOutlet weak var twoYearsButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.largeTitleDisplayMode = .never
         cryptoManager.delegate = self
         refreshInformation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let favorites = defaults.array(forKey: K.defaultFavorites) as? [String] ?? []
+        
+        for symbol in favorites {
+            if symbol == selectedCurrency!.symbol {
+                isFavorite = true
+                favoriteButton.image = UIImage(systemName: "heart.fill")
+                break
+            }
+        }
     }
     
     // Sets data in chart view
@@ -111,6 +124,27 @@ class GraphViewController: UIViewController {
     
     // Add crypto to favorites
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        var favorites = defaults.array(forKey: K.defaultFavorites)
+        
+        if !isFavorite {
+            // Add to favorites
+            if favorites != nil {
+                favorites!.append(selectedCurrency!.symbol)
+                defaults.set(favorites, forKey: K.defaultFavorites)
+            } else {
+                defaults.set([selectedCurrency!.symbol], forKey: K.defaultFavorites)
+            }
+        } else {
+            for i in 0...(favorites!.count - 1) {
+                if favorites![i] as! String == selectedCurrency!.symbol {
+                    favorites?.remove(at: i)
+                    break
+                }
+            }
+            defaults.set(favorites, forKey: K.defaultFavorites)
+        }
+        
+    
         favoriteButton.image = isFavorite ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
         isFavorite = !isFavorite
     }

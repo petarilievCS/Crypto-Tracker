@@ -11,11 +11,9 @@ class CryptoViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
     var crypto: [CryptoData] = []
     let cryptoManager = CryptoManager()
     var fiatCurrencies = ["USD", "EUR", "GBP", "JPY", "KRW", "INR", "CAD", "HKD", "AUD", "TWD", "BRL", "CHF"]
-    
     let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
