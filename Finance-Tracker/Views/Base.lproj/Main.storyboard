@@ -244,7 +244,7 @@
                     <navigationItem key="navigationItem" title="Favorites" id="Jkh-Ff-8hR"/>
                     <connections>
                         <outlet property="favoritesSearchBar" destination="Zdq-1F-WwQ" id="xDw-q6-0En"/>
-                        <segue destination="Aep-eb-tai" kind="show" identifier="cryptoToInfo" id="Q3e-bB-jde"/>
+                        <segue destination="Aep-eb-tai" kind="show" identifier="favoritesToInfo" id="Q3e-bB-jde"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Glv-qn-0vh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

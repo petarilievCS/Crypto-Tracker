@@ -18,6 +18,7 @@ class FavoritesViewController: CryptoViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // Customize bar
+        tableView.reloadData()
         tabBarController?.navigationItem.title = "Favorites"
     }
     
@@ -54,6 +55,15 @@ class FavoritesViewController: CryptoViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchBar.isFirstResponder {
+            searchBar.resignFirstResponder()
+        } else {
+            performSegue(withIdentifier: K.favoritesToInfoSegue, sender: self)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     // Finds favorite crypto at given position
     func findFavorite(at position: Int) -> CryptoData {
         var current = 0
@@ -72,6 +82,21 @@ class FavoritesViewController: CryptoViewController {
             }
         }
         return currentCrypto!
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case K.favoritesToInfoSegue:
+            let destinationVC = segue.destination as! GraphViewController
+            let selectedIdx = tableView.indexPathForSelectedRow!.row
+            let selectedCurrency = findFavorite(at: selectedIdx)
+            let selectedCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as! AssetCell
+            destinationVC.price = selectedCell.priceLabel.text!
+            destinationVC.percentChange = selectedCell.percentLabel.text!
+            destinationVC.selectedCurrency = selectedCurrency
+        default:
+            fatalError("Segue identifier not handled")
+        }
     }
     
 }

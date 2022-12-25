@@ -14,4 +14,5 @@ struct K {
     static let crytpoToInfoSegue = "cryptoToInfo"
     static let defaultFiat = "fiat"
     static let defaultFavorites = "favorites"
+    static let favoritesToInfoSegue = "favoritesToInfo"
 }
