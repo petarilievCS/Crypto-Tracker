@@ -19,6 +19,7 @@ class FavoritesViewController: CryptoViewController {
     override func viewWillAppear(_ animated: Bool) {
         // Customize bar
         tableView.reloadData()
+        tabBarController?.navigationItem.hidesBackButton = true
         tabBarController?.navigationItem.title = "Favorites"
     }
     
@@ -94,6 +95,8 @@ class FavoritesViewController: CryptoViewController {
             destinationVC.price = selectedCell.priceLabel.text!
             destinationVC.percentChange = selectedCell.percentLabel.text!
             destinationVC.selectedCurrency = selectedCurrency
+        case K.cryptoToLoginSegue:
+            print("Performing segue")
         default:
             fatalError("Segue identifier not handled")
         }

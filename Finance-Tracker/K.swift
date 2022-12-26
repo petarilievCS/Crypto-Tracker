@@ -15,4 +15,5 @@ struct K {
     static let defaultFiat = "fiat"
     static let defaultFavorites = "favorites"
     static let favoritesToInfoSegue = "favoritesToInfo"
+    static let cryptoToLoginSegue = "cryptoToLogin"
 }

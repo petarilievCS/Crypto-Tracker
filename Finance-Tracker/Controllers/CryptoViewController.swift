@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class CryptoViewController: UITableViewController {
     
@@ -22,7 +24,8 @@ class CryptoViewController: UITableViewController {
         // Refresh functionality
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refreshInformation), for: .valueChanged)
-        self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshInformation))
+        // self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshInformation))
+        self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(logout))
         
         // Currency change
         fiatCurrencies.sort()
@@ -94,6 +97,24 @@ class CryptoViewController: UITableViewController {
         DispatchQueue.main.async {
             self.refreshControl?.endRefreshing()
         }
+    }
+    
+    // Logout user
+    @objc func logout() {
+        let alert = UIAlertController(title: "", message: "Are you sure you want to logout?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { action in
+           let firebaseAuth = Auth.auth()
+           do {
+             try firebaseAuth.signOut()
+               self.performSegue(withIdentifier: K.cryptoToLoginSegue, sender: self)
+           } catch let signOutError as NSError {
+             print("Error signing out: %@", signOutError)
+           }
+        }
+        let noAction = UIAlertAction(title: "No", style: .default)
+        alert.addAction(noAction)
+        alert.addAction(yesAction)
+        present(alert, animated: true)
     }
     
     // Changes the currency in which the value of crypto is shown
@@ -195,6 +216,8 @@ extension CryptoViewController {
             destinationVC.price = selectedCell.priceLabel.text!
             destinationVC.percentChange = selectedCell.percentLabel.text!
             destinationVC.selectedCurrency = selectedCurrency
+        case K.cryptoToLoginSegue:
+            print("Works")
         default:
             fatalError("Segue identifier not handled")
         }

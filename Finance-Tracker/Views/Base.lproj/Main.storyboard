@@ -245,6 +245,7 @@
                     <connections>
                         <outlet property="favoritesSearchBar" destination="Zdq-1F-WwQ" id="xDw-q6-0En"/>
                         <segue destination="Aep-eb-tai" kind="show" identifier="favoritesToInfo" id="Q3e-bB-jde"/>
+                        <segue destination="gPS-BF-SaK" kind="presentation" identifier="cryptoToLogin" modalPresentationStyle="fullScreen" id="rmy-aj-2rw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Glv-qn-0vh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -635,7 +636,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="kYt-cf-SmH">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="ChL-Mp-fz5">
+                            <barButtonItem image="rectangle.portrait.and.arrow.right" catalog="system" id="ChL-Mp-fz5">
                                 <color key="tintColor" name="Signature Green"/>
                             </barButtonItem>
                             <barButtonItem title="Item" image="dollarsign" catalog="system" id="pOM-Fm-bsx">
@@ -657,7 +658,6 @@
                     <connections>
                         <segue destination="G7e-ge-7uD" kind="relationship" relationship="viewControllers" id="5vu-zF-Ifr"/>
                         <segue destination="vkJ-9T-mEX" kind="relationship" relationship="viewControllers" id="BzI-66-bLv"/>
-                        <segue destination="6ke-lA-xhu" kind="relationship" relationship="viewControllers" id="sOx-vk-PRu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wvt-35-yd7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -704,31 +704,17 @@
                     <connections>
                         <outlet property="searchBar" destination="qha-cb-Dnp" id="Z6U-CR-YG4"/>
                         <segue destination="Aep-eb-tai" kind="show" identifier="cryptoToInfo" id="9SD-7O-YqS"/>
+                        <segue destination="gPS-BF-SaK" kind="presentation" identifier="cryptoToLogin" modalPresentationStyle="fullScreen" id="nEM-sR-Qae"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kdj-Ip-JAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4465" y="710"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="O4j-QV-TSw">
-            <objects>
-                <viewController id="6ke-lA-xhu" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nXh-rV-PhT">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="f8s-Dc-l5C"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="rgW-4N-dsQ"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2VG-yU-d57" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3743" y="762"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Unm-Fo-Pa7"/>
+        <segue reference="nEM-sR-Qae"/>
         <segue reference="Q3e-bB-jde"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
@@ -738,6 +724,7 @@
         <image name="dollarsign" catalog="system" width="89" height="128"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="109"/>
         <namedColor name="Signature Green">
             <color red="0.15294117647058825" green="0.68235294117647061" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
