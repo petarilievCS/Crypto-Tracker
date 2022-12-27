@@ -1,4 +1,4 @@
-# Crypto-Tracker
+# Crypto Tracker
 
 iOS application that lets the user track metrics (price, price change, market cap...) of crypto-currencies. The application utilizes an authenitcation 
 system provided by Google Firebase. The app also includes functionality to change the fiat currency in which metrics are shown, bookmark specific 
