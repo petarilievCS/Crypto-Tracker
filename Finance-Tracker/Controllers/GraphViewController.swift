@@ -284,7 +284,7 @@ class GraphViewController: UIViewController {
         circulatingSupplyLabel.text = String(Utilities.formatDecimal(selectedCurrency!.circulating_supply, with: ""))
         totalSupplyLabel.text = Utilities.formatDecimal(selectedCurrency!.total_supply, with: "")
         
-        let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat)!).volume_24h)
+        let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat) ?? "USD").volume_24h)
         volumeLabel.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
         
         if let maxSupply = selectedCurrency?.max_supply {
@@ -293,7 +293,7 @@ class GraphViewController: UIViewController {
             maxSupplyLabel.text = "--"
         }
         
-        let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat)!).market_cap_dominance
+        let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat) ?? "USD").market_cap_dominance
         dominanceLabel.text = String(format: "%.1f", dominance) + "%"
         
         // Setup chart view
