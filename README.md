@@ -10,4 +10,5 @@ crypto-currencies, and show the price of a currency over different time periods 
 
 # Demo 
 
- <img/> <img src="https://user-images.githubusercontent.com/90746623/210064773-7d74b39b-8c98-4cb1-b241-28dd74bbe32c.gif" width="266" height="576"/>
+ <img/> <img src="https://user-images.githubusercontent.com/90746623/210065407-b043a21f-899c-46dc-9e7c-a0987e25061d.gif" width="266" height="576"/>
+
