@@ -9,3 +9,5 @@ crypto-currencies, and show the price of a currency over different time periods 
 <img src="https://user-images.githubusercontent.com/90746623/209684459-b4bbfef4-d573-4ae2-8431-477d5201b505.PNG" width="266" height="576"/><img src="https://user-images.githubusercontent.com/90746623/209684479-3abe8a03-b455-4c63-9ea2-27ae8d2ff05d.PNG" width="266" height="576"/><img src="https://user-images.githubusercontent.com/90746623/209684481-2f21ca9d-912c-4c6c-9ad5-f120dc6596e2.PNG" width="266" height="576"/>
 
 # Demo 
+
+ <img/> <img src="https://user-images.githubusercontent.com/90746623/210064773-7d74b39b-8c98-4cb1-b241-28dd74bbe32c.gif" width="266" height="576"/>
