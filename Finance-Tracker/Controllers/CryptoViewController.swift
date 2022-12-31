@@ -104,24 +104,6 @@ class CryptoViewController: UITableViewController {
         performSegue(withIdentifier: K.cryptoToAccountSegue, sender: self)
     }
     
-    // Logout user
-    @objc func logout() {
-        let alert = UIAlertController(title: "", message: "Are you sure you want to logout?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { action in
-           let firebaseAuth = Auth.auth()
-           do {
-             try firebaseAuth.signOut()
-               self.performSegue(withIdentifier: K.cryptoToAccountSegue, sender: self)
-           } catch let signOutError as NSError {
-             print("Error signing out: %@", signOutError)
-           }
-        }
-        let noAction = UIAlertAction(title: "No", style: .default)
-        alert.addAction(noAction)
-        alert.addAction(yesAction)
-        present(alert, animated: true)
-    }
-    
     // Changes the currency in which the value of crypto is shown
     @objc func changeCurrency() {
         let alert = UIAlertController(title: "Change Currency", message: "", preferredStyle: .alert)

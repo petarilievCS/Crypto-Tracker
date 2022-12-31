@@ -18,4 +18,5 @@ struct K {
     static let cryptoToLoginSegue = "cryptoToLogin"
     static let cryptoToAccountSegue = "cryptoToAccount"
     static let accountTableViewCellIdentifier = "AccountTableViewCell"
+    static let accountToLoginSegue = "accountToLogin"
 }

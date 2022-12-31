@@ -738,6 +738,9 @@
                             <outlet property="delegate" destination="JlV-7v-phO" id="Kaw-D6-4FJ"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="gPS-BF-SaK" kind="presentation" identifier="accountToLogin" modalPresentationStyle="fullScreen" id="uyk-iU-INy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URP-il-iDv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -748,6 +751,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gPS-BF-SaK" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="4DQ-A6-RG4"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q7D-zF-9aC">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
