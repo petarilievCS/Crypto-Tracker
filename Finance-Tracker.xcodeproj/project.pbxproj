@@ -36,6 +36,7 @@
 		E6B1A6B629478C45006776E3 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6B529478C45006776E3 /* Charts */; };
 		E6B1A6BA29488729006776E3 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6B929488729006776E3 /* TinyConstraints */; };
 		E6B1A6BC2948A4AB006776E3 /* CryptoHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */; };
+		E6B7DA8A2960479B008F8CD1 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B7DA892960479B008F8CD1 /* AccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		E6A50193293D0CFA00E5C36F /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		E6A50195293D0EAC00E5C36F /* CryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoManager.swift; sourceTree = "<group>"; };
 		E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHistory.swift; sourceTree = "<group>"; };
+		E6B7DA892960479B008F8CD1 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				E6A5017D293A58F600E5C36F /* CryptoViewController.swift */,
 				E6A5017F293A5AF100E5C36F /* StocksViewController.swift */,
 				E6A50181293A5D6E00E5C36F /* GraphViewController.swift */,
+				E6B7DA892960479B008F8CD1 /* AccountViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				E6A50190293D019800E5C36F /* Utilities.swift in Sources */,
 				E6A50192293D0C2900E5C36F /* Crypto .swift in Sources */,
 				E6A5017E293A58F600E5C36F /* CryptoViewController.swift in Sources */,
+				E6B7DA8A2960479B008F8CD1 /* AccountViewController.swift in Sources */,
 				E6A501722938FD5700E5C36F /* RegisterViewController.swift in Sources */,
 				E6A501742939037400E5C36F /* FavoritesViewController.swift in Sources */,
 				E6A50196293D0EAC00E5C36F /* CryptoManager.swift in Sources */,
@@ -405,13 +409,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 64QS8TW84P;
+				DEVELOPMENT_TEAM = 59DXMVY9R4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Finance-Tracker/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Finance Tracker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -420,9 +425,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.petariliev.Finance-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -433,13 +441,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 64QS8TW84P;
+				DEVELOPMENT_TEAM = 59DXMVY9R4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Finance-Tracker/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Finance Tracker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -448,9 +457,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.petariliev.Finance-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

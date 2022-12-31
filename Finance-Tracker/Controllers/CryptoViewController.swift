@@ -25,7 +25,7 @@ class CryptoViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refreshInformation), for: .valueChanged)
         // self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshInformation))
-        self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(logout))
+        self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(goToAccount))
         
         // Currency change
         fiatCurrencies.sort()
@@ -99,6 +99,11 @@ class CryptoViewController: UITableViewController {
         }
     }
     
+    // Take user to account VC
+    @objc func goToAccount() {
+        performSegue(withIdentifier: K.cryptoToAccountSegue, sender: self)
+    }
+    
     // Logout user
     @objc func logout() {
         let alert = UIAlertController(title: "", message: "Are you sure you want to logout?", preferredStyle: .alert)
@@ -106,7 +111,7 @@ class CryptoViewController: UITableViewController {
            let firebaseAuth = Auth.auth()
            do {
              try firebaseAuth.signOut()
-               self.performSegue(withIdentifier: K.cryptoToLoginSegue, sender: self)
+               self.performSegue(withIdentifier: K.cryptoToAccountSegue, sender: self)
            } catch let signOutError as NSError {
              print("Error signing out: %@", signOutError)
            }
@@ -216,7 +221,7 @@ extension CryptoViewController {
             destinationVC.price = selectedCell.priceLabel.text!
             destinationVC.percentChange = selectedCell.percentLabel.text!
             destinationVC.selectedCurrency = selectedCurrency
-        case K.cryptoToLoginSegue:
+        case K.cryptoToAccountSegue:
             print("Works")
         default:
             fatalError("Segue identifier not handled")

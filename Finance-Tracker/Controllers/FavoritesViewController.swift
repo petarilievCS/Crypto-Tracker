@@ -95,7 +95,7 @@ class FavoritesViewController: CryptoViewController {
             destinationVC.price = selectedCell.priceLabel.text!
             destinationVC.percentChange = selectedCell.percentLabel.text!
             destinationVC.selectedCurrency = selectedCurrency
-        case K.cryptoToLoginSegue:
+        case K.cryptoToAccountSegue:
             print("Performing segue")
         default:
             fatalError("Segue identifier not handled")

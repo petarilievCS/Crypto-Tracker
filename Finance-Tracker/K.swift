@@ -16,4 +16,6 @@ struct K {
     static let defaultFavorites = "favorites"
     static let favoritesToInfoSegue = "favoritesToInfo"
     static let cryptoToLoginSegue = "cryptoToLogin"
+    static let cryptoToAccountSegue = "cryptoToAccount"
+    static let accountTableViewCellIdentifier = "AccountTableViewCell"
 }

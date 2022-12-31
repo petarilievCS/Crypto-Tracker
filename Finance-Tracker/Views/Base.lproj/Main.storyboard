@@ -35,13 +35,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="i1h-cZ-a4g">
                                                 <rect key="frame" x="0.0" y="0.0" width="325" height="150"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-O2-R5F" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="petariliev@utexas.edu" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-O2-R5F" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="325" height="69"/>
                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                                     </textField>
-                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-El-zlh" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="020402" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-El-zlh" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="81" width="325" height="69"/>
                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -244,7 +244,7 @@
                     <connections>
                         <outlet property="favoritesSearchBar" destination="Zdq-1F-WwQ" id="xDw-q6-0En"/>
                         <segue destination="Aep-eb-tai" kind="show" identifier="favoritesToInfo" id="Q3e-bB-jde"/>
-                        <segue destination="gPS-BF-SaK" kind="presentation" identifier="cryptoToLogin" modalPresentationStyle="fullScreen" id="rmy-aj-2rw"/>
+                        <segue destination="JlV-7v-phO" kind="presentation" identifier="cryptoToAccount" id="ofj-qm-dNK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Glv-qn-0vh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -715,6 +715,34 @@
             </objects>
             <point key="canvasLocation" x="5281.679389312977" y="-2.1126760563380285"/>
         </scene>
+        <!--Account View Controller-->
+        <scene sceneID="eEa-O5-d0i">
+            <objects>
+                <tableViewController id="JlV-7v-phO" customClass="AccountViewController" customModule="Finance_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Qxa-lx-TxI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountTableViewCell" id="OMA-Ta-wQc">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OMA-Ta-wQc" id="SRY-B2-yKm">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JlV-7v-phO" id="IpJ-RQ-loV"/>
+                            <outlet property="delegate" destination="JlV-7v-phO" id="Kaw-D6-4FJ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="URP-il-iDv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6100" y="527"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="iBf-LL-MS2">
             <objects>
@@ -745,7 +773,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="kYt-cf-SmH">
                         <rightBarButtonItems>
-                            <barButtonItem image="rectangle.portrait.and.arrow.right" catalog="system" id="ChL-Mp-fz5">
+                            <barButtonItem image="person" catalog="system" id="ChL-Mp-fz5">
                                 <color key="tintColor" name="Signature Green"/>
                             </barButtonItem>
                             <barButtonItem title="Item" image="dollarsign" catalog="system" id="pOM-Fm-bsx">
@@ -813,7 +841,7 @@
                     <connections>
                         <outlet property="searchBar" destination="qha-cb-Dnp" id="Z6U-CR-YG4"/>
                         <segue destination="Aep-eb-tai" kind="show" identifier="cryptoToInfo" id="9SD-7O-YqS"/>
-                        <segue destination="gPS-BF-SaK" kind="presentation" identifier="cryptoToLogin" modalPresentationStyle="fullScreen" id="nEM-sR-Qae"/>
+                        <segue destination="JlV-7v-phO" kind="presentation" identifier="cryptoToAccount" id="7JG-0q-wLN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kdj-Ip-JAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -823,7 +851,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Unm-Fo-Pa7"/>
-        <segue reference="nEM-sR-Qae"/>
+        <segue reference="ofj-qm-dNK"/>
         <segue reference="Q3e-bB-jde"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
@@ -833,7 +861,7 @@
         <image name="dollarsign" catalog="system" width="89" height="128"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
-        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="109"/>
+        <image name="person" catalog="system" width="128" height="121"/>
         <namedColor name="Signature Green">
             <color red="0.15294117647058825" green="0.68235294117647061" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
