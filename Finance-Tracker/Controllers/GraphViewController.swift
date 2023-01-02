@@ -185,49 +185,49 @@ class GraphViewController: UIViewController {
         deselectButtons()
         dayButton.backgroundColor = .systemGray5
         timePeriod = .day
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
     }
     
     @IBAction func fiveDaysButtonPressed(_ sender: UIButton) {
         deselectButtons()
         fiveDaysButton.backgroundColor = .systemGray5
         timePeriod = .fiveDays
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
     }
     
     @IBAction func monthButtonPressed(_ sender: UIButton) {
         deselectButtons()
         monthButton.backgroundColor = .systemGray5
         timePeriod = .month
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
     }
     
     @IBAction func sixMonthsButtonPressed(_ sender: UIButton) {
         deselectButtons()
         sixMonthsButton.backgroundColor = .systemGray5
         timePeriod = .sixMonths
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
     }
     
     @IBAction func yearButtonPressed(_ sender: UIButton) {
         deselectButtons()
         yearButton.backgroundColor = .systemGray5
         timePeriod = .year
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
     }
 
     @IBAction func threeMonthsButtonPressed(_ sender: Any) {
         deselectButtons()
         threeMonthsButton.backgroundColor = .systemGray5
         timePeriod = .threeMonths
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
     }
     
     @IBAction func twoYearsButtonPressed(_ sender: UIButton) {
         deselectButtons()
         twoYearsButton.backgroundColor = .systemGray5
         timePeriod = .twoYears
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat)!, timePeriod)
+        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
     }
     
     func deselectButtons() {
@@ -331,9 +331,10 @@ extension GraphViewController: CryptoManagerDelegate {
             setData()
         }
         crypto = cryptoManager.returnArray
+        
         // Find selected currency
         let selectedCurrencySymbol = selectedCurrency!.symbol
-        let currentFiat = defaults.string(forKey: K.defaultFiat)!
+        let currentFiat = defaults.string(forKey: K.defaultFiat) ?? "USD"
         let currentRate = Utilities.getRate(for: selectedCurrency!, in: currentFiat)
         for cryptoCurrency in crypto {
             if cryptoCurrency.symbol == selectedCurrencySymbol {

@@ -35,13 +35,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="i1h-cZ-a4g">
                                                 <rect key="frame" x="0.0" y="0.0" width="325" height="150"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="petariliev@utexas.edu" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-O2-R5F" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-O2-R5F" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="325" height="69"/>
                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                                     </textField>
-                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="020402" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-El-zlh" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-El-zlh" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="81" width="325" height="69"/>
                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
