@@ -19,6 +19,8 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     
+    let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,10 +40,19 @@ class WelcomeViewController: UIViewController {
         passwordField.delegate = self
         
         IQKeyboardManager.shared.enableAutoToolbar = false
+        
+//        // Check if user logged in
+//        if defaults.bool(forKey: K.rememberDevice) {
+//            nav
+//        }
+        
+        usernameField.text = Auth.auth().currentUser?.email ?? "None"
+        print("User email: \(Auth.auth().currentUser?.email ?? "None")")
+        
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        _ = loginUser() 
+        _ = loginUser()
     }
     
     // Dismiss keyboard upon tap
@@ -97,11 +108,27 @@ class WelcomeViewController: UIViewController {
                     self.passwordField.placeholder = "Invalid information"
                     self.usernameField.placeholder = "Invalid information"
                 } else {
-                    self.performSegue(withIdentifier: "loginToStocks", sender: self)
+                    // Ask user if they would like to stay logged in
+                    self.askForDefaultSignIn()
                 }
             }
         }
         return infoValid
+    }
+    
+   
+    func askForDefaultSignIn() {
+        let alert = UIAlertController(title: "Default Login", message: "Would you like to stay logged-in on this device?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { action in
+            self.defaults.set(true, forKey: K.rememberDevice)
+            self.performSegue(withIdentifier: "loginToStocks", sender: self)
+        }
+        let noAction = UIAlertAction(title: "No", style: .default) { action in
+            self.performSegue(withIdentifier: "loginToStocks", sender: self)
+        }
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true)
     }
     
 }
