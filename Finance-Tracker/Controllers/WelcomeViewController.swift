@@ -41,14 +41,10 @@ class WelcomeViewController: UIViewController {
         
         IQKeyboardManager.shared.enableAutoToolbar = false
         
-//        // Check if user logged in
-//        if defaults.bool(forKey: K.rememberDevice) {
-//            nav
-//        }
-        
-        usernameField.text = Auth.auth().currentUser?.email ?? "None"
-        print("User email: \(Auth.auth().currentUser?.email ?? "None")")
-        
+        // Check if user logged in
+        if defaults.bool(forKey: K.rememberDevice) && Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "loginToStocks", sender: self)
+        }
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -109,28 +105,12 @@ class WelcomeViewController: UIViewController {
                     self.usernameField.placeholder = "Invalid information"
                 } else {
                     // Ask user if they would like to stay logged in
-                    self.askForDefaultSignIn()
+                    Utilities.askForDefaultSignIn(in: self, to: "loginToStocks")
                 }
             }
         }
         return infoValid
     }
-    
-   
-    func askForDefaultSignIn() {
-        let alert = UIAlertController(title: "Default Login", message: "Would you like to stay logged-in on this device?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { action in
-            self.defaults.set(true, forKey: K.rememberDevice)
-            self.performSegue(withIdentifier: "loginToStocks", sender: self)
-        }
-        let noAction = UIAlertAction(title: "No", style: .default) { action in
-            self.performSegue(withIdentifier: "loginToStocks", sender: self)
-        }
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        present(alert, animated: true)
-    }
-    
 }
 
 // MARK: - Text Field delegate methods

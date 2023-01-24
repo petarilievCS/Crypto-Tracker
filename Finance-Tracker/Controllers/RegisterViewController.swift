@@ -142,7 +142,7 @@ class RegisterViewController: UIViewController {
                     self.emailField.placeholder = "User already exists"
                     self.emailField.text = ""
                 } else {
-                    self.performSegue(withIdentifier: "registerToStocks", sender: self)
+                    Utilities.askForDefaultSignIn(in: self, to: "registerToStocks")
                 }
             }
         }

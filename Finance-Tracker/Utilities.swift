@@ -9,6 +9,8 @@ import UIKit
 
 class Utilities {
     
+    let defaults = UserDefaults.standard
+    
     // Creates a basic shake animation for the text fields
     static func shake(_ viewToShake: UITextField) {
         let animation = CABasicAnimation(keyPath: "position")
@@ -126,6 +128,22 @@ class Utilities {
         numberFormatter.numberStyle = .decimal
         let doublePrice = Double(stringPrice)!
         return fiatSymbol + numberFormatter.string(from: NSNumber(value: doublePrice))!
+    }
+    
+    // Ask user to remember device
+    static func askForDefaultSignIn(in viewController: UIViewController, to segueIdentifier: String) {
+        let alert = UIAlertController(title: "Default Login", message: "Would you like to stay logged-in on this device?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { action in
+            UserDefaults.standard.set(true, forKey: K.rememberDevice)
+            viewController.performSegue(withIdentifier: segueIdentifier, sender: self)
+        }
+        let noAction = UIAlertAction(title: "No", style: .default) { action in
+            UserDefaults.standard.set(false, forKey: K.rememberDevice)
+            viewController.performSegue(withIdentifier: segueIdentifier, sender: self)
+        }
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        viewController.present(alert, animated: true)
     }
     
 }
