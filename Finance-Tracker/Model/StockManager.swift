@@ -61,6 +61,16 @@ class StockManager {
             }
         }
     }
+    
+    // Calculates percent change of given stock
+    func getPercentChange(for stock: RecentStockData) -> Float {
+        if let previousClose = stock.previousClose, let currentPrice = stock.regularMarketPrice {
+            let difference = currentPrice - previousClose
+            let percentChange = previousClose / (difference * 100.0)
+            return percentChange
+        }
+        return 0.0
+    }
 }
 
 

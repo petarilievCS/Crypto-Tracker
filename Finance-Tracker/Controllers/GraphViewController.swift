@@ -89,6 +89,8 @@ class GraphViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         cryptoManager.delegate = self
         stockManager.delegate = self
+        nameLabel.adjustsFontSizeToFitWidth = true
+        
         refreshInformation()
     }
     
@@ -390,10 +392,11 @@ extension GraphViewController: StockManagerDelegate {
         nameLabel.text = selectedStock?.name ?? symbol.symbol
         priceLabel.text = "$\(symbol.regularMarketPrice ?? 0.0)"
         
-        // TODO: Calculate percent change
-        
+        percentChange = String(format: "%.2f", stockManager.getPercentChange(for: symbol)) + "%"
+        percentChangeLabel.text = percentChange
+        percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
+
         customizeViews()
-        
     }
     
 }

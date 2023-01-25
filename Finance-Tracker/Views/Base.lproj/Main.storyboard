@@ -274,13 +274,13 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="We3-c9-AR0">
                                                                 <rect key="frame" x="0.0" y="0.0" width="357" height="48"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="APPL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WR5-i7-CeP">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="APPL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WR5-i7-CeP">
                                                                         <rect key="frame" x="0.0" y="0.0" width="200.33333333333334" height="48"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$146.37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cN-pV-Z1c">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$146.37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cN-pV-Z1c">
                                                                         <rect key="frame" x="200.33333333333337" y="0.0" width="156.66666666666663" height="48"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                                                         <nil key="textColor"/>
@@ -291,14 +291,17 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="GuF-OK-XvN">
                                                                 <rect key="frame" x="0.0" y="53" width="357" height="32.333333333333343"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Apple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5F7-yz-pqv">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="32.333333333333336"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5F7-yz-pqv">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="32.333333333333336"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="250" id="BY8-tL-VNn"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-2.40%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afu-28-qap">
-                                                                        <rect key="frame" x="68" y="0.0" width="289" height="32.333333333333336"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="-2.40%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afu-28-qap">
+                                                                        <rect key="frame" x="250" y="0.0" width="107" height="32.333333333333336"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                                         <color key="textColor" name="Signature Red"/>
                                                                         <nil key="highlightedColor"/>
