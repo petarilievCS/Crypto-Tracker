@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "kdp.png",
+      "filename" : "kdp-light 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "kdp 1.png",
+      "filename" : "kdp-light.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -23,7 +23,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "kdp-dark.png",
+      "filename" : "kdp 2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

@@ -38,7 +38,12 @@ class StocksViewController: CryptoViewController {
         cell.companyLabel.text = indexFundEntries[indexPath.row].name
         cell.priceLabel.text = ""
         cell.percentLabel.text = ""
-        cell.logoImaeView.image = UIImage(named: "\(cell.stockLabel.text!.lowercased()).png")
+        
+        var imageName = "\(cell.stockLabel.text!.lowercased()).png"
+        if imageName == "payx.png" {
+            imageName = "payxx.png" // Edge case: crypto and stock have same symbol
+        }
+        cell.logoImaeView.image = UIImage(named: imageName)
         return cell
     }
     

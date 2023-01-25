@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "lcid.png",
+      "filename" : "lcid-dark 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "lcid-light.png",
+      "filename" : "lcid 2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -23,7 +23,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "lcid 1.png",
+      "filename" : "lcid-dark.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
