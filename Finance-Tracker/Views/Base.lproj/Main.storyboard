@@ -236,7 +236,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Favorites" id="9FH-f2-7Zs">
-                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="default"/>
+                        <imageReference key="image" image="heart.fill" catalog="system"/>
                         <color key="badgeColor" name="Signature Green"/>
                         <imageReference key="selectedImage" image="heart.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
@@ -799,11 +799,52 @@
                     <connections>
                         <segue destination="G7e-ge-7uD" kind="relationship" relationship="viewControllers" id="5vu-zF-Ifr"/>
                         <segue destination="vkJ-9T-mEX" kind="relationship" relationship="viewControllers" id="BzI-66-bLv"/>
+                        <segue destination="EE0-lG-Ffe" kind="relationship" relationship="viewControllers" id="LwS-vr-lQW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wvt-35-yd7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3539.6946564885493" y="-2.1126760563380285"/>
+        </scene>
+        <!--Stocks-->
+        <scene sceneID="hAk-hK-qnq">
+            <objects>
+                <tableViewController id="EE0-lG-Ffe" customClass="StocksViewController" customModule="Finance_Tracker" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ffu-p1-Gat">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="glJ-Ql-6su">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="EE0-lG-Ffe" id="zUn-Bd-Cxx"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UdV-Po-8xE">
+                                <rect key="frame" x="0.0" y="94" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UdV-Po-8xE" id="V9P-KX-O2v">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="EE0-lG-Ffe" id="F3A-j9-7bL"/>
+                            <outlet property="delegate" destination="EE0-lG-Ffe" id="LTP-5Q-beP"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Stocks" image="dollarsign.circle" catalog="system" selectedImage="dollarsign.circle" id="gsZ-91-Tva"/>
+                    <connections>
+                        <outlet property="newSearchBar" destination="glJ-Ql-6su" id="Hnk-YW-7tZ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OFR-7W-eVe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3329" y="745"/>
         </scene>
         <!--Crypto-->
         <scene sceneID="RS2-e5-vL8">
@@ -837,7 +878,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Crypto" id="Z1W-i6-iaL">
-                        <imageReference key="image" image="bitcoinsign.circle.fill" catalog="system" symbolScale="default"/>
+                        <imageReference key="image" image="bitcoinsign.circle.fill" catalog="system"/>
                         <color key="badgeColor" name="Signature Green"/>
                         <imageReference key="selectedImage" image="bitcoinsign.circle.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
@@ -863,6 +904,7 @@
         <image name="bitcoinsign.circle" catalog="system" width="128" height="123"/>
         <image name="bitcoinsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="dollarsign" catalog="system" width="89" height="128"/>
+        <image name="dollarsign.circle" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="person" catalog="system" width="128" height="121"/>
