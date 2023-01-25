@@ -8,6 +8,7 @@
 import UIKit
 import Charts
 import TinyConstraints
+import SwiftYFinance
 
 enum Period {
     case day
@@ -37,11 +38,12 @@ class GraphViewController: UIViewController {
     var timePeriod: Period = .day
     
     var selectedCurrency: CryptoData? = nil
-    var selectedStockSymbol: String? = nil
+    var selectedStock: IndexEntry? = nil
     var volume: Double = 0.0 
     var price: String = ""
     var percentChange: String = ""
     let cryptoManager = CryptoManager()
+    let stockManager = StockManager()
     var crypto: [CryptoData] = []
     
     // TODO: Change to computed variable
@@ -86,11 +88,18 @@ class GraphViewController: UIViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         cryptoManager.delegate = self
+        stockManager.delegate = self
         refreshInformation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        symbolLabel.text = ""
+        nameLabel.text = ""
+        priceLabel.text = ""
+        percentChangeLabel.text = ""
+        
         let favorites = defaults.array(forKey: K.defaultFavorites) as? [String] ?? []
         
         for symbol in favorites {
@@ -246,15 +255,58 @@ class GraphViewController: UIViewController {
     
     func refreshInformation() {
         
-        // Customize main info
-        symbolLabel.text = selectedCurrency?.symbol
-        nameLabel.text = selectedCurrency?.name
-        priceLabel.text = price
-        
-        // Customize percent change label
-        percentChangeLabel.text = percentChange
-        percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
-        
+        if isStocks {
+            refreshStockInformation()
+        } else {
+            // Customize main info
+            symbolLabel.text = selectedCurrency?.symbol
+            nameLabel.text = selectedCurrency?.name
+            priceLabel.text = price
+            
+            // Customize percent change label
+            percentChangeLabel.text = percentChange
+            percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
+            
+            customizeViews()
+            
+            // Customize data views
+            mktCapPriceLabel.text = calculateMktCap(FD: false)
+            fdMktCapPriceLabel.text = calculateMktCap(FD: true)
+            rankLabel.text = "#\(String(selectedCurrency!.cmc_rank))"
+            circulatingSupplyLabel.text = String(Utilities.formatDecimal(selectedCurrency!.circulating_supply, with: ""))
+            totalSupplyLabel.text = Utilities.formatDecimal(selectedCurrency!.total_supply, with: "")
+            
+            let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat) ?? "USD").volume_24h)
+            volumeLabel.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
+            
+            if let maxSupply = selectedCurrency?.max_supply {
+                maxSupplyLabel.text = Utilities.formatDecimal(Double(maxSupply), with: "")
+            } else {
+                maxSupplyLabel.text = "--"
+            }
+            
+            let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat) ?? "USD").market_cap_dominance
+            dominanceLabel.text = String(format: "%.1f", dominance) + "%"
+            
+            // Setup chart view
+            chartView.addSubview(lineChartView)
+            lineChartView.centerInSuperview()
+            lineChartView.width(to: chartView)
+            lineChartView.height(to: chartView)
+            cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        }
+    }
+    
+    // Refresh information for stocks
+    func refreshStockInformation() {
+        if let safeSymbol = selectedStock?.symbol {
+            stockManager.getInfo(for: safeSymbol)
+        } else {
+            print("No selected stock symbol")
+        }
+    }
+    
+    func customizeViews() {
         // Customize view
         mktCapView.layer.cornerRadius = K.viewCornerRadius
         fdMktCapView.layer.cornerRadius = K.viewCornerRadius
@@ -279,39 +331,6 @@ class GraphViewController: UIViewController {
         threeMonthsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         twoYearsButton.layer.cornerRadius = K.viewCornerRadius
         twoYearsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        
-        // Customize data views
-        mktCapPriceLabel.text = calculateMktCap(FD: false)
-        fdMktCapPriceLabel.text = calculateMktCap(FD: true)
-        rankLabel.text = "#\(String(selectedCurrency!.cmc_rank))"
-        circulatingSupplyLabel.text = String(Utilities.formatDecimal(selectedCurrency!.circulating_supply, with: ""))
-        totalSupplyLabel.text = Utilities.formatDecimal(selectedCurrency!.total_supply, with: "")
-        
-        let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat) ?? "USD").volume_24h)
-        volumeLabel.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
-        
-        if let maxSupply = selectedCurrency?.max_supply {
-            maxSupplyLabel.text = Utilities.formatDecimal(Double(maxSupply), with: "")
-        } else {
-            maxSupplyLabel.text = "--"
-        }
-        
-        let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat) ?? "USD").market_cap_dominance
-        dominanceLabel.text = String(format: "%.1f", dominance) + "%"
-        
-        // Setup chart view
-        chartView.addSubview(lineChartView)
-        lineChartView.centerInSuperview()
-        lineChartView.width(to: chartView)
-        lineChartView.height(to: chartView)
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
-                
-    }
-    
-    // Refresh information for stocks
-    
-    func refreshStockInformation() {
-        
     }
     
 }
@@ -358,3 +377,23 @@ extension GraphViewController: CryptoManagerDelegate {
 }
 
 
+// MARK: - Stock Manager Delegate methds
+
+extension GraphViewController: StockManagerDelegate {
+    
+    func receivedStockInformation() {}
+    
+    // Updates view when information is received
+    func receivedSymbolInformatioN(for symbol: RecentStockData) {
+        // Customize main info
+        symbolLabel.text = symbol.symbol
+        nameLabel.text = selectedStock?.name ?? symbol.symbol
+        priceLabel.text = "$\(symbol.regularMarketPrice ?? 0.0)"
+        
+        // TODO: Calculate percent change
+        
+        customizeViews()
+        
+    }
+    
+}

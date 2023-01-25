@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftYFinance
 
 protocol StockManagerDelegate {
     func receivedStockInformation()
+    func receivedSymbolInformatioN(for symbol: RecentStockData)
 }
 
 class StockManager {
@@ -44,6 +46,19 @@ class StockManager {
             delegate?.receivedStockInformation()
         } catch {
             print("Error while decoding index entries: \(error)")
+        }
+    }
+    
+    // Return basic info for given symbol
+    func getInfo(for symbol: String) {
+        SwiftYFinance.recentDataBy(identifier: symbol) { data, error in
+            if error == nil {
+                if let safeData = data {
+                    self.delegate?.receivedSymbolInformatioN(for: safeData)
+                }
+            } else {
+                print(data!.regularMarketPrice ?? "No regularMarketPrice")
+            }
         }
     }
 }

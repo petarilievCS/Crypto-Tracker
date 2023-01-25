@@ -67,6 +67,9 @@ class StocksViewController: CryptoViewController {
 // MARK: - Stock Manager Delegate methods
 
 extension StocksViewController: StockManagerDelegate {
+    
+    func receivedSymbolInformatioN(for symbol: RecentStockData) {}
+    
     func receivedStockInformation() {
         indexFundEntries = stockManager.indexFundEntries
         DispatchQueue.main.async {
@@ -85,7 +88,7 @@ extension StocksViewController {
             let destinationVC = segue.destination as! GraphViewController
             let selectedStock = indexFundEntries[tableView.indexPathForSelectedRow!.row]
             destinationVC.isStocks = true
-            destinationVC.selectedStockSymbol = selectedStock.symbol
+            destinationVC.selectedStock = selectedStock
         case K.cryptoToAccountSegue:
             print("Works")
         default:
