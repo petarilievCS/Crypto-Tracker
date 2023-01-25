@@ -840,6 +840,7 @@
                     <tabBarItem key="tabBarItem" title="Stocks" image="dollarsign.circle" catalog="system" selectedImage="dollarsign.circle" id="gsZ-91-Tva"/>
                     <connections>
                         <outlet property="newSearchBar" destination="glJ-Ql-6su" id="Hnk-YW-7tZ"/>
+                        <segue destination="Aep-eb-tai" kind="show" identifier="stocksToGraph" id="BDR-HN-rWQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OFR-7W-eVe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -897,7 +898,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Unm-Fo-Pa7"/>
         <segue reference="ofj-qm-dNK"/>
-        <segue reference="Q3e-bB-jde"/>
+        <segue reference="BDR-HN-rWQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
     <resources>

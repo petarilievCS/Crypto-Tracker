@@ -37,6 +37,7 @@ class GraphViewController: UIViewController {
     var timePeriod: Period = .day
     
     var selectedCurrency: CryptoData? = nil
+    var selectedStockSymbol: String? = nil
     var volume: Double = 0.0 
     var price: String = ""
     var percentChange: String = ""
@@ -46,6 +47,7 @@ class GraphViewController: UIViewController {
     // TODO: Change to computed variable
     var isFavorite: Bool = false
     let defaults = UserDefaults.standard
+    var isStocks: Bool = false
     
     // Outlets
     @IBOutlet weak var mktCapView: UIView!
@@ -241,6 +243,7 @@ class GraphViewController: UIViewController {
     }
     
     // MARK: - Refreshing information methods
+    
     func refreshInformation() {
         
         // Customize main info
@@ -303,6 +306,12 @@ class GraphViewController: UIViewController {
         lineChartView.height(to: chartView)
         cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
                 
+    }
+    
+    // Refresh information for stocks
+    
+    func refreshStockInformation() {
+        
     }
     
 }

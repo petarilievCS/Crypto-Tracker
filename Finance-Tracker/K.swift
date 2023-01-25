@@ -20,4 +20,5 @@ struct K {
     static let accountTableViewCellIdentifier = "AccountTableViewCell"
     static let accountToLoginSegue = "accountToLogin"
     static let rememberDevice = "rememberDevice"
+    static let stocksToGraphSegue = "stocksToGraph"
 }

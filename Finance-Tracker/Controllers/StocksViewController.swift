@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftYFinance
 
 class StocksViewController: CryptoViewController {
 
@@ -34,8 +35,10 @@ class StocksViewController: CryptoViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.assetCellIdentifier, for: indexPath) as! AssetCell
-        cell.stockLabel.text = indexFundEntries[indexPath.row].symbol
-        cell.companyLabel.text = indexFundEntries[indexPath.row].name
+        
+        let currentStock = indexFundEntries[indexPath.row]
+        cell.stockLabel.text = currentStock.symbol
+        cell.companyLabel.text = currentStock.name
         cell.priceLabel.text = ""
         cell.percentLabel.text = ""
         
@@ -50,6 +53,15 @@ class StocksViewController: CryptoViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return indexFundEntries.count
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchBar.isFirstResponder {
+            searchBar.resignFirstResponder()
+        } else {
+            performSegue(withIdentifier: K.stocksToGraphSegue, sender: self)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK: - Stock Manager Delegate methods
@@ -59,6 +71,25 @@ extension StocksViewController: StockManagerDelegate {
         indexFundEntries = stockManager.indexFundEntries
         DispatchQueue.main.async {
             self.tableView.reloadData()
+        }
+    }
+}
+
+// MARK: - Segue methods
+
+extension StocksViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case K.stocksToGraphSegue:
+            let destinationVC = segue.destination as! GraphViewController
+            let selectedStock = indexFundEntries[tableView.indexPathForSelectedRow!.row]
+            destinationVC.isStocks = true
+            destinationVC.selectedStockSymbol = selectedStock.symbol
+        case K.cryptoToAccountSegue:
+            print("Works")
+        default:
+            fatalError("Segue identifier not handled")
         }
     }
 }

@@ -200,6 +200,7 @@ extension CryptoViewController {
             let destinationVC = segue.destination as! GraphViewController
             let selectedCurrency = crypto[tableView.indexPathForSelectedRow!.row]
             let selectedCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as! AssetCell
+            destinationVC.isStocks = false
             destinationVC.price = selectedCell.priceLabel.text!
             destinationVC.percentChange = selectedCell.percentLabel.text!
             destinationVC.selectedCurrency = selectedCurrency
