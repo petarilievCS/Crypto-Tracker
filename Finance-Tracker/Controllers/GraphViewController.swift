@@ -95,6 +95,7 @@ class GraphViewController: UIViewController {
         cryptoManager.delegate = self
         stockManager.delegate = self
         nameLabel.adjustsFontSizeToFitWidth = true
+        percentChangeLabel.adjustsFontSizeToFitWidth = true
         
         refreshInformation()
     }
@@ -122,6 +123,9 @@ class GraphViewController: UIViewController {
             maxSupplyLabel.text = ""
             totalSupplyLabel.text = ""
             circulatingSupplyLabel.text = ""
+            
+            rankView.isHidden = true
+            dominanceView.isHidden = true
         }
         
         let favorites = defaults.array(forKey: K.defaultFavorites) as? [String] ?? []
@@ -407,17 +411,16 @@ extension GraphViewController: StockManagerDelegate {
     
     func receivedSymbolMetrics(for symbol: StockChartData) {
         // Customzie views
-        volumeLabel.text = String("$\(symbol.volume ?? 0)")
-        
         mktCapLabel.text = "Open"
         fdMktCapTitleLabel.text = "Close"
         maxSupplyTitleLabel.text = "Low"
         totalSupplyTitleLabel.text = "High"
         
-        mktCapPriceLabel.text = String(format: "$%.2f", symbol.open!)
-        fdMktCapPriceLabel.text = String(format: "$%.2f", symbol.close!)
-        maxSupplyLabel.text = String(format: "$%.2f", symbol.low!)
-        totalSupplyLabel.text = String(format: "$%.2f", symbol.high!)
+        volumeLabel.text = Utilities.format(symbol.volume ?? 0, with: "$")
+        mktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.open!), with: "$")
+        fdMktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.close!), with: "$")
+        maxSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.low!), with: "$")
+        totalSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.high!), with: "$")
     }
     
     
