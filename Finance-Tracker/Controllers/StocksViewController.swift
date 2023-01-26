@@ -68,6 +68,7 @@ class StocksViewController: CryptoViewController {
 
 extension StocksViewController: StockManagerDelegate {
     
+    func receivedSymbolMetrics(for symbol: StockChartData) {}
     func receivedSymbolInformatioN(for symbol: RecentStockData) {}
     
     func receivedStockInformation() {

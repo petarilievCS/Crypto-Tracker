@@ -370,8 +370,8 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAV-W3-P80">
                                                                         <rect key="frame" x="0.0" y="0.0" width="171" height="73"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volume (24 h)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-2b-vPZ">
-                                                                                <rect key="frame" x="8" y="14" width="110" height="21"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-2b-vPZ">
+                                                                                <rect key="frame" x="8" y="14" width="59" height="21"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -684,15 +684,18 @@
                     <connections>
                         <outlet property="chartView" destination="ljd-xc-K7S" id="juh-Rm-AhZ"/>
                         <outlet property="circulatingSupplyLabel" destination="mOS-2k-ZSJ" id="Ydy-fG-XGQ"/>
+                        <outlet property="circulatingSupplyTitleLabel" destination="6QY-Os-Aks" id="wk3-tu-Ndr"/>
                         <outlet property="circulatingSupplyView" destination="zu3-dl-3XM" id="zcW-4N-hKZ"/>
                         <outlet property="dayButton" destination="Chx-7p-eZS" id="Ucf-NU-h7N"/>
                         <outlet property="dominanceLabel" destination="FNM-Wg-7ng" id="kfg-5R-WR6"/>
                         <outlet property="dominanceView" destination="ic9-mG-MuU" id="HW8-WY-Uva"/>
                         <outlet property="favoriteButton" destination="KAP-SV-xaY" id="xPO-YO-aV5"/>
                         <outlet property="fdMktCapPriceLabel" destination="b8U-wg-xrX" id="xUd-Kp-NJd"/>
+                        <outlet property="fdMktCapTitleLabel" destination="rKN-CU-dgr" id="aM0-dv-x6V"/>
                         <outlet property="fdMktCapView" destination="K9F-bq-Dr4" id="qtl-eb-ncK"/>
                         <outlet property="fiveDaysButton" destination="pq9-sj-9nh" id="day-al-p4E"/>
                         <outlet property="maxSupplyLabel" destination="roY-1h-XAY" id="vW2-ac-LdV"/>
+                        <outlet property="maxSupplyTitleLabel" destination="UG1-L6-3vl" id="iXE-O2-kMT"/>
                         <outlet property="maxSupplyView" destination="vj4-fB-VSv" id="r9g-dc-DUX"/>
                         <outlet property="mktCapLabel" destination="ydc-hx-sdN" id="7LN-o5-90g"/>
                         <outlet property="mktCapPriceLabel" destination="YXh-Qs-8gq" id="Mdz-Ja-8Ah"/>
@@ -707,6 +710,7 @@
                         <outlet property="symbolLabel" destination="WR5-i7-CeP" id="ald-YG-cOw"/>
                         <outlet property="threeMonthsButton" destination="5Ad-hQ-0LR" id="GgY-BB-yfo"/>
                         <outlet property="totalSupplyLabel" destination="q76-OK-8ZS" id="Eq1-Z5-jsa"/>
+                        <outlet property="totalSupplyTitleLabel" destination="zVa-A6-VUw" id="Rha-gg-wL7"/>
                         <outlet property="totalSupplyView" destination="OEm-eT-dIF" id="jGi-28-WIw"/>
                         <outlet property="twoYearsButton" destination="itH-aq-mlZ" id="dw3-sC-jC9"/>
                         <outlet property="volumeLabel" destination="j0j-Pe-LoS" id="dOm-w8-RW5"/>

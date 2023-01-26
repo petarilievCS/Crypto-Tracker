@@ -143,8 +143,10 @@ class CryptoManager {
     }
     
     func parseData() {
-        for coinData in cryptoResponse!.data {
-            returnArray.append(coinData)
+        if let safeResponse = cryptoResponse {
+            for coinData in safeResponse.data {
+                returnArray.append(coinData)
+            }
         }
     }
     

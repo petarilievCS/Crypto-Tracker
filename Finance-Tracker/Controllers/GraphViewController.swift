@@ -82,6 +82,11 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var yearButton: UIButton!
     @IBOutlet weak var threeMonthsButton: UIButton!
     @IBOutlet weak var twoYearsButton: UIButton!
+    @IBOutlet weak var fdMktCapTitleLabel: UILabel!
+    @IBOutlet weak var circulatingSupplyTitleLabel: UILabel!
+    @IBOutlet weak var maxSupplyTitleLabel: UILabel!
+    @IBOutlet weak var totalSupplyTitleLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +106,23 @@ class GraphViewController: UIViewController {
         nameLabel.text = ""
         priceLabel.text = ""
         percentChangeLabel.text = ""
+        
+        customizeViews()
+        
+        if isStocks {
+            volumeLabel.text = ""
+            mktCapLabel.text = "Open"
+            fdMktCapTitleLabel.text = "Close"
+            maxSupplyTitleLabel.text = "Low"
+            totalSupplyTitleLabel.text = "High"
+            circulatingSupplyTitleLabel.text = "Previous Close"
+            
+            mktCapPriceLabel.text = ""
+            fdMktCapPriceLabel.text = ""
+            maxSupplyLabel.text = ""
+            totalSupplyLabel.text = ""
+            circulatingSupplyLabel.text = ""
+        }
         
         let favorites = defaults.array(forKey: K.defaultFavorites) as? [String] ?? []
         
@@ -269,7 +291,7 @@ class GraphViewController: UIViewController {
             percentChangeLabel.text = percentChange
             percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
             
-            customizeViews()
+           
             
             // Customize data views
             mktCapPriceLabel.text = calculateMktCap(FD: false)
@@ -383,6 +405,22 @@ extension GraphViewController: CryptoManagerDelegate {
 
 extension GraphViewController: StockManagerDelegate {
     
+    func receivedSymbolMetrics(for symbol: StockChartData) {
+        // Customzie views
+        volumeLabel.text = String("$\(symbol.volume ?? 0)")
+        
+        mktCapLabel.text = "Open"
+        fdMktCapTitleLabel.text = "Close"
+        maxSupplyTitleLabel.text = "Low"
+        totalSupplyTitleLabel.text = "High"
+        
+        mktCapPriceLabel.text = String(format: "$%.2f", symbol.open!)
+        fdMktCapPriceLabel.text = String(format: "$%.2f", symbol.close!)
+        maxSupplyLabel.text = String(format: "$%.2f", symbol.low!)
+        totalSupplyLabel.text = String(format: "$%.2f", symbol.high!)
+    }
+    
+    
     func receivedStockInformation() {}
     
     // Updates view when information is received
@@ -391,12 +429,15 @@ extension GraphViewController: StockManagerDelegate {
         symbolLabel.text = symbol.symbol
         nameLabel.text = selectedStock?.name ?? symbol.symbol
         priceLabel.text = "$\(symbol.regularMarketPrice ?? 0.0)"
+        circulatingSupplyTitleLabel.text = "Previous Close"
+        circulatingSupplyLabel.text = "$\(symbol.previousClose ?? 0.0)"
         
         percentChange = String(format: "%.2f", stockManager.getPercentChange(for: symbol)) + "%"
         percentChangeLabel.text = percentChange
         percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
 
         customizeViews()
+        stockManager.getMetrics(for: symbol.symbol!)
     }
     
 }

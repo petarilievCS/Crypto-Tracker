@@ -11,6 +11,7 @@ import SwiftYFinance
 protocol StockManagerDelegate {
     func receivedStockInformation()
     func receivedSymbolInformatioN(for symbol: RecentStockData)
+    func receivedSymbolMetrics(for symbol: StockChartData)
 }
 
 class StockManager {
@@ -70,6 +71,23 @@ class StockManager {
             return percentChange
         }
         return 0.0
+    }
+    
+    // Get metrics for given stock
+    func getMetrics(for symbol: String) {
+        let today = Date.now
+        
+        SwiftYFinance.chartDataBy(identifier: symbol, start: Calendar.current.date(byAdding: .day, value: -1, to: today)!, end: Date.now, interval: .oneday) { data, error in
+            if error == nil {
+                if let safeData = data {
+                    self.delegate?.receivedSymbolMetrics(for: safeData[1])
+                } else {
+                    print("Error: Invalid data")
+                }
+            } else {
+                print(data![0].open ?? "Open price is unavailable")
+            }
+        }
     }
 }
 
