@@ -34,23 +34,46 @@ class FavoritesViewController: CryptoViewController {
                 count += 1
             }
         }
+        for stockData in indexFundEntries {
+            if favorites.contains(where: { str in
+                return str == stockData.symbol
+            }) {
+                count += 1
+            }
+        }
         return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.assetCellIdentifier) as! AssetCell
-        let currentCrypto = findFavorite(at: indexPath.row)
         cell.circleImageView.layer.cornerRadius = 32.0
-        cell.stockLabel.text = currentCrypto.symbol
-        cell.companyLabel.text = currentCrypto.name
+        let currentCrypto = findFavorite(at: indexPath.row)
         
-        setCurrencyInCell(cell, for: currentCrypto)
-        
-        if let cryptoIcon = UIImage(named: "\(currentCrypto.symbol.lowercased()).png") {
-            cell.logoImaeView.contentMode = .scaleAspectFit
-            cell.logoImaeView.image = cryptoIcon
+        // Stock
+        if currentCrypto == nil {
+            let currentStock  = findFavoriteStock(at: indexPath.row)
+            cell.stockLabel.text = currentStock?.symbol
+            cell.companyLabel.text = currentStock?.name
+            
+            if let stockIcon = UIImage(named: "\(currentStock!.symbol.lowercased()).png") {
+                cell.logoImaeView.contentMode = .scaleAspectFit
+                cell.logoImaeView.image = stockIcon
+            } else {
+                cell.logoImaeView.image = UIImage(named: "generic.svg")
+            }
         } else {
-            cell.logoImaeView.image = UIImage(named: "generic.svg")
+            
+            cell.stockLabel.text = currentCrypto?.symbol
+            cell.companyLabel.text = currentCrypto?.name
+            
+            setCurrencyInCell(cell, for: currentCrypto!)
+            
+            if let cryptoIcon = UIImage(named: "\(currentCrypto!.symbol.lowercased()).png") {
+                cell.logoImaeView.contentMode = .scaleAspectFit
+                cell.logoImaeView.image = cryptoIcon
+            } else {
+                cell.logoImaeView.image = UIImage(named: "generic.svg")
+            }
         }
          
         return cell
@@ -65,8 +88,28 @@ class FavoritesViewController: CryptoViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // Finds favorite stock at given position
+    func findFavoriteStock(at position: Int) -> IndexEntry? {
+        var current = 0
+        var currentStock: IndexEntry? = nil
+        let favorites = defaults.array(forKey: K.defaultFavorites) as! [String]
+        
+        for stockData in indexFundEntries {
+            if favorites.contains(where: { str in
+                return str == stockData.symbol
+            }) {
+                if position == current {
+                    currentStock = stockData
+                    break
+                }
+                current += 1
+            }
+        }
+        return currentStock
+    }
+    
     // Finds favorite crypto at given position
-    func findFavorite(at position: Int) -> CryptoData {
+    func findFavorite(at position: Int) -> CryptoData? {
         var current = 0
         var currentCrypto: CryptoData? = nil
         let favorites = defaults.array(forKey: K.defaultFavorites) as! [String]
@@ -82,7 +125,7 @@ class FavoritesViewController: CryptoViewController {
                 current += 1
             }
         }
-        return currentCrypto!
+        return currentCrypto
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

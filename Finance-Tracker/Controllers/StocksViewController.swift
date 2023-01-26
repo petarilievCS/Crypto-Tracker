@@ -12,8 +12,7 @@ class StocksViewController: CryptoViewController {
 
     @IBOutlet weak var newSearchBar: UISearchBar!
     
-    var indexFundEntries: [IndexEntry] = []
-    let stockManager = StockManager()
+ 
     
     override func viewDidLoad() {
         self.searchBar = newSearchBar
@@ -29,6 +28,7 @@ class StocksViewController: CryptoViewController {
         // Customize bar
         tabBarController?.navigationItem.hidesBackButton = true
         tabBarController?.navigationItem.title = "Stocks"
+        tabBarController?.navigationItem.rightBarButtonItems?[1].isHidden = true
     }
     
     // MARK: - Table View methods
@@ -62,6 +62,15 @@ class StocksViewController: CryptoViewController {
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    // Reloads most recent data
+    @objc override func refreshInformation() {
+        stockManager.performRequest()
+        
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
+    }
 }
 
 // MARK: - Stock Manager Delegate methods
@@ -94,6 +103,30 @@ extension StocksViewController {
             print("Works")
         default:
             fatalError("Segue identifier not handled")
+        }
+    }
+}
+
+// MARK: - Search Bar Delegate methods
+
+extension StocksViewController {
+    
+    override func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        indexFundEntries = indexFundEntries.filter({ entry in
+            let query = searchBar.text!.lowercased()
+            let entryName = entry.name.lowercased()
+            let entrySymbol = entry.symbol.lowercased()
+            return entryName.contains(query) || entrySymbol.contains(query)
+        })
+        self.tableView.reloadData()
+    }
+    
+    override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text!.isEmpty {
+            refreshInformation()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
         }
     }
 }

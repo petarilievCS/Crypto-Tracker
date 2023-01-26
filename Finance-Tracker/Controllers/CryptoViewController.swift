@@ -17,6 +17,9 @@ class CryptoViewController: UITableViewController {
     let cryptoManager = CryptoManager()
     var fiatCurrencies = ["USD", "EUR", "GBP", "JPY", "KRW", "INR", "CAD", "HKD", "AUD", "TWD", "BRL", "CHF"]
     let defaults = UserDefaults.standard
+    
+    var indexFundEntries: [IndexEntry] = []
+    let stockManager = StockManager()
 
     override func viewDidLoad() {
         tableView.register(UINib(nibName: K.assetCellIdentifier, bundle: nil), forCellReuseIdentifier: K.assetCellIdentifier)

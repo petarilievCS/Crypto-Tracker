@@ -131,11 +131,20 @@ class GraphViewController: UIViewController {
         let favorites = defaults.array(forKey: K.defaultFavorites) as? [String] ?? []
         
         for symbol in favorites {
-            if symbol == selectedCurrency!.symbol {
-                isFavorite = true
-                favoriteButton.image = UIImage(systemName: "heart.fill")
-                break
+            if isStocks {
+                if symbol == selectedStock!.symbol {
+                    isFavorite = true
+                    favoriteButton.image = UIImage(systemName: "heart.fill")
+                    break
+                }
+            } else {
+                if symbol == selectedCurrency!.symbol {
+                    isFavorite = true
+                    favoriteButton.image = UIImage(systemName: "heart.fill")
+                    break
+                }
             }
+            
         }
     }
     
@@ -158,7 +167,11 @@ class GraphViewController: UIViewController {
     
     // Refreshes information
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
-        cryptoManager.performRequest()
+        if isStocks {
+            refreshStockInformation()
+        } else {
+            cryptoManager.performRequest()
+        }
     }
     
     // Add crypto to favorites
@@ -168,22 +181,36 @@ class GraphViewController: UIViewController {
         if !isFavorite {
             // Add to favorites
             if favorites != nil {
-                favorites!.append(selectedCurrency!.symbol)
+                if isStocks {
+                    favorites!.append(selectedStock!.symbol)
+                } else {
+                    favorites!.append(selectedCurrency!.symbol)
+                }
                 defaults.set(favorites, forKey: K.defaultFavorites)
             } else {
-                defaults.set([selectedCurrency!.symbol], forKey: K.defaultFavorites)
+                if isStocks {
+                    defaults.set([selectedStock!.symbol], forKey: K.defaultFavorites)
+                } else {
+                    defaults.set([selectedCurrency!.symbol], forKey: K.defaultFavorites)
+                }
             }
         } else {
             for i in 0...(favorites!.count - 1) {
-                if favorites![i] as! String == selectedCurrency!.symbol {
-                    favorites?.remove(at: i)
-                    break
+                if isStocks {
+                    if favorites![i] as! String == selectedStock!.symbol {
+                        favorites?.remove(at: i)
+                        break
+                    }
+                } else {
+                    if favorites![i] as! String == selectedCurrency!.symbol {
+                        favorites?.remove(at: i)
+                        break
+                    }
                 }
             }
             defaults.set(favorites, forKey: K.defaultFavorites)
         }
         
-    
         favoriteButton.image = isFavorite ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
         isFavorite = !isFavorite
     }
@@ -279,7 +306,7 @@ class GraphViewController: UIViewController {
         twoYearsButton.backgroundColor = .systemBackground
     }
     
-    // MARK: - Refreshing information methods
+    // MARK: - Refreshing information r
     
     func refreshInformation() {
         
@@ -294,9 +321,7 @@ class GraphViewController: UIViewController {
             // Customize percent change label
             percentChangeLabel.text = percentChange
             percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
-            
-           
-            
+
             // Customize data views
             mktCapPriceLabel.text = calculateMktCap(FD: false)
             fdMktCapPriceLabel.text = calculateMktCap(FD: true)
