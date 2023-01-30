@@ -39,7 +39,6 @@ class CryptoManager {
                 }
                 if let safeData = data {
                     let stringData = String(data: safeData, encoding: .utf8)
-                    print(stringData!)
                     self.cryptoHistory = self.parseHistoryJSON(from: safeData)
                 }
                 DispatchQueue.main.async {
@@ -129,8 +128,7 @@ class CryptoManager {
                     print(error?.localizedDescription as Any)
                 }
                 if let safeData = data {
-                    let stringData = String(data: safeData, encoding: .utf8)
-                    print(stringData!)
+                    _ = String(data: safeData, encoding: .utf8)
                     self.cryptoResponse = self.parseJSON(from: safeData)
                 }
                 self.parseData()

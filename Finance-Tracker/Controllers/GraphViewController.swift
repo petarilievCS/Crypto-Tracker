@@ -392,9 +392,7 @@ class GraphViewController: UIViewController {
 
 extension GraphViewController: ChartViewDelegate {
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        print(entry)
-    }
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {}
     
 }
 
@@ -441,7 +439,7 @@ extension GraphViewController: StockManagerDelegate {
         maxSupplyTitleLabel.text = "Low"
         totalSupplyTitleLabel.text = "High"
         
-        volumeLabel.text = Utilities.format(symbol.volume ?? 0, with: "$")
+        volumeLabel.text = Utilities.format(symbol.volume ?? 0, with: "")
         mktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.open!), with: "$")
         fdMktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.close!), with: "$")
         maxSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.low!), with: "$")

@@ -9,10 +9,8 @@ import UIKit
 import SwiftYFinance
 
 class StocksViewController: CryptoViewController {
-
-    @IBOutlet weak var newSearchBar: UISearchBar!
     
- 
+    @IBOutlet weak var newSearchBar: UISearchBar!
     
     override func viewDidLoad() {
         self.searchBar = newSearchBar
@@ -73,20 +71,6 @@ class StocksViewController: CryptoViewController {
     }
 }
 
-// MARK: - Stock Manager Delegate methods
-
-extension StocksViewController: StockManagerDelegate {
-    
-    func receivedSymbolMetrics(for symbol: StockChartData) {}
-    func receivedSymbolInformatioN(for symbol: RecentStockData) {}
-    
-    func receivedStockInformation() {
-        indexFundEntries = stockManager.indexFundEntries
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-}
 
 // MARK: - Segue methods
 

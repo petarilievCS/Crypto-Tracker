@@ -21,6 +21,7 @@ class StockManager {
     
     // Performs API request in order to obtain list of NASDAQ companies
     func performRequest() {
+        print("Stock manager is performing request")
         let url = URL(string: "https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=8a4725e21f6e6631195ac4cd66b7e201")
         var request = URLRequest(url: url!)
         
@@ -80,7 +81,7 @@ class StockManager {
         SwiftYFinance.chartDataBy(identifier: symbol, start: Calendar.current.date(byAdding: .day, value: -1, to: today)!, end: Date.now, interval: .oneday) { data, error in
             if error == nil {
                 if let safeData = data {
-                    self.delegate?.receivedSymbolMetrics(for: safeData[1])
+                    self.delegate?.receivedSymbolMetrics(for: safeData[0])
                 } else {
                     print("Error: Invalid data")
                 }
