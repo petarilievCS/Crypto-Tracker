@@ -12,6 +12,7 @@ protocol StockManagerDelegate {
     func receivedStockInformation()
     func receivedSymbolInformatioN(for symbol: RecentStockData)
     func receivedSymbolMetrics(for symbol: StockChartData)
+    func receivedChartData(for data: [StockChartData])
 }
 
 class StockManager {
@@ -82,6 +83,58 @@ class StockManager {
             if error == nil {
                 if let safeData = data {
                     self.delegate?.receivedSymbolMetrics(for: safeData[0])
+                } else {
+                    print("Error: Invalid data")
+                }
+            } else {
+                print(data![0].open ?? "Open price is unavailable")
+            }
+        }
+    }
+    
+    
+    // Get chart data for given stock
+    func performChartDataRequest(for symbol: String, in period: Period) {
+        let today = Date.now
+        var timePeriod: Calendar.Component?
+        var numberOfPeriod: Int = 0
+        var interval: ChartTimeInterval?
+        
+        switch period {
+        case .day:
+            timePeriod = .day
+            numberOfPeriod = 1
+            interval = .fifteenminutes
+        case .fiveDays:
+            timePeriod = .day
+            numberOfPeriod = 5
+            interval = .onehour
+        case .month:
+            timePeriod = .month
+            numberOfPeriod = 1
+            interval = .oneday
+        case .threeMonths:
+            timePeriod = .month
+            numberOfPeriod = 3
+            interval = .oneday
+        case .sixMonths:
+            timePeriod = .month
+            numberOfPeriod = 6
+            interval = .fivedays
+        case .year:
+            timePeriod = .year
+            numberOfPeriod = 1
+            interval = .fivedays
+        case .twoYears:
+            timePeriod = .year
+            numberOfPeriod = 2
+            interval = .fivedays
+        }
+        
+        SwiftYFinance.chartDataBy(identifier: symbol, start: Calendar.current.date(byAdding: timePeriod!, value: -numberOfPeriod, to: today)!, end: Date.now, interval: interval!) { data, error in
+            if error == nil {
+                if let safeData = data {
+                    self.delegate?.receivedChartData(for: safeData)
                 } else {
                     print("Error: Invalid data")
                 }

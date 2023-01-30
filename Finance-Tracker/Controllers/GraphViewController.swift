@@ -247,53 +247,61 @@ class GraphViewController: UIViewController {
     
     // MARK: - Button Actions
     
+    func changePeriod() {
+        if isStocks {
+            stockManager.performChartDataRequest(for: selectedStock!.symbol, in: timePeriod)
+        } else {
+            cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        }
+    }
+    
     @IBAction func dayButtonPressed(_ sender: UIButton) {
         deselectButtons()
         dayButton.backgroundColor = .systemGray5
         timePeriod = .day
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func fiveDaysButtonPressed(_ sender: UIButton) {
         deselectButtons()
         fiveDaysButton.backgroundColor = .systemGray5
         timePeriod = .fiveDays
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func monthButtonPressed(_ sender: UIButton) {
         deselectButtons()
         monthButton.backgroundColor = .systemGray5
         timePeriod = .month
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func sixMonthsButtonPressed(_ sender: UIButton) {
         deselectButtons()
         sixMonthsButton.backgroundColor = .systemGray5
         timePeriod = .sixMonths
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func yearButtonPressed(_ sender: UIButton) {
         deselectButtons()
         yearButton.backgroundColor = .systemGray5
         timePeriod = .year
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
 
     @IBAction func threeMonthsButtonPressed(_ sender: Any) {
         deselectButtons()
         threeMonthsButton.backgroundColor = .systemGray5
         timePeriod = .threeMonths
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func twoYearsButtonPressed(_ sender: UIButton) {
         deselectButtons()
         twoYearsButton.backgroundColor = .systemGray5
         timePeriod = .twoYears
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     func deselectButtons() {
@@ -354,6 +362,17 @@ class GraphViewController: UIViewController {
     func refreshStockInformation() {
         if let safeSymbol = selectedStock?.symbol {
             stockManager.getInfo(for: safeSymbol)
+            
+            // Setup chart view
+            chartView.addSubview(lineChartView)
+            lineChartView.centerInSuperview()
+            lineChartView.width(to: chartView)
+            lineChartView.height(to: chartView)
+            
+            if let safeSymbol = selectedStock?.symbol {
+                stockManager.performChartDataRequest(for: safeSymbol, in: timePeriod)
+            }
+            
         } else {
             print("No selected stock symbol")
         }
@@ -431,6 +450,18 @@ extension GraphViewController: CryptoManagerDelegate {
 // MARK: - Stock Manager Delegate methds
 
 extension GraphViewController: StockManagerDelegate {
+    
+    // Chart data for stock received, chart updated
+    func receivedChartData(for data: [StockChartData]) {
+        yValue = []
+        var counter = 0.0
+        for datum in data {
+            yValue.append(ChartDataEntry(x: counter, y: Double(datum.close!)))
+            counter += 1.0
+        }
+        setData()
+    }
+    
     
     func receivedSymbolMetrics(for symbol: StockChartData) {
         // Customzie views
