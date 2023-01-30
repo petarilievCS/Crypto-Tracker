@@ -1,8 +1,6 @@
 # Crypto Tracker
 
-iOS application that lets the user track metrics (price, price change, market cap...) of crypto-currencies. The application utilizes an authenitcation 
-system provided by Google Firebase. The app also includes functionality to change the fiat currency in which metrics are shown, bookmark specific 
-crypto-currencies, and show the price of a currency over different time periods in a chart. 
+iOS application that lets the user track metrics (price, price change, market cap...) of crypto-currencies and stocks. The application utilizes an authenitcation system provided by Google Firebase. The app also includes functionality to change the fiat currency in which metrics are shown, bookmark specific crypto-currencies/stocks, and show the price of a currency/stock over different time periods in a chart. 
 
 <a href="https://apps.apple.com/us/app/coin-track-master/id1662092607?uo=2"><img src="https://user-images.githubusercontent.com/90746623/210176495-c7f8d647-84b7-460c-9d2b-e4efc1bb0fd3.png" width="249" height="83"/>
 
