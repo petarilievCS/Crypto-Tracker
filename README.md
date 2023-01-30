@@ -8,7 +8,7 @@ crypto-currencies, and show the price of a currency over different time periods 
 
 # Screenshots 
 
-<img src="https://user-images.githubusercontent.com/90746623/215623444-9708b004-9ada-4319-8481-7d49a6ce7c84.png" width="266" height="576"/><img src=" https://user-images.githubusercontent.com/90746623/215623448-24ec83cc-fe22-4b62-a06b-f3861bc47b2f.png" width="266" height="576"/><img src="(https://user-images.githubusercontent.com/90746623/215623450-b82b074c-1141-49de-8600-fddcbdde6a78.png" width="266" height="576"/>
+<img src="https://user-images.githubusercontent.com/90746623/215623570-55fa89be-38ea-4ed8-9c58-e5a47a32396a.png" width="266" height="576"/><img src="https://user-images.githubusercontent.com/90746623/215623575-b67375f7-3872-46e0-a8ea-d2e183110777.png" width="266" height="576"/><img src="https://user-images.githubusercontent.com/90746623/215623576-60f0cc2a-24b4-456d-85e4-fc606d3cde76.png" width="266" height="576"/>
 
 # Demo 
 
