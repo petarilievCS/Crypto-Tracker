@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E68B616829803D06008A3814 /* StockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B616729803D06008A3814 /* StockManager.swift */; };
+		E68B616C29804870008A3814 /* IndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B616B29804870008A3814 /* IndexEntry.swift */; };
 		E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501512937DED100E5C36F /* AppDelegate.swift */; };
 		E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501532937DED100E5C36F /* SceneDelegate.swift */; };
 		E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501552937DED100E5C36F /* WelcomeViewController.swift */; };
@@ -32,6 +34,7 @@
 		E6A50192293D0C2900E5C36F /* Crypto .swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50191293D0C2900E5C36F /* Crypto .swift */; };
 		E6A50194293D0CFB00E5C36F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50193293D0CFA00E5C36F /* Keys.swift */; };
 		E6A50196293D0EAC00E5C36F /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50195293D0EAC00E5C36F /* CryptoManager.swift */; };
+		E6ADAE8A29817FC6008C4D15 /* SwiftYFinance in Frameworks */ = {isa = PBXBuildFile; productRef = E6ADAE8929817FC6008C4D15 /* SwiftYFinance */; };
 		E6B1A6AE29478958006776E3 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6AD29478958006776E3 /* Algorithms */; };
 		E6B1A6B629478C45006776E3 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6B529478C45006776E3 /* Charts */; };
 		E6B1A6BA29488729006776E3 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6B929488729006776E3 /* TinyConstraints */; };
@@ -40,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E68B616729803D06008A3814 /* StockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockManager.swift; sourceTree = "<group>"; };
+		E68B616B29804870008A3814 /* IndexEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexEntry.swift; sourceTree = "<group>"; };
 		E6A5014E2937DED100E5C36F /* Finance-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finance-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A501512937DED100E5C36F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6A501532937DED100E5C36F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +84,7 @@
 				E6A50189293BD29800E5C36F /* FirebaseFirestore in Frameworks */,
 				E6B1A6AE29478958006776E3 /* Algorithms in Frameworks */,
 				E6A5018B293BD29800E5C36F /* FirebaseFirestoreSwift in Frameworks */,
+				E6ADAE8A29817FC6008C4D15 /* SwiftYFinance in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +158,8 @@
 				E6A50191293D0C2900E5C36F /* Crypto .swift */,
 				E6A50195293D0EAC00E5C36F /* CryptoManager.swift */,
 				E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */,
+				E68B616729803D06008A3814 /* StockManager.swift */,
+				E68B616B29804870008A3814 /* IndexEntry.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 				E6B1A6AD29478958006776E3 /* Algorithms */,
 				E6B1A6B529478C45006776E3 /* Charts */,
 				E6B1A6B929488729006776E3 /* TinyConstraints */,
+				E6ADAE8929817FC6008C4D15 /* SwiftYFinance */,
 			);
 			productName = "Finance-Tracker";
 			productReference = E6A5014E2937DED100E5C36F /* Finance-Tracker.app */;
@@ -215,6 +224,7 @@
 				E6B1A6AC29478958006776E3 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				E6B1A6B429478C45006776E3 /* XCRemoteSwiftPackageReference "Charts" */,
 				E6B1A6B829488729006776E3 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+				E6ADAE8829817FC5008C4D15 /* XCRemoteSwiftPackageReference "SwiftYFinance" */,
 			);
 			productRefGroup = E6A5014F2937DED100E5C36F /* Products */;
 			projectDirPath = "";
@@ -258,7 +268,9 @@
 				E6A501742939037400E5C36F /* FavoritesViewController.swift in Sources */,
 				E6A50196293D0EAC00E5C36F /* CryptoManager.swift in Sources */,
 				E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */,
+				E68B616C29804870008A3814 /* IndexEntry.swift in Sources */,
 				E6A5016E2938F75900E5C36F /* K.swift in Sources */,
+				E68B616829803D06008A3814 /* StockManager.swift in Sources */,
 				E6A50182293A5D6E00E5C36F /* GraphViewController.swift in Sources */,
 				E6A5015C2937DED100E5C36F /* Finance_Tracker.xcdatamodeld in Sources */,
 				E6B1A6BC2948A4AB006776E3 /* CryptoHistory.swift in Sources */,
@@ -508,6 +520,14 @@
 				minimumVersion = 6.5.0;
 			};
 		};
+		E6ADAE8829817FC5008C4D15 /* XCRemoteSwiftPackageReference "SwiftYFinance" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AlexRoar/SwiftYFinance";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		E6B1A6AC29478958006776E3 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-algorithms.git";
@@ -554,6 +574,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E6A5018C293CFCA200E5C36F /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		E6ADAE8929817FC6008C4D15 /* SwiftYFinance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6ADAE8829817FC5008C4D15 /* XCRemoteSwiftPackageReference "SwiftYFinance" */;
+			productName = SwiftYFinance;
 		};
 		E6B1A6AD29478958006776E3 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;

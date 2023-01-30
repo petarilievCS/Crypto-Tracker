@@ -8,6 +8,7 @@
 import UIKit
 import Charts
 import TinyConstraints
+import SwiftYFinance
 
 enum Period {
     case day
@@ -37,15 +38,18 @@ class GraphViewController: UIViewController {
     var timePeriod: Period = .day
     
     var selectedCurrency: CryptoData? = nil
-    var volume: Double = 0.0 
+    var selectedStock: IndexEntry? = nil
+    var volume: Double = 0.0
     var price: String = ""
     var percentChange: String = ""
     let cryptoManager = CryptoManager()
+    let stockManager = StockManager()
     var crypto: [CryptoData] = []
     
     // TODO: Change to computed variable
     var isFavorite: Bool = false
     let defaults = UserDefaults.standard
+    var isStocks: Bool = false
     
     // Outlets
     @IBOutlet weak var mktCapView: UIView!
@@ -78,26 +82,75 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var yearButton: UIButton!
     @IBOutlet weak var threeMonthsButton: UIButton!
     @IBOutlet weak var twoYearsButton: UIButton!
+    @IBOutlet weak var fdMktCapTitleLabel: UILabel!
+    @IBOutlet weak var circulatingSupplyTitleLabel: UILabel!
+    @IBOutlet weak var maxSupplyTitleLabel: UILabel!
+    @IBOutlet weak var totalSupplyTitleLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("vi")
         navigationItem.largeTitleDisplayMode = .never
         cryptoManager.delegate = self
+        stockManager.delegate = self
+        nameLabel.adjustsFontSizeToFitWidth = true
+        percentChangeLabel.adjustsFontSizeToFitWidth = true
+        
         refreshInformation()
+        print("#1 View loaded")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        if isStocks {
+            symbolLabel.text = "Loading... "
+            nameLabel.text = ""
+            priceLabel.text = ""
+            percentChangeLabel.text = ""
+        }
+        
+        customizeViews()
+        
+        if isStocks {
+            volumeLabel.text = ""
+            mktCapLabel.text = "Open"
+            fdMktCapTitleLabel.text = "Close"
+            maxSupplyTitleLabel.text = "Low"
+            totalSupplyTitleLabel.text = "High"
+            circulatingSupplyTitleLabel.text = "Previous Close"
+            
+            mktCapPriceLabel.text = ""
+            fdMktCapPriceLabel.text = ""
+            maxSupplyLabel.text = ""
+            totalSupplyLabel.text = ""
+            circulatingSupplyLabel.text = ""
+            
+            rankView.isHidden = true
+            dominanceView.isHidden = true
+        }
+        
         let favorites = defaults.array(forKey: K.defaultFavorites) as? [String] ?? []
         
         for symbol in favorites {
-            if symbol == selectedCurrency!.symbol {
-                isFavorite = true
-                favoriteButton.image = UIImage(systemName: "heart.fill")
-                break
+            if isStocks {
+                if symbol == selectedStock!.symbol {
+                    isFavorite = true
+                    favoriteButton.image = UIImage(systemName: "heart.fill")
+                    break
+                }
+            } else {
+                if symbol == selectedCurrency!.symbol {
+                    isFavorite = true
+                    favoriteButton.image = UIImage(systemName: "heart.fill")
+                    break
+                }
             }
+            
         }
+        print("#2 View appeared")
     }
     
     // Sets data in chart view
@@ -119,7 +172,12 @@ class GraphViewController: UIViewController {
     
     // Refreshes information
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
-        cryptoManager.performRequest()
+        if isStocks {
+            self.refreshStockInformation()
+            
+        } else {
+            cryptoManager.performRequest()
+        }
     }
     
     // Add crypto to favorites
@@ -129,22 +187,36 @@ class GraphViewController: UIViewController {
         if !isFavorite {
             // Add to favorites
             if favorites != nil {
-                favorites!.append(selectedCurrency!.symbol)
+                if isStocks {
+                    favorites!.append(selectedStock!.symbol)
+                } else {
+                    favorites!.append(selectedCurrency!.symbol)
+                }
                 defaults.set(favorites, forKey: K.defaultFavorites)
             } else {
-                defaults.set([selectedCurrency!.symbol], forKey: K.defaultFavorites)
+                if isStocks {
+                    defaults.set([selectedStock!.symbol], forKey: K.defaultFavorites)
+                } else {
+                    defaults.set([selectedCurrency!.symbol], forKey: K.defaultFavorites)
+                }
             }
         } else {
             for i in 0...(favorites!.count - 1) {
-                if favorites![i] as! String == selectedCurrency!.symbol {
-                    favorites?.remove(at: i)
-                    break
+                if isStocks {
+                    if favorites![i] as! String == selectedStock!.symbol {
+                        favorites?.remove(at: i)
+                        break
+                    }
+                } else {
+                    if favorites![i] as! String == selectedCurrency!.symbol {
+                        favorites?.remove(at: i)
+                        break
+                    }
                 }
             }
             defaults.set(favorites, forKey: K.defaultFavorites)
         }
         
-    
         favoriteButton.image = isFavorite ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
         isFavorite = !isFavorite
     }
@@ -166,7 +238,7 @@ class GraphViewController: UIViewController {
         
         var priceString = priceLabel.text!
         var fiatCurrency = String(priceString.removeFirst())
-    
+        
         // Brasilian Reals
         if priceString.first! == "$" {
             fiatCurrency += String(priceString.removeFirst())
@@ -181,53 +253,61 @@ class GraphViewController: UIViewController {
     
     // MARK: - Button Actions
     
+    func changePeriod() {
+        if isStocks {
+            self.stockManager.performChartDataRequest(for: self.selectedStock!.symbol, in: self.timePeriod)
+        } else {
+            cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        }
+    }
+    
     @IBAction func dayButtonPressed(_ sender: UIButton) {
         deselectButtons()
         dayButton.backgroundColor = .systemGray5
         timePeriod = .day
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func fiveDaysButtonPressed(_ sender: UIButton) {
         deselectButtons()
         fiveDaysButton.backgroundColor = .systemGray5
         timePeriod = .fiveDays
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func monthButtonPressed(_ sender: UIButton) {
         deselectButtons()
         monthButton.backgroundColor = .systemGray5
         timePeriod = .month
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func sixMonthsButtonPressed(_ sender: UIButton) {
         deselectButtons()
         sixMonthsButton.backgroundColor = .systemGray5
         timePeriod = .sixMonths
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func yearButtonPressed(_ sender: UIButton) {
         deselectButtons()
         yearButton.backgroundColor = .systemGray5
         timePeriod = .year
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
-
+    
     @IBAction func threeMonthsButtonPressed(_ sender: Any) {
         deselectButtons()
         threeMonthsButton.backgroundColor = .systemGray5
         timePeriod = .threeMonths
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     @IBAction func twoYearsButtonPressed(_ sender: UIButton) {
         deselectButtons()
         twoYearsButton.backgroundColor = .systemGray5
         timePeriod = .twoYears
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        changePeriod()
     }
     
     func deselectButtons() {
@@ -240,18 +320,76 @@ class GraphViewController: UIViewController {
         twoYearsButton.backgroundColor = .systemBackground
     }
     
-    // MARK: - Refreshing information methods
-    func refreshInformation() {
+    // MARK: - Refreshing information r
+    
+    func refreshInformation()  {
         
-        // Customize main info
-        symbolLabel.text = selectedCurrency?.symbol
-        nameLabel.text = selectedCurrency?.name
-        priceLabel.text = price
-        
-        // Customize percent change label
-        percentChangeLabel.text = percentChange
-        percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
-        
+        if isStocks {
+            DispatchQueue.global(priority: .background).async {
+                self.refreshStockInformation()
+            }
+        } else {
+            // Customize main info
+            symbolLabel.text = selectedCurrency?.symbol
+            nameLabel.text = selectedCurrency?.name
+            priceLabel.text = price
+            
+            // Customize percent change label
+            percentChangeLabel.text = percentChange
+            percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
+            
+            // Customize data views
+            mktCapPriceLabel.text = calculateMktCap(FD: false)
+            fdMktCapPriceLabel.text = calculateMktCap(FD: true)
+            rankLabel.text = "#\(String(selectedCurrency!.cmc_rank))"
+            circulatingSupplyLabel.text = String(Utilities.formatDecimal(selectedCurrency!.circulating_supply, with: ""))
+            totalSupplyLabel.text = Utilities.formatDecimal(selectedCurrency!.total_supply, with: "")
+            
+            let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat) ?? "USD").volume_24h)
+            volumeLabel.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
+            
+            if let maxSupply = selectedCurrency?.max_supply {
+                maxSupplyLabel.text = Utilities.formatDecimal(Double(maxSupply), with: "")
+            } else {
+                maxSupplyLabel.text = "--"
+            }
+            
+            let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat) ?? "USD").market_cap_dominance
+            dominanceLabel.text = String(format: "%.1f", dominance) + "%"
+            
+            // Setup chart view
+            chartView.addSubview(lineChartView)
+            lineChartView.centerInSuperview()
+            lineChartView.width(to: chartView)
+            lineChartView.height(to: chartView)
+            cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
+        }
+    }
+    
+    // Refresh information for stocks
+    func refreshStockInformation() {
+        print("#3 refreshStockInformation() called")
+        if let safeSymbol = selectedStock?.symbol {
+            stockManager.getInfo(for: safeSymbol)
+            
+            DispatchQueue.main.async {
+                // Setup chart view
+                self.chartView.addSubview(self.lineChartView)
+                self.lineChartView.centerInSuperview()
+                self.lineChartView.width(to: self.chartView)
+                self.lineChartView.height(to: self.chartView)
+            }
+            
+            if let safeSymbol = selectedStock?.symbol {
+                self.stockManager.performChartDataRequest(for: safeSymbol, in: self.timePeriod)
+            }
+            
+        } else {
+            print("No selected stock symbol")
+        }
+    }
+    
+    func customizeViews() {
         // Customize view
         mktCapView.layer.cornerRadius = K.viewCornerRadius
         fdMktCapView.layer.cornerRadius = K.viewCornerRadius
@@ -276,44 +414,15 @@ class GraphViewController: UIViewController {
         threeMonthsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         twoYearsButton.layer.cornerRadius = K.viewCornerRadius
         twoYearsButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
-        
-        // Customize data views
-        mktCapPriceLabel.text = calculateMktCap(FD: false)
-        fdMktCapPriceLabel.text = calculateMktCap(FD: true)
-        rankLabel.text = "#\(String(selectedCurrency!.cmc_rank))"
-        circulatingSupplyLabel.text = String(Utilities.formatDecimal(selectedCurrency!.circulating_supply, with: ""))
-        totalSupplyLabel.text = Utilities.formatDecimal(selectedCurrency!.total_supply, with: "")
-        
-        let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat) ?? "USD").volume_24h)
-        volumeLabel.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
-        
-        if let maxSupply = selectedCurrency?.max_supply {
-            maxSupplyLabel.text = Utilities.formatDecimal(Double(maxSupply), with: "")
-        } else {
-            maxSupplyLabel.text = "--"
-        }
-        
-        let dominance = Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey:  K.defaultFiat) ?? "USD").market_cap_dominance
-        dominanceLabel.text = String(format: "%.1f", dominance) + "%"
-        
-        // Setup chart view
-        chartView.addSubview(lineChartView)
-        lineChartView.centerInSuperview()
-        lineChartView.width(to: chartView)
-        lineChartView.height(to: chartView)
-        cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
-                
     }
     
 }
- 
+
 // MARK: - Chart View Delegate methods
 
 extension GraphViewController: ChartViewDelegate {
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        print(entry)
-    }
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {}
     
 }
 
@@ -344,8 +453,70 @@ extension GraphViewController: CryptoManagerDelegate {
                 break
             }
         }
-        refreshInformation()
+        // refreshInformation()
     }
 }
 
 
+// MARK: - Stock Manager Delegate methds
+
+extension GraphViewController: StockManagerDelegate {
+    
+    // Chart data for stock received, chart updated
+    func receivedChartData(for data: [StockChartData]) {
+        print("#6 Received chart data")
+        yValue = []
+        var counter = 0.0
+        for datum in data {
+            yValue.append(ChartDataEntry(x: counter, y: Double(datum.close!)))
+            counter += 1.0
+        }
+        DispatchQueue.main.async {
+            self.setData()
+        }
+    }
+    
+    
+    func receivedSymbolMetrics(for symbol: StockChartData) {
+        print("#5 Received metrics")
+        // Customzie views
+        DispatchQueue.main.async {
+            self.mktCapLabel.text = "Open"
+            self.fdMktCapTitleLabel.text = "Close"
+            self.maxSupplyTitleLabel.text = "Low"
+            self.totalSupplyTitleLabel.text = "High"
+            
+            self.volumeLabel.text = Utilities.format(symbol.volume ?? 0, with: "")
+            self.mktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.open!), with: "$")
+            self.fdMktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.close!), with: "$")
+            self.maxSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.low!), with: "$")
+            self.totalSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.high!), with: "$")
+        }
+       
+    }
+    
+    
+    func receivedStockInformation() {}
+    
+    // Updates view when information is received
+    func receivedSymbolInformatioN(for symbol: RecentStockData) {
+        print("#4 Received symbol info")
+        // Customize main info
+        DispatchQueue.main.async {
+            self.symbolLabel.text = symbol.symbol
+            self.nameLabel.text = self.selectedStock?.name ?? symbol.symbol
+            self.priceLabel.text = "$\(symbol.regularMarketPrice ?? 0.0)"
+            self.circulatingSupplyTitleLabel.text = "Previous Close"
+            self.circulatingSupplyLabel.text = "$\(symbol.previousClose ?? 0.0)"
+            
+            self.percentChange = String(format: "%.2f", self.stockManager.getPercentChange(for: symbol)) + "%"
+            self.percentChangeLabel.text = self.percentChange
+            self.percentChangeLabel.textColor = self.percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
+            
+            self.customizeViews()
+        }
+        self.stockManager.getMetrics(for: symbol.symbol!)
+        
+    }
+    
+}

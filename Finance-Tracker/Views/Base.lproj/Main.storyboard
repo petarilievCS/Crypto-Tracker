@@ -147,7 +147,7 @@
                                                 <rect key="frame" x="0.0" y="160.66666666666669" width="325" height="68.333333333333314"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                             </textField>
                                             <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aDZ-VA-eHW" userLabel="Password" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="241.00000000000003" width="325" height="68.333333333333343"/>
@@ -236,7 +236,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Favorites" id="9FH-f2-7Zs">
-                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="default"/>
+                        <imageReference key="image" image="heart.fill" catalog="system"/>
                         <color key="badgeColor" name="Signature Green"/>
                         <imageReference key="selectedImage" image="heart.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
@@ -274,13 +274,13 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="We3-c9-AR0">
                                                                 <rect key="frame" x="0.0" y="0.0" width="357" height="48"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="APPL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WR5-i7-CeP">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="APPL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WR5-i7-CeP">
                                                                         <rect key="frame" x="0.0" y="0.0" width="200.33333333333334" height="48"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$146.37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cN-pV-Z1c">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$146.37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cN-pV-Z1c">
                                                                         <rect key="frame" x="200.33333333333337" y="0.0" width="156.66666666666663" height="48"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                                                         <nil key="textColor"/>
@@ -291,14 +291,17 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="GuF-OK-XvN">
                                                                 <rect key="frame" x="0.0" y="53" width="357" height="32.333333333333343"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Apple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5F7-yz-pqv">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="32.333333333333336"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5F7-yz-pqv">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="32.333333333333336"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="250" id="BY8-tL-VNn"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-2.40%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afu-28-qap">
-                                                                        <rect key="frame" x="68" y="0.0" width="289" height="32.333333333333336"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="-2.40%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afu-28-qap">
+                                                                        <rect key="frame" x="250" y="0.0" width="107" height="32.333333333333336"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                                         <color key="textColor" name="Signature Red"/>
                                                                         <nil key="highlightedColor"/>
@@ -367,8 +370,8 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAV-W3-P80">
                                                                         <rect key="frame" x="0.0" y="0.0" width="171" height="73"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volume (24 h)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-2b-vPZ">
-                                                                                <rect key="frame" x="8" y="14" width="110" height="21"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-2b-vPZ">
+                                                                                <rect key="frame" x="8" y="14" width="59" height="21"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -681,15 +684,18 @@
                     <connections>
                         <outlet property="chartView" destination="ljd-xc-K7S" id="juh-Rm-AhZ"/>
                         <outlet property="circulatingSupplyLabel" destination="mOS-2k-ZSJ" id="Ydy-fG-XGQ"/>
+                        <outlet property="circulatingSupplyTitleLabel" destination="6QY-Os-Aks" id="wk3-tu-Ndr"/>
                         <outlet property="circulatingSupplyView" destination="zu3-dl-3XM" id="zcW-4N-hKZ"/>
                         <outlet property="dayButton" destination="Chx-7p-eZS" id="Ucf-NU-h7N"/>
                         <outlet property="dominanceLabel" destination="FNM-Wg-7ng" id="kfg-5R-WR6"/>
                         <outlet property="dominanceView" destination="ic9-mG-MuU" id="HW8-WY-Uva"/>
                         <outlet property="favoriteButton" destination="KAP-SV-xaY" id="xPO-YO-aV5"/>
                         <outlet property="fdMktCapPriceLabel" destination="b8U-wg-xrX" id="xUd-Kp-NJd"/>
+                        <outlet property="fdMktCapTitleLabel" destination="rKN-CU-dgr" id="aM0-dv-x6V"/>
                         <outlet property="fdMktCapView" destination="K9F-bq-Dr4" id="qtl-eb-ncK"/>
                         <outlet property="fiveDaysButton" destination="pq9-sj-9nh" id="day-al-p4E"/>
                         <outlet property="maxSupplyLabel" destination="roY-1h-XAY" id="vW2-ac-LdV"/>
+                        <outlet property="maxSupplyTitleLabel" destination="UG1-L6-3vl" id="iXE-O2-kMT"/>
                         <outlet property="maxSupplyView" destination="vj4-fB-VSv" id="r9g-dc-DUX"/>
                         <outlet property="mktCapLabel" destination="ydc-hx-sdN" id="7LN-o5-90g"/>
                         <outlet property="mktCapPriceLabel" destination="YXh-Qs-8gq" id="Mdz-Ja-8Ah"/>
@@ -704,6 +710,7 @@
                         <outlet property="symbolLabel" destination="WR5-i7-CeP" id="ald-YG-cOw"/>
                         <outlet property="threeMonthsButton" destination="5Ad-hQ-0LR" id="GgY-BB-yfo"/>
                         <outlet property="totalSupplyLabel" destination="q76-OK-8ZS" id="Eq1-Z5-jsa"/>
+                        <outlet property="totalSupplyTitleLabel" destination="zVa-A6-VUw" id="Rha-gg-wL7"/>
                         <outlet property="totalSupplyView" destination="OEm-eT-dIF" id="jGi-28-WIw"/>
                         <outlet property="twoYearsButton" destination="itH-aq-mlZ" id="dw3-sC-jC9"/>
                         <outlet property="volumeLabel" destination="j0j-Pe-LoS" id="dOm-w8-RW5"/>
@@ -738,6 +745,7 @@
                             <outlet property="delegate" destination="JlV-7v-phO" id="Kaw-D6-4FJ"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="HiL-Oi-fYW"/>
                     <connections>
                         <segue destination="gPS-BF-SaK" kind="presentation" identifier="accountToLogin" modalPresentationStyle="fullScreen" id="uyk-iU-INy"/>
                     </connections>
@@ -799,11 +807,54 @@
                     <connections>
                         <segue destination="G7e-ge-7uD" kind="relationship" relationship="viewControllers" id="5vu-zF-Ifr"/>
                         <segue destination="vkJ-9T-mEX" kind="relationship" relationship="viewControllers" id="BzI-66-bLv"/>
+                        <segue destination="EE0-lG-Ffe" kind="relationship" relationship="viewControllers" id="LwS-vr-lQW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wvt-35-yd7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3539.6946564885493" y="-2.1126760563380285"/>
+        </scene>
+        <!--Stocks-->
+        <scene sceneID="hAk-hK-qnq">
+            <objects>
+                <tableViewController id="EE0-lG-Ffe" customClass="StocksViewController" customModule="Finance_Tracker" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ffu-p1-Gat">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="glJ-Ql-6su">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="EE0-lG-Ffe" id="zUn-Bd-Cxx"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UdV-Po-8xE">
+                                <rect key="frame" x="0.0" y="94" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UdV-Po-8xE" id="V9P-KX-O2v">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="EE0-lG-Ffe" id="F3A-j9-7bL"/>
+                            <outlet property="delegate" destination="EE0-lG-Ffe" id="LTP-5Q-beP"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Stocks" image="dollarsign.circle" catalog="system" selectedImage="dollarsign.circle" id="gsZ-91-Tva"/>
+                    <connections>
+                        <outlet property="newSearchBar" destination="glJ-Ql-6su" id="Hnk-YW-7tZ"/>
+                        <segue destination="Aep-eb-tai" kind="show" identifier="stocksToGraph" id="BDR-HN-rWQ"/>
+                        <segue destination="JlV-7v-phO" kind="presentation" identifier="cryptoToAccount" id="0im-0u-SZj"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OFR-7W-eVe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3329" y="745"/>
         </scene>
         <!--Crypto-->
         <scene sceneID="RS2-e5-vL8">
@@ -837,7 +888,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Crypto" id="Z1W-i6-iaL">
-                        <imageReference key="image" image="bitcoinsign.circle.fill" catalog="system" symbolScale="default"/>
+                        <imageReference key="image" image="bitcoinsign.circle.fill" catalog="system"/>
                         <color key="badgeColor" name="Signature Green"/>
                         <imageReference key="selectedImage" image="bitcoinsign.circle.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
@@ -854,15 +905,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Unm-Fo-Pa7"/>
-        <segue reference="ofj-qm-dNK"/>
-        <segue reference="Q3e-bB-jde"/>
+        <segue reference="T0e-ep-etr"/>
+        <segue reference="0im-0u-SZj"/>
+        <segue reference="BDR-HN-rWQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
     <resources>
         <image name="bitcoinsign.circle" catalog="system" width="128" height="123"/>
         <image name="bitcoinsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="dollarsign" catalog="system" width="89" height="128"/>
+        <image name="dollarsign.circle" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="person" catalog="system" width="128" height="121"/>

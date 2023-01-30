@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SwiftYFinance
 
 class CryptoViewController: UITableViewController {
     
@@ -17,6 +18,9 @@ class CryptoViewController: UITableViewController {
     let cryptoManager = CryptoManager()
     var fiatCurrencies = ["USD", "EUR", "GBP", "JPY", "KRW", "INR", "CAD", "HKD", "AUD", "TWD", "BRL", "CHF"]
     let defaults = UserDefaults.standard
+    
+    var indexFundEntries: [IndexEntry] = []
+    let stockManager = StockManager()
 
     override func viewDidLoad() {
         tableView.register(UINib(nibName: K.assetCellIdentifier, bundle: nil), forCellReuseIdentifier: K.assetCellIdentifier)
@@ -34,6 +38,8 @@ class CryptoViewController: UITableViewController {
         searchBar.delegate = self
         cryptoManager.delegate = self
         cryptoManager.performRequest()
+        stockManager.delegate = self
+        stockManager.performRequest()
         super.viewDidLoad()
     }
     
@@ -200,13 +206,12 @@ extension CryptoViewController {
             let destinationVC = segue.destination as! GraphViewController
             let selectedCurrency = crypto[tableView.indexPathForSelectedRow!.row]
             let selectedCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as! AssetCell
+            destinationVC.isStocks = false
             destinationVC.price = selectedCell.priceLabel.text!
             destinationVC.percentChange = selectedCell.percentLabel.text!
             destinationVC.selectedCurrency = selectedCurrency
-        case K.cryptoToAccountSegue:
-            print("Works")
         default:
-            fatalError("Segue identifier not handled")
+            print("Segue identifier not handled")
         }
     }
 }
@@ -252,4 +257,25 @@ extension CryptoViewController {
             cell.priceLabel.text = fiatSymbol + numberFormatter.string(from: NSNumber(value: doublePrice))!
         }
     }
+}
+
+// MARK: - Stock Manager Delegate methods
+
+extension CryptoViewController: StockManagerDelegate {
+    
+    func receivedChartData(for data: [StockChartData]) {}
+    
+    
+    func receivedStockInformation() {
+        self.indexFundEntries = stockManager.indexFundEntries
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func receivedSymbolInformatioN(for symbol: RecentStockData) {}
+    
+    func receivedSymbolMetrics(for symbol: StockChartData) {}
+    
+    
 }

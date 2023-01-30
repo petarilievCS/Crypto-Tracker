@@ -12,7 +12,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import IQKeyboardManagerSwift
 
-@main
+ @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
