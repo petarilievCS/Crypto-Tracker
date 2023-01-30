@@ -22,7 +22,6 @@ class StockManager {
     
     // Performs API request in order to obtain list of NASDAQ companies
     func performRequest() {
-        print("Stock manager is performing request")
         let url = URL(string: "https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=8a4725e21f6e6631195ac4cd66b7e201")
         var request = URLRequest(url: url!)
         

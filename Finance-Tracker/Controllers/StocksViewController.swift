@@ -9,8 +9,10 @@ import UIKit
 import SwiftYFinance
 
 class StocksViewController: CryptoViewController {
-    
+
     @IBOutlet weak var newSearchBar: UISearchBar!
+    
+ 
     
     override func viewDidLoad() {
         self.searchBar = newSearchBar
@@ -44,7 +46,7 @@ class StocksViewController: CryptoViewController {
         if imageName == "payx.png" {
             imageName = "payxx.png" // Edge case: crypto and stock have same symbol
         }
-        cell.logoImaeView.image = UIImage(named: imageName)
+        cell.logoImaeView.image = UIImage(named: imageName) ?? UIImage(named: "generic.svg")
         return cell
     }
     
@@ -69,6 +71,7 @@ class StocksViewController: CryptoViewController {
             self.refreshControl?.endRefreshing()
         }
     }
+ 
 }
 
 

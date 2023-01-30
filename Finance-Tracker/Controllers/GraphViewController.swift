@@ -39,7 +39,7 @@ class GraphViewController: UIViewController {
     
     var selectedCurrency: CryptoData? = nil
     var selectedStock: IndexEntry? = nil
-    var volume: Double = 0.0 
+    var volume: Double = 0.0
     var price: String = ""
     var percentChange: String = ""
     let cryptoManager = CryptoManager()
@@ -91,6 +91,7 @@ class GraphViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("vi")
         navigationItem.largeTitleDisplayMode = .never
         cryptoManager.delegate = self
         stockManager.delegate = self
@@ -98,15 +99,18 @@ class GraphViewController: UIViewController {
         percentChangeLabel.adjustsFontSizeToFitWidth = true
         
         refreshInformation()
+        print("#1 View loaded")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        symbolLabel.text = ""
-        nameLabel.text = ""
-        priceLabel.text = ""
-        percentChangeLabel.text = ""
+        if isStocks {
+            symbolLabel.text = "Loading... "
+            nameLabel.text = ""
+            priceLabel.text = ""
+            percentChangeLabel.text = ""
+        }
         
         customizeViews()
         
@@ -146,6 +150,7 @@ class GraphViewController: UIViewController {
             }
             
         }
+        print("#2 View appeared")
     }
     
     // Sets data in chart view
@@ -168,7 +173,8 @@ class GraphViewController: UIViewController {
     // Refreshes information
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
         if isStocks {
-            refreshStockInformation()
+            self.refreshStockInformation()
+            
         } else {
             cryptoManager.performRequest()
         }
@@ -232,7 +238,7 @@ class GraphViewController: UIViewController {
         
         var priceString = priceLabel.text!
         var fiatCurrency = String(priceString.removeFirst())
-    
+        
         // Brasilian Reals
         if priceString.first! == "$" {
             fiatCurrency += String(priceString.removeFirst())
@@ -249,7 +255,7 @@ class GraphViewController: UIViewController {
     
     func changePeriod() {
         if isStocks {
-            stockManager.performChartDataRequest(for: selectedStock!.symbol, in: timePeriod)
+            self.stockManager.performChartDataRequest(for: self.selectedStock!.symbol, in: self.timePeriod)
         } else {
             cryptoManager.performCoinAPIRequest(for: selectedCurrency!.symbol, in: defaults.string(forKey: K.defaultFiat) ?? "USD", timePeriod)
         }
@@ -289,7 +295,7 @@ class GraphViewController: UIViewController {
         timePeriod = .year
         changePeriod()
     }
-
+    
     @IBAction func threeMonthsButtonPressed(_ sender: Any) {
         deselectButtons()
         threeMonthsButton.backgroundColor = .systemGray5
@@ -316,10 +322,12 @@ class GraphViewController: UIViewController {
     
     // MARK: - Refreshing information r
     
-    func refreshInformation() {
+    func refreshInformation()  {
         
         if isStocks {
-            refreshStockInformation()
+            DispatchQueue.global(priority: .background).async {
+                self.refreshStockInformation()
+            }
         } else {
             // Customize main info
             symbolLabel.text = selectedCurrency?.symbol
@@ -329,7 +337,7 @@ class GraphViewController: UIViewController {
             // Customize percent change label
             percentChangeLabel.text = percentChange
             percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
-
+            
             // Customize data views
             mktCapPriceLabel.text = calculateMktCap(FD: false)
             fdMktCapPriceLabel.text = calculateMktCap(FD: true)
@@ -360,17 +368,20 @@ class GraphViewController: UIViewController {
     
     // Refresh information for stocks
     func refreshStockInformation() {
+        print("#3 refreshStockInformation() called")
         if let safeSymbol = selectedStock?.symbol {
             stockManager.getInfo(for: safeSymbol)
             
-            // Setup chart view
-            chartView.addSubview(lineChartView)
-            lineChartView.centerInSuperview()
-            lineChartView.width(to: chartView)
-            lineChartView.height(to: chartView)
+            DispatchQueue.main.async {
+                // Setup chart view
+                self.chartView.addSubview(self.lineChartView)
+                self.lineChartView.centerInSuperview()
+                self.lineChartView.width(to: self.chartView)
+                self.lineChartView.height(to: self.chartView)
+            }
             
             if let safeSymbol = selectedStock?.symbol {
-                stockManager.performChartDataRequest(for: safeSymbol, in: timePeriod)
+                self.stockManager.performChartDataRequest(for: safeSymbol, in: self.timePeriod)
             }
             
         } else {
@@ -406,7 +417,7 @@ class GraphViewController: UIViewController {
     }
     
 }
- 
+
 // MARK: - Chart View Delegate methods
 
 extension GraphViewController: ChartViewDelegate {
@@ -442,7 +453,7 @@ extension GraphViewController: CryptoManagerDelegate {
                 break
             }
         }
-        refreshInformation()
+        // refreshInformation()
     }
 }
 
@@ -453,28 +464,35 @@ extension GraphViewController: StockManagerDelegate {
     
     // Chart data for stock received, chart updated
     func receivedChartData(for data: [StockChartData]) {
+        print("#6 Received chart data")
         yValue = []
         var counter = 0.0
         for datum in data {
             yValue.append(ChartDataEntry(x: counter, y: Double(datum.close!)))
             counter += 1.0
         }
-        setData()
+        DispatchQueue.main.async {
+            self.setData()
+        }
     }
     
     
     func receivedSymbolMetrics(for symbol: StockChartData) {
+        print("#5 Received metrics")
         // Customzie views
-        mktCapLabel.text = "Open"
-        fdMktCapTitleLabel.text = "Close"
-        maxSupplyTitleLabel.text = "Low"
-        totalSupplyTitleLabel.text = "High"
-        
-        volumeLabel.text = Utilities.format(symbol.volume ?? 0, with: "")
-        mktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.open!), with: "$")
-        fdMktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.close!), with: "$")
-        maxSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.low!), with: "$")
-        totalSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.high!), with: "$")
+        DispatchQueue.main.async {
+            self.mktCapLabel.text = "Open"
+            self.fdMktCapTitleLabel.text = "Close"
+            self.maxSupplyTitleLabel.text = "Low"
+            self.totalSupplyTitleLabel.text = "High"
+            
+            self.volumeLabel.text = Utilities.format(symbol.volume ?? 0, with: "")
+            self.mktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.open!), with: "$")
+            self.fdMktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.close!), with: "$")
+            self.maxSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.low!), with: "$")
+            self.totalSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", symbol.high!), with: "$")
+        }
+       
     }
     
     
@@ -482,19 +500,23 @@ extension GraphViewController: StockManagerDelegate {
     
     // Updates view when information is received
     func receivedSymbolInformatioN(for symbol: RecentStockData) {
+        print("#4 Received symbol info")
         // Customize main info
-        symbolLabel.text = symbol.symbol
-        nameLabel.text = selectedStock?.name ?? symbol.symbol
-        priceLabel.text = "$\(symbol.regularMarketPrice ?? 0.0)"
-        circulatingSupplyTitleLabel.text = "Previous Close"
-        circulatingSupplyLabel.text = "$\(symbol.previousClose ?? 0.0)"
+        DispatchQueue.main.async {
+            self.symbolLabel.text = symbol.symbol
+            self.nameLabel.text = self.selectedStock?.name ?? symbol.symbol
+            self.priceLabel.text = "$\(symbol.regularMarketPrice ?? 0.0)"
+            self.circulatingSupplyTitleLabel.text = "Previous Close"
+            self.circulatingSupplyLabel.text = "$\(symbol.previousClose ?? 0.0)"
+            
+            self.percentChange = String(format: "%.2f", self.stockManager.getPercentChange(for: symbol)) + "%"
+            self.percentChangeLabel.text = self.percentChange
+            self.percentChangeLabel.textColor = self.percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
+            
+            self.customizeViews()
+        }
+        self.stockManager.getMetrics(for: symbol.symbol!)
         
-        percentChange = String(format: "%.2f", stockManager.getPercentChange(for: symbol)) + "%"
-        percentChangeLabel.text = percentChange
-        percentChangeLabel.textColor = percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
-
-        customizeViews()
-        stockManager.getMetrics(for: symbol.symbol!)
     }
     
 }

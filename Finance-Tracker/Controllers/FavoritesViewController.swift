@@ -107,6 +107,8 @@ class FavoritesViewController: CryptoViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             isSelectedCellStock = true
+        } else {
+            isSelectedCellStock = false
         }
         if searchBar.isFirstResponder {
             searchBar.resignFirstResponder()
@@ -168,6 +170,7 @@ class FavoritesViewController: CryptoViewController {
                 destinationVC.price = selectedCell.priceLabel.text!
                 destinationVC.percentChange = selectedCell.percentLabel.text!
                 destinationVC.selectedCurrency = selectedCurrency
+                destinationVC.isStocks = false
             } else {
                 print("Presenting stock VC")
                 let selectedStock = findFavoriteStock(at: selectedIdx)

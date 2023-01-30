@@ -147,7 +147,7 @@
                                                 <rect key="frame" x="0.0" y="160.66666666666669" width="325" height="68.333333333333314"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                             </textField>
                                             <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aDZ-VA-eHW" userLabel="Password" customClass="UICustomTextField" customModule="Finance_Tracker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="241.00000000000003" width="325" height="68.333333333333343"/>
@@ -905,7 +905,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Unm-Fo-Pa7"/>
+        <segue reference="T0e-ep-etr"/>
         <segue reference="0im-0u-SZj"/>
         <segue reference="BDR-HN-rWQ"/>
     </inferredMetricsTieBreakers>
