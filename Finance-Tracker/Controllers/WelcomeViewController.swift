@@ -18,11 +18,14 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var passwordField: UICustomTextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var guestButton: UIButton!
     
     let defaults = UserDefaults.standard
+    var guest = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guest = false
         
         // Dismiss keyboard upon tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -35,6 +38,9 @@ class WelcomeViewController: UIViewController {
         registerButton.layer.cornerRadius = K.cornerRadius
         registerButton.layer.borderWidth = 2
         registerButton.layer.borderColor = UIColor.systemGray3.cgColor
+        guestButton.layer.cornerRadius = K.cornerRadius
+        guestButton.layer.borderWidth = 2
+        guestButton.layer.borderColor = UIColor.systemGray3.cgColor
         
         usernameField.delegate = self
         passwordField.delegate = self
@@ -43,8 +49,13 @@ class WelcomeViewController: UIViewController {
         
         // Check if user logged in
         if defaults.bool(forKey: K.rememberDevice) && Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "loginToStocks", sender: self)
+            self.performSegue(withIdentifier: K.loginToStocksSegue, sender: self)
         }
+    }
+    
+    @IBAction func guestButtonPressed(_ sender: UIButton) {
+        guest = true
+        performSegue(withIdentifier: K.loginToStocksSegue, sender: self)
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -110,6 +121,13 @@ class WelcomeViewController: UIViewController {
             }
         }
         return infoValid
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.loginToStocksSegue {
+            let destinationVC = segue.destination as! UITabBarController
+            destinationVC.navigationItem.rightBarButtonItems?[0].isHidden = guest
+        }
     }
 }
 

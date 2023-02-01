@@ -21,4 +21,5 @@ struct K {
     static let accountToLoginSegue = "accountToLogin"
     static let rememberDevice = "rememberDevice"
     static let stocksToGraphSegue = "stocksToGraph"
+    static let loginToStocksSegue = "loginToStocks"
 }
