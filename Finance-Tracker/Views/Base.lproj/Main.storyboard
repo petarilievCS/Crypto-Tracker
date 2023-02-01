@@ -68,17 +68,33 @@
                                                             <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jh4-S0-Pho"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twy-pA-KYx">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="e9z-63-JrJ">
                                                         <rect key="frame" x="0.0" y="81" width="325" height="69"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Sign Up">
-                                                            <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
-                                                            <color key="baseForegroundColor" systemColor="systemGray2Color"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <segue destination="kSx-Xh-jDo" kind="show" id="muV-8R-ZFO"/>
-                                                        </connections>
-                                                    </button>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twy-pA-KYx">
+                                                                <rect key="frame" x="0.0" y="0.0" width="156.66666666666666" height="69"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Register">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                                                    <color key="baseForegroundColor" systemColor="systemGray2Color"/>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <segue destination="kSx-Xh-jDo" kind="show" id="muV-8R-ZFO"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlD-mQ-hLm">
+                                                                <rect key="frame" x="168.66666666666663" y="0.0" width="156.33333333333337" height="69"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Guest">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                                                    <color key="baseForegroundColor" systemColor="systemGray2Color"/>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="guestButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dPE-IF-GOE"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="9TR-BK-v0f"/>
@@ -100,6 +116,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KMB-Pr-dvK"/>
                     <connections>
+                        <outlet property="guestButton" destination="wlD-mQ-hLm" id="NWf-3O-Srv"/>
                         <outlet property="loginButton" destination="csM-SS-Nd4" id="YIj-bt-Vvn"/>
                         <outlet property="passwordField" destination="ky9-El-zlh" id="CiL-Lh-uRT"/>
                         <outlet property="registerButton" destination="Twy-pA-KYx" id="ktb-BN-ZfM"/>
@@ -905,7 +922,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="T0e-ep-etr"/>
+        <segue reference="Unm-Fo-Pa7"/>
         <segue reference="0im-0u-SZj"/>
         <segue reference="BDR-HN-rWQ"/>
     </inferredMetricsTieBreakers>

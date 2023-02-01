@@ -45,6 +45,7 @@ class CryptoViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // Customize bar
+        tabBarController?.navigationItem.rightBarButtonItems?[1].isHidden = false
         tabBarController?.navigationItem.hidesBackButton = true
         tabBarController?.navigationItem.title = "Crypto"
         tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
@@ -264,7 +265,6 @@ extension CryptoViewController {
 extension CryptoViewController: StockManagerDelegate {
     
     func receivedChartData(for data: [StockChartData]) {}
-    
     
     func receivedStockInformation() {
         self.indexFundEntries = stockManager.indexFundEntries
