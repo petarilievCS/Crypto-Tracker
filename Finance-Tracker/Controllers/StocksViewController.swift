@@ -90,10 +90,8 @@ extension StocksViewController {
             let selectedStock = indexFundEntries[tableView.indexPathForSelectedRow!.row]
             destinationVC.isStocks = true
             destinationVC.selectedStock = selectedStock
-        case K.cryptoToAccountSegue:
-            print("Works")
         default:
-            fatalError("Segue identifier not handled")
+            print("Segue identifier not handled")
         }
     }
 }

@@ -168,14 +168,12 @@ class FavoritesViewController: CryptoViewController {
             let selectedIdx = tableView.indexPathForSelectedRow!.row
             let selectedCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as! AssetCell
             if !isSelectedCellStock {
-                print("Presenting crypt VC")
                 let selectedCurrency = findFavorite(at: selectedIdx)
                 destinationVC.price = selectedCell.priceLabel.text!
                 destinationVC.percentChange = selectedCell.percentLabel.text!
                 destinationVC.selectedCurrency = selectedCurrency
                 destinationVC.isStocks = false
             } else {
-                print("Presenting stock VC")
                 let selectedStock = findFavoriteStock(at: selectedIdx)
                 destinationVC.isStocks = true
                 destinationVC.selectedStock = selectedStock

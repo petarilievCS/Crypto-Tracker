@@ -59,9 +59,7 @@ class AccountViewController: UITableViewController {
             user?.delete { error in
                 if error != nil {
                 fatalError("Error while deleting account")
-              } else {
-                print("Account deleted")
-              }
+              } 
             }
             self.performSegue(withIdentifier: K.accountToLoginSegue, sender: self)
         }
