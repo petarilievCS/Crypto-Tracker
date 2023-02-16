@@ -38,7 +38,7 @@ class GraphViewController: UIViewController {
     var timePeriod: Period = .day
     
     var selectedCurrency: CryptoData? = nil
-    var selectedStock: IndexEntry? = nil
+    var selectedStock: IndexFullEntry? = nil
     var volume: Double = 0.0
     var price: String = ""
     var percentChange: String = ""
@@ -504,7 +504,7 @@ extension GraphViewController: StockManagerDelegate {
         // Customize main info
         DispatchQueue.main.async {
             self.symbolLabel.text = symbol.symbol
-            self.nameLabel.text = self.selectedStock?.name ?? symbol.symbol
+            self.nameLabel.text = self.selectedStock?.shortName ?? symbol.symbol
             self.priceLabel.text = "$\(symbol.regularMarketPrice ?? 0.0)"
             self.circulatingSupplyTitleLabel.text = "Previous Close"
             self.circulatingSupplyLabel.text = "$\(symbol.previousClose ?? 0.0)"

@@ -19,7 +19,7 @@ class CryptoViewController: UITableViewController {
     var fiatCurrencies = ["USD", "EUR", "GBP", "JPY", "KRW", "INR", "CAD", "HKD", "AUD", "TWD", "BRL", "CHF"]
     let defaults = UserDefaults.standard
     
-    var indexFundEntries: [IndexEntry] = []
+    var indexFundEntries: [IndexFullEntry] = []
     let stockManager = StockManager()
 
     override func viewDidLoad() {
@@ -267,7 +267,7 @@ extension CryptoViewController: StockManagerDelegate {
     func receivedChartData(for data: [StockChartData]) {}
     
     func receivedStockInformation() {
-        self.indexFundEntries = stockManager.indexFundEntries
+        self.indexFundEntries = stockManager.indexFundFullEntries
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

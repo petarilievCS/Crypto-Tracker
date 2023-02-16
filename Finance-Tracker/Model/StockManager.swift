@@ -18,6 +18,7 @@ protocol StockManagerDelegate {
 class StockManager {
     
     var indexFundEntries: [IndexEntry] = []
+    var indexFundFullEntries: [IndexFullEntry] = []
     var delegate: StockManagerDelegate?
     
     // Performs API request in order to obtain list of NASDAQ companies
@@ -45,6 +46,39 @@ class StockManager {
         let decoder = JSONDecoder()
         do {
             indexFundEntries = try decoder.decode([IndexEntry].self, from: data)
+            self.performPricesRequest()
+        } catch {
+            print("Error while decoding index entries: \(error)")
+        }
+    }
+    
+    // Perform API request for company prices
+    func performPricesRequest() {
+        var urlString = "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
+        for indexFundEntry in indexFundEntries {
+            urlString += indexFundEntry.symbol + ","
+        }
+        urlString.removeLast()
+        let url = URL(string: urlString)!
+        var request = URLRequest(url: url)
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print("Error while performing request: \(error!)")
+            }
+            if let safeData = data {
+                self.parsePricesJSON(from: safeData)
+            }
+        }
+        task.resume()
+    }
+    
+    // Parses JSON response from Yahoo Finance
+    func parsePricesJSON(from data: Data) {
+        let decoder = JSONDecoder()
+        do {
+            indexFundFullEntries = try decoder.decode(QuoteResponse.self, from: data).quoteResponse.result
             delegate?.receivedStockInformation()
         } catch {
             print("Error while decoding index entries: \(error)")

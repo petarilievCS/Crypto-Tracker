@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E68B616829803D06008A3814 /* StockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B616729803D06008A3814 /* StockManager.swift */; };
 		E68B616C29804870008A3814 /* IndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B616B29804870008A3814 /* IndexEntry.swift */; };
+		E69DD758299E992D006FEF2D /* IndexFullEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69DD757299E992D006FEF2D /* IndexFullEntry.swift */; };
 		E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501512937DED100E5C36F /* AppDelegate.swift */; };
 		E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501532937DED100E5C36F /* SceneDelegate.swift */; };
 		E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501552937DED100E5C36F /* WelcomeViewController.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		E68B616729803D06008A3814 /* StockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockManager.swift; sourceTree = "<group>"; };
 		E68B616B29804870008A3814 /* IndexEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexEntry.swift; sourceTree = "<group>"; };
+		E69DD757299E992D006FEF2D /* IndexFullEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexFullEntry.swift; sourceTree = "<group>"; };
 		E6A5014E2937DED100E5C36F /* Finance-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finance-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A501512937DED100E5C36F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6A501532937DED100E5C36F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */,
 				E68B616729803D06008A3814 /* StockManager.swift */,
 				E68B616B29804870008A3814 /* IndexEntry.swift */,
+				E69DD757299E992D006FEF2D /* IndexFullEntry.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				E6A50180293A5AF100E5C36F /* StocksViewController.swift in Sources */,
 				E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */,
 				E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */,
+				E69DD758299E992D006FEF2D /* IndexFullEntry.swift in Sources */,
 				E6A50194293D0CFB00E5C36F /* Keys.swift in Sources */,
 				E6A50190293D019800E5C36F /* Utilities.swift in Sources */,
 				E6A50192293D0C2900E5C36F /* Crypto .swift in Sources */,

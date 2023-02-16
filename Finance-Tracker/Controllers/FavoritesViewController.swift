@@ -88,18 +88,21 @@ class FavoritesViewController: CryptoViewController {
         }
         // Stocks
         else {
-            let currentStock  = findFavoriteStock(at: indexPath.row)
-            cell.stockLabel.text = currentStock?.symbol
-            cell.companyLabel.text = currentStock?.name
-            cell.priceLabel.text = ""
-            cell.percentLabel.text = ""
+            let currentStock  = findFavoriteStock(at: indexPath.row)!
+            cell.stockLabel.text = currentStock.symbol
+            cell.companyLabel.text = currentStock.shortName
+            cell.priceLabel.text = Utilities.formatPriceLabel(String(currentStock.regularMarketPrice), with: "$")
             
-            if let stockIcon = UIImage(named: "\(currentStock?.symbol.lowercased() ?? "aapl").png") {
-                cell.logoImaeView.contentMode = .scaleAspectFit
-                cell.logoImaeView.image = stockIcon
-            } else {
-                cell.logoImaeView.image = UIImage(named: "generic.svg")
+            let percentChange: Double = currentStock.regularMarketChangePercent
+            cell.percentLabel.text = String(format: "%.2f", percentChange)
+            cell.percentLabel.text! += "%"
+            cell.percentLabel.textColor = percentChange < 0 ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
+            
+            var imageName = "\(cell.stockLabel.text!.lowercased()).png"
+            if imageName == "payx.png" {
+                imageName = "payxx.png" // Edge case: crypto and stock have same symbol
             }
+            cell.logoImaeView.image = UIImage(named: imageName) ?? UIImage(named: "generic.svg")
         }
         return cell
     }
@@ -119,9 +122,9 @@ class FavoritesViewController: CryptoViewController {
     }
     
     // Finds favorite stock at given position
-    func findFavoriteStock(at position: Int) -> IndexEntry? {
+    func findFavoriteStock(at position: Int) -> IndexFullEntry? {
         var current = 0
-        var currentStock: IndexEntry? = nil
+        var currentStock: IndexFullEntry? = nil
         let favorites = defaults.array(forKey: K.defaultFavorites) as! [String]
         
         for stockData in indexFundEntries {
@@ -192,7 +195,7 @@ class FavoritesViewController: CryptoViewController {
         })
         indexFundEntries = indexFundEntries.filter({ entry in
             let query = searchBar.text!.lowercased()
-            let entryName = entry.name.lowercased()
+            let entryName = entry.shortName.lowercased()
             let entrySymbol = entry.symbol.lowercased()
             return entryName.contains(query) || entrySymbol.contains(query)
         })
