@@ -16,13 +16,13 @@ struct ResponseResult: Codable {
 }
 
 struct IndexFullEntry: Codable {
-    let shortName: String
+    let shortName: String?
     let symbol: String
-    let regularMarketChangePercent: Double
-    let regularMarketPrice: Double
-    let regularMarketOpen: Double
-    let regularMarketVolume: Double
-    let regularMarketPreviousClose: Double
-    let regularMarketDayLow: Double
-    let regularMarketDayHigh: Double
+    let regularMarketChangePercent: Double?
+    let regularMarketPrice: Double?
+    let regularMarketOpen: Double?
+    let regularMarketVolume: Double?
+    let regularMarketPreviousClose: Double?
+    let regularMarketDayLow: Double?
+    let regularMarketDayHigh: Double?
 }

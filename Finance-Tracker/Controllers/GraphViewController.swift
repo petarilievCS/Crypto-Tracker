@@ -374,7 +374,7 @@ class GraphViewController: UIViewController {
                 self.circulatingSupplyTitleLabel.text = "Previous Close"
                 self.circulatingSupplyLabel.text = "$\(self.selectedStock?.regularMarketPreviousClose ?? 0.0)"
                 
-                self.percentChange = String(format: "%.2f", self.selectedStock!.regularMarketChangePercent) + "%"
+                self.percentChangeLabel.text = String(format: "%.2f", self.selectedStock!.regularMarketChangePercent ?? 0.0) + "%"
                 self.percentChangeLabel.textColor = self.percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
                 
                 self.customizeViews()
@@ -385,10 +385,10 @@ class GraphViewController: UIViewController {
                 self.totalSupplyTitleLabel.text = "High"
                 
                 self.volumeLabel.text = Utilities.format(Int(self.selectedStock?.regularMarketVolume ?? 0), with: "")
-                self.mktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketOpen), with: "$")
-                self.fdMktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketPrice), with: "$")
-                self.maxSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketDayLow), with: "$")
-                self.totalSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketDayHigh), with: "$")
+                self.mktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketOpen ?? 0.0), with: "$")
+                self.fdMktCapPriceLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketPrice ?? 0.0), with: "$")
+                self.maxSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketDayLow ?? 0.0), with: "$")
+                self.totalSupplyLabel.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketDayHigh ?? 0.0), with: "$")
             }
 
             DispatchQueue.main.async {

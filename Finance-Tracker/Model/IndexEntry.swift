@@ -8,6 +8,6 @@
 import Foundation
 
 struct IndexEntry: Codable{
-    let name: String
-    let symbol: String
+    let Name: String
+    let Symbol: String
 }

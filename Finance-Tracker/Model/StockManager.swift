@@ -21,34 +21,20 @@ class StockManager {
     var indexFundFullEntries: [IndexFullEntry] = []
     var delegate: StockManagerDelegate?
     
+    // Set containing all stocks which have the same symbol as a crypto currency
+    var edgeCaseSet: Set<String> = ["abt", "amp", "t", "blk"]
+    
     // Performs API request in order to obtain list of NASDAQ companies
     func performRequest() {
-        let url = URL(string: "https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=8a4725e21f6e6631195ac4cd66b7e201")
-        var request = URLRequest(url: url!)
-        
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let task = URLSession.shared.dataTask(with: url!) { data, response, error in
-            guard error == nil else {
-                print(error!)
-                return
+        if let url = Bundle.main.url(forResource: "constituents_json", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                indexFundEntries = try decoder.decode([IndexEntry].self, from: data)
+                self.performPricesRequest()
+            } catch {
+                print("error:\(error)")
             }
-            guard let data = data else {
-                print("Data is empty")
-                return
-            }
-            self.parseJSON(from: data)
-        }
-        task.resume()
-    }
-    
-    // Parses JSON response into array of index entries
-    func parseJSON(from data: Data) {
-        let decoder = JSONDecoder()
-        do {
-            indexFundEntries = try decoder.decode([IndexEntry].self, from: data)
-            self.performPricesRequest()
-        } catch {
-            print("Error while decoding index entries: \(error)")
         }
     }
     
@@ -56,7 +42,7 @@ class StockManager {
     func performPricesRequest() {
         var urlString = "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
         for indexFundEntry in indexFundEntries {
-            urlString += indexFundEntry.symbol + ","
+            urlString += indexFundEntry.Symbol + ","
         }
         urlString.removeLast()
         let url = URL(string: urlString)!

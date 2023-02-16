@@ -91,9 +91,9 @@ class FavoritesViewController: CryptoViewController {
             let currentStock  = findFavoriteStock(at: indexPath.row)!
             cell.stockLabel.text = currentStock.symbol
             cell.companyLabel.text = currentStock.shortName
-            cell.priceLabel.text = Utilities.formatPriceLabel(String(currentStock.regularMarketPrice), with: "$")
+            cell.priceLabel.text = Utilities.formatPriceLabel(String(currentStock.regularMarketPrice ?? 0.0), with: "$")
             
-            let percentChange: Double = currentStock.regularMarketChangePercent
+            let percentChange: Double = currentStock.regularMarketChangePercent ?? 0.0
             cell.percentLabel.text = String(format: "%.2f", percentChange)
             cell.percentLabel.text! += "%"
             cell.percentLabel.textColor = percentChange < 0 ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
@@ -193,7 +193,7 @@ class FavoritesViewController: CryptoViewController {
         })
         indexFundEntries = indexFundEntries.filter({ entry in
             let query = searchBar.text!.lowercased()
-            let entryName = entry.shortName.lowercased()
+            let entryName = entry.shortName?.lowercased() ?? "Name not found"
             let entrySymbol = entry.symbol.lowercased()
             return entryName.contains(query) || entrySymbol.contains(query)
         })

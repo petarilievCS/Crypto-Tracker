@@ -41,6 +41,7 @@
 		E6B1A6BA29488729006776E3 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6B929488729006776E3 /* TinyConstraints */; };
 		E6B1A6BC2948A4AB006776E3 /* CryptoHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */; };
 		E6B7DA8A2960479B008F8CD1 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B7DA892960479B008F8CD1 /* AccountViewController.swift */; };
+		E6F92CC7299EB8090081948F /* constituents_json.json in Resources */ = {isa = PBXBuildFile; fileRef = E6F92CC6299EB8070081948F /* constituents_json.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		E6A50195293D0EAC00E5C36F /* CryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoManager.swift; sourceTree = "<group>"; };
 		E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHistory.swift; sourceTree = "<group>"; };
 		E6B7DA892960479B008F8CD1 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		E6F92CC6299EB8070081948F /* constituents_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = constituents_json.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				E68B616729803D06008A3814 /* StockManager.swift */,
 				E68B616B29804870008A3814 /* IndexEntry.swift */,
 				E69DD757299E992D006FEF2D /* IndexFullEntry.swift */,
+				E6F92CC6299EB8070081948F /* constituents_json.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				E6A5015E2937DED600E5C36F /* Assets.xcassets in Resources */,
 				E6A50184293BD1C800E5C36F /* GoogleService-Info.plist in Resources */,
 				E6A5017C293915B500E5C36F /* AssetCell.xib in Resources */,
+				E6F92CC7299EB8090081948F /* constituents_json.json in Resources */,
 				E6A501592937DED100E5C36F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
