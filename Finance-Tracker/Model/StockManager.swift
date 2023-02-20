@@ -22,7 +22,7 @@ class StockManager {
     var delegate: StockManagerDelegate?
     
     // Set containing all stocks which have the same symbol as a crypto currency
-    var edgeCaseSet: Set<String> = ["abt", "amp", "t", "blk", "cvx", "etn", "d"]
+    var edgeCaseSet: Set<String> = ["abt", "amp", "t", "blk", "cvx", "etn", "d", "mco", "oxy", "payx", "stx", "tel"]
     
     // Performs API request in order to obtain list of NASDAQ companies
     func performRequest() {
