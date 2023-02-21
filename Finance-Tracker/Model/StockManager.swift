@@ -38,6 +38,23 @@ class StockManager {
         }
     }
     
+    func performRequest(for symbol: String) {
+        var urlString = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=\(symbol)"
+        let url = URL(string: urlString)!
+        let request = URLRequest(url: url)
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print("Error while performing request: \(error!)")
+            }
+            if let safeData = data {
+                self.parsePricesJSON(from: safeData)
+            }
+        }
+        task.resume()
+    }
+    
     // Perform API request for company prices
     func performPricesRequest() {
         var urlString = "https://query1.finance.yahoo.com/v7/finance/quote?symbols="

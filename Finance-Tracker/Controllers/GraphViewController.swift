@@ -104,10 +104,7 @@ class GraphViewController: UIViewController {
         stockManager.delegate = self
         nameLabel.adjustsFontSizeToFitWidth = true
         percentChangeLabel.adjustsFontSizeToFitWidth = true
-        
-//        self.lineChartView.xAxis.drawGridLinesEnabled = false
         self.lineChartView.xAxis.drawLabelsEnabled = false
-//        self.lineChartView.legend.enabled = false
         
         refreshInformation()
     }
@@ -178,7 +175,7 @@ class GraphViewController: UIViewController {
     // Refreshes information
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
         if isStocks {
-            self.refreshStockInformation()
+            stockManager.performRequest(for: selectedStock!.symbol)
             
         } else {
             cryptoManager.performRequest()
@@ -532,7 +529,10 @@ extension GraphViewController: StockManagerDelegate {
     func receivedSymbolMetrics(for symbol: StockChartData) {}
     
     
-    func receivedStockInformation() {}
+    func receivedStockInformation() {
+        selectedStock = stockManager.indexFundFullEntries[0]
+        refreshStockInformation()
+    }
     
     // Updates view when information is received
     func receivedSymbolInformatioN(for symbol: RecentStockData) {}
