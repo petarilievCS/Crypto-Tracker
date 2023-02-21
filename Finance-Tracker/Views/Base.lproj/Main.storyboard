@@ -253,9 +253,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Favorites" id="9FH-f2-7Zs">
-                        <imageReference key="image" image="heart.fill" catalog="system"/>
+                        <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
                         <color key="badgeColor" name="Signature Green"/>
-                        <imageReference key="selectedImage" image="heart.fill" catalog="system" symbolScale="default"/>
+                        <imageReference key="selectedImage" image="heart.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Favorites" id="Jkh-Ff-8hR"/>
                     <connections>
@@ -283,7 +283,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="800"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ME1-nf-n1a">
-                                                <rect key="frame" x="18" y="10" width="357" height="694.33333333333337"/>
+                                                <rect key="frame" x="18" y="10" width="357" height="782.33333333333337"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yDV-HA-K8i">
                                                         <rect key="frame" x="0.0" y="0.0" width="357" height="85.333333333333329"/>
@@ -388,7 +388,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="171" height="73"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-2b-vPZ">
-                                                                                <rect key="frame" x="8" y="14" width="59" height="21"/>
+                                                                                <rect key="frame" x="8" y="14" width="143" height="21"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -608,7 +608,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="171" height="73"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnG-yu-lKs">
-                                                                                <rect key="frame" x="8" y="14" width="40" height="21"/>
+                                                                                <rect key="frame" x="8" y="14" width="63" height="21"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -648,6 +648,62 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="73" id="SVd-Sz-byu"/>
                                                                             <constraint firstAttribute="width" constant="171" id="s6e-wo-nDs"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="WLE-es-X8c">
+                                                        <rect key="frame" x="0.0" y="709.33333333333337" width="357" height="73"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="RgT-LQ-zc5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="357" height="73"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErM-xj-ytO">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="171" height="73"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="52 Week Low" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hon-pZ-Cw8">
+                                                                                <rect key="frame" x="8" y="14" width="104" height="21"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$179.41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dV5-cR-Ski">
+                                                                                <rect key="frame" x="8" y="38" width="150" height="21"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="171" id="IYQ-Em-h2V"/>
+                                                                            <constraint firstAttribute="height" constant="73" id="p9d-be-r09"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PmN-Sy-lVB">
+                                                                        <rect key="frame" x="186" y="0.0" width="171" height="73"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="52 Week High" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hs-jr-82G">
+                                                                                <rect key="frame" x="8" y="14" width="109" height="21"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$180.91" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RN-g5-Kez">
+                                                                                <rect key="frame" x="8" y="38" width="155" height="21"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="171" id="NlV-X4-AvQ"/>
+                                                                            <constraint firstAttribute="height" constant="73" id="bKO-bq-Nka"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
@@ -699,39 +755,46 @@
                     </navigationItem>
                     <size key="freeformSize" width="393" height="800"/>
                     <connections>
+                        <outlet property="boxLabel1" destination="ydc-hx-sdN" id="7LN-o5-90g"/>
+                        <outlet property="boxLabel2" destination="rKN-CU-dgr" id="aM0-dv-x6V"/>
+                        <outlet property="boxLabel3" destination="KjK-2b-vPZ" id="R0y-S4-YkJ"/>
+                        <outlet property="boxLabel4" destination="6QY-Os-Aks" id="wk3-tu-Ndr"/>
+                        <outlet property="boxLabel5" destination="UG1-L6-3vl" id="iXE-O2-kMT"/>
+                        <outlet property="boxLabel6" destination="zVa-A6-VUw" id="Rha-gg-wL7"/>
+                        <outlet property="boxLabel7" destination="CnG-yu-lKs" id="wRH-jQ-kxL"/>
+                        <outlet property="boxLabel8" destination="rfy-19-vhb" id="MMp-ny-mIi"/>
+                        <outlet property="boxValue1" destination="YXh-Qs-8gq" id="Mdz-Ja-8Ah"/>
+                        <outlet property="boxValue10" destination="1RN-g5-Kez" id="WIs-Eg-bix"/>
+                        <outlet property="boxValue2" destination="b8U-wg-xrX" id="xUd-Kp-NJd"/>
+                        <outlet property="boxValue3" destination="j0j-Pe-LoS" id="4v6-eM-xjN"/>
+                        <outlet property="boxValue4" destination="mOS-2k-ZSJ" id="Ydy-fG-XGQ"/>
+                        <outlet property="boxValue5" destination="roY-1h-XAY" id="vW2-ac-LdV"/>
+                        <outlet property="boxValue6" destination="q76-OK-8ZS" id="Eq1-Z5-jsa"/>
+                        <outlet property="boxValue7" destination="R1I-gR-Fp9" id="QfK-LS-v3N"/>
+                        <outlet property="boxValue8" destination="FNM-Wg-7ng" id="kfg-5R-WR6"/>
+                        <outlet property="boxValue9" destination="dV5-cR-Ski" id="Ys1-6g-N3g"/>
                         <outlet property="chartView" destination="ljd-xc-K7S" id="juh-Rm-AhZ"/>
-                        <outlet property="circulatingSupplyLabel" destination="mOS-2k-ZSJ" id="Ydy-fG-XGQ"/>
-                        <outlet property="circulatingSupplyTitleLabel" destination="6QY-Os-Aks" id="wk3-tu-Ndr"/>
-                        <outlet property="circulatingSupplyView" destination="zu3-dl-3XM" id="zcW-4N-hKZ"/>
                         <outlet property="dayButton" destination="Chx-7p-eZS" id="Ucf-NU-h7N"/>
-                        <outlet property="dominanceLabel" destination="FNM-Wg-7ng" id="kfg-5R-WR6"/>
-                        <outlet property="dominanceView" destination="ic9-mG-MuU" id="HW8-WY-Uva"/>
                         <outlet property="favoriteButton" destination="KAP-SV-xaY" id="xPO-YO-aV5"/>
-                        <outlet property="fdMktCapPriceLabel" destination="b8U-wg-xrX" id="xUd-Kp-NJd"/>
-                        <outlet property="fdMktCapTitleLabel" destination="rKN-CU-dgr" id="aM0-dv-x6V"/>
-                        <outlet property="fdMktCapView" destination="K9F-bq-Dr4" id="qtl-eb-ncK"/>
                         <outlet property="fiveDaysButton" destination="pq9-sj-9nh" id="day-al-p4E"/>
-                        <outlet property="maxSupplyLabel" destination="roY-1h-XAY" id="vW2-ac-LdV"/>
-                        <outlet property="maxSupplyTitleLabel" destination="UG1-L6-3vl" id="iXE-O2-kMT"/>
-                        <outlet property="maxSupplyView" destination="vj4-fB-VSv" id="r9g-dc-DUX"/>
-                        <outlet property="mktCapLabel" destination="ydc-hx-sdN" id="7LN-o5-90g"/>
-                        <outlet property="mktCapPriceLabel" destination="YXh-Qs-8gq" id="Mdz-Ja-8Ah"/>
-                        <outlet property="mktCapView" destination="1CK-FL-WLS" id="kBn-ah-dAH"/>
                         <outlet property="monthButton" destination="HA6-kR-oDS" id="2rp-Pl-C6O"/>
                         <outlet property="nameLabel" destination="5F7-yz-pqv" id="06N-vr-mWA"/>
                         <outlet property="percentChangeLabel" destination="Afu-28-qap" id="Rb4-ic-xOs"/>
                         <outlet property="priceLabel" destination="3cN-pV-Z1c" id="I8h-9x-VCc"/>
-                        <outlet property="rankLabel" destination="R1I-gR-Fp9" id="QfK-LS-v3N"/>
-                        <outlet property="rankView" destination="sAO-AO-pzf" id="qBy-nx-r0O"/>
                         <outlet property="sixMonthsButton" destination="RoB-sF-RiC" id="J3w-23-8Da"/>
                         <outlet property="symbolLabel" destination="WR5-i7-CeP" id="ald-YG-cOw"/>
                         <outlet property="threeMonthsButton" destination="5Ad-hQ-0LR" id="GgY-BB-yfo"/>
-                        <outlet property="totalSupplyLabel" destination="q76-OK-8ZS" id="Eq1-Z5-jsa"/>
-                        <outlet property="totalSupplyTitleLabel" destination="zVa-A6-VUw" id="Rha-gg-wL7"/>
-                        <outlet property="totalSupplyView" destination="OEm-eT-dIF" id="jGi-28-WIw"/>
                         <outlet property="twoYearsButton" destination="itH-aq-mlZ" id="dw3-sC-jC9"/>
-                        <outlet property="volumeLabel" destination="j0j-Pe-LoS" id="dOm-w8-RW5"/>
-                        <outlet property="volumeView" destination="lAV-W3-P80" id="aqw-qq-EQl"/>
+                        <outlet property="view1" destination="1CK-FL-WLS" id="kBn-ah-dAH"/>
+                        <outlet property="view10" destination="PmN-Sy-lVB" id="2Lp-Cc-1ba"/>
+                        <outlet property="view2" destination="K9F-bq-Dr4" id="qtl-eb-ncK"/>
+                        <outlet property="view3" destination="lAV-W3-P80" id="aqw-qq-EQl"/>
+                        <outlet property="view4" destination="zu3-dl-3XM" id="zcW-4N-hKZ"/>
+                        <outlet property="view5" destination="vj4-fB-VSv" id="r9g-dc-DUX"/>
+                        <outlet property="view6" destination="OEm-eT-dIF" id="jGi-28-WIw"/>
+                        <outlet property="view7" destination="sAO-AO-pzf" id="qBy-nx-r0O"/>
+                        <outlet property="view8" destination="ic9-mG-MuU" id="HW8-WY-Uva"/>
+                        <outlet property="view9" destination="ErM-xj-ytO" id="WIP-tu-X9y"/>
                         <outlet property="yearButton" destination="pjD-fe-GB5" id="IxQ-OI-IDV"/>
                     </connections>
                 </viewController>
@@ -862,7 +925,10 @@
                             <outlet property="delegate" destination="EE0-lG-Ffe" id="LTP-5Q-beP"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Stocks" image="dollarsign.circle" catalog="system" selectedImage="dollarsign.circle" id="gsZ-91-Tva"/>
+                    <tabBarItem key="tabBarItem" title="Stocks" id="gsZ-91-Tva">
+                        <imageReference key="image" image="dollarsign.circle" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="dollarsign.circle" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="newSearchBar" destination="glJ-Ql-6su" id="Hnk-YW-7tZ"/>
                         <segue destination="Aep-eb-tai" kind="show" identifier="stocksToGraph" id="BDR-HN-rWQ"/>
@@ -905,9 +971,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Crypto" id="Z1W-i6-iaL">
-                        <imageReference key="image" image="bitcoinsign.circle.fill" catalog="system"/>
+                        <imageReference key="image" image="bitcoinsign.circle.fill" catalog="system" symbolScale="large"/>
                         <color key="badgeColor" name="Signature Green"/>
-                        <imageReference key="selectedImage" image="bitcoinsign.circle.fill" catalog="system" symbolScale="default"/>
+                        <imageReference key="selectedImage" image="bitcoinsign.circle.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Crypto" largeTitleDisplayMode="always" id="59P-92-5hl"/>
                     <connections>
@@ -924,7 +990,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Unm-Fo-Pa7"/>
         <segue reference="0im-0u-SZj"/>
-        <segue reference="BDR-HN-rWQ"/>
+        <segue reference="Q3e-bB-jde"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="Signature Green"/>
     <resources>

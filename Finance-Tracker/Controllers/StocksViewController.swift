@@ -12,8 +12,6 @@ class StocksViewController: CryptoViewController {
 
     @IBOutlet weak var newSearchBar: UISearchBar!
     
- 
-    
     override func viewDidLoad() {
         self.searchBar = newSearchBar
         super.viewDidLoad()
@@ -38,15 +36,23 @@ class StocksViewController: CryptoViewController {
         
         let currentStock = indexFundEntries[indexPath.row]
         cell.stockLabel.text = currentStock.symbol
-        cell.companyLabel.text = currentStock.name
-        cell.priceLabel.text = ""
-        cell.percentLabel.text = ""
+        cell.companyLabel.text = currentStock.shortName
+        cell.priceLabel.text = Utilities.formatPriceLabel(String(currentStock.regularMarketPrice ?? 0.0), with: "$")
+        
+        let percentChange: Double = currentStock.regularMarketChangePercent ?? 0.0
+        cell.percentLabel.text = String(format: "%.2f", percentChange)
+        cell.percentLabel.text! += "%"
+        cell.percentLabel.textColor = percentChange < 0 ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
         
         var imageName = "\(cell.stockLabel.text!.lowercased()).png"
-        if imageName == "payx.png" {
-            imageName = "payxx.png" // Edge case: crypto and stock have same symbol
+        var upperCaseImageName = "\(cell.stockLabel.text!).png"
+        
+        if stockManager.edgeCaseSet.contains(cell.stockLabel.text!.lowercased()) {
+            upperCaseImageName = "\(cell.stockLabel.text!) 1.png"
         }
-        cell.logoImaeView.image = UIImage(named: imageName) ?? UIImage(named: "generic.svg")
+        
+        // Putting upper case first takes care of all edge cases where crypto and stock have the same symbol
+        cell.logoImaeView.image = UIImage(named: upperCaseImageName) ?? UIImage(named: imageName) ?? UIImage(named: "generic.svg")
         return cell
     }
     
@@ -86,10 +92,8 @@ extension StocksViewController {
             let selectedStock = indexFundEntries[tableView.indexPathForSelectedRow!.row]
             destinationVC.isStocks = true
             destinationVC.selectedStock = selectedStock
-        case K.cryptoToAccountSegue:
-            print("Works")
         default:
-            fatalError("Segue identifier not handled")
+            print("Segue identifier not handled")
         }
     }
 }
@@ -101,7 +105,7 @@ extension StocksViewController {
     override func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         indexFundEntries = indexFundEntries.filter({ entry in
             let query = searchBar.text!.lowercased()
-            let entryName = entry.name.lowercased()
+            let entryName = entry.shortName?.lowercased() ?? "Name not found"
             let entrySymbol = entry.symbol.lowercased()
             return entryName.contains(query) || entrySymbol.contains(query)
         })

@@ -12,55 +12,79 @@ protocol StockManagerDelegate {
     func receivedStockInformation()
     func receivedSymbolInformatioN(for symbol: RecentStockData)
     func receivedSymbolMetrics(for symbol: StockChartData)
-    func receivedChartData(for data: [StockChartData])
+    func receivedChartData(for data: ChartDataModel)
 }
 
 class StockManager {
     
     var indexFundEntries: [IndexEntry] = []
+    var indexFundFullEntries: [IndexFullEntry] = []
     var delegate: StockManagerDelegate?
+    
+    // Set containing all stocks which have the same symbol as a crypto currency
+    var edgeCaseSet: Set<String> = ["abt", "amp", "t", "blk", "cvx", "etn", "d", "mco", "oxy", "payx", "stx", "tel"]
     
     // Performs API request in order to obtain list of NASDAQ companies
     func performRequest() {
-        let url = URL(string: "https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=8a4725e21f6e6631195ac4cd66b7e201")
-        var request = URLRequest(url: url!)
+        if let url = Bundle.main.url(forResource: "constituents_json", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                indexFundEntries = try decoder.decode([IndexEntry].self, from: data)
+                self.performPricesRequest()
+            } catch {
+                print("error:\(error)")
+            }
+        }
+    }
+    
+    func performRequest(for symbol: String) {
+        var urlString = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=\(symbol)"
+        let url = URL(string: urlString)!
+        let request = URLRequest(url: url)
         
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let task = URLSession.shared.dataTask(with: url!) { data, response, error in
-            guard error == nil else {
-                print(error!)
-                return
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print("Error while performing request: \(error!)")
             }
-            guard let data = data else {
-                print("Data is empty")
-                return
+            if let safeData = data {
+                self.parsePricesJSON(from: safeData)
             }
-            self.parseJSON(from: data)
         }
         task.resume()
     }
     
-    // Parses JSON response into array of index entries
-    func parseJSON(from data: Data) {
+    // Perform API request for company prices
+    func performPricesRequest() {
+        var urlString = "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
+        for indexFundEntry in indexFundEntries {
+            urlString += indexFundEntry.Symbol + ","
+        }
+        urlString.removeLast()
+        let url = URL(string: urlString)!
+        let request = URLRequest(url: url)
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print("Error while performing request: \(error!)")
+            }
+            if let safeData = data {
+                self.parsePricesJSON(from: safeData)
+            }
+        }
+        task.resume()
+    }
+    
+    // Parses JSON response from Yahoo Finance
+    func parsePricesJSON(from data: Data) {
         let decoder = JSONDecoder()
         do {
-            indexFundEntries = try decoder.decode([IndexEntry].self, from: data)
+            indexFundFullEntries = try decoder.decode(QuoteResponse.self, from: data).quoteResponse.result
             delegate?.receivedStockInformation()
         } catch {
             print("Error while decoding index entries: \(error)")
-        }
-    }
-    
-    // Return basic info for given symbol
-    func getInfo(for symbol: String) {
-        SwiftYFinance.recentDataBy(identifier: symbol) { data, error in
-            if error == nil {
-                if let safeData = data {
-                    self.delegate?.receivedSymbolInformatioN(for: safeData)
-                }
-            } else {
-                print(data!.regularMarketPrice ?? "No regularMarketPrice")
-            }
         }
     }
     
@@ -74,74 +98,63 @@ class StockManager {
         return 0.0
     }
     
-    // Get metrics for given stock
-    func getMetrics(for symbol: String) {
-        let today = Date.now
-        
-        SwiftYFinance.chartDataBy(identifier: symbol, start: Calendar.current.date(byAdding: .day, value: -1, to: today)!, end: Date.now, interval: .oneday) { data, error in
-            if error == nil {
-                if let safeData = data {
-                    self.delegate?.receivedSymbolMetrics(for: safeData[0])
-                } else {
-                    print("Error: Invalid data")
-                }
-            } else {
-                print(data![0].open ?? "Open price is unavailable")
-            }
-        }
-    }
-    
     
     // Get chart data for given stock
     func performChartDataRequest(for symbol: String, in period: Period) {
-        let today = Date.now
-        var timePeriod: Calendar.Component?
-        var numberOfPeriod: Int = 0
-        var interval: ChartTimeInterval?
+        var range: String = ""
+        var interval: String = ""
         
         switch period {
         case .day:
-            timePeriod = .day
-            numberOfPeriod = 1
-            interval = .fifteenminutes
+            range = "1d"
+            interval = "5m"
         case .fiveDays:
-            timePeriod = .day
-            numberOfPeriod = 5
-            interval = .onehour
+            range = "5d"
+            interval = "5m"
         case .month:
-            timePeriod = .month
-            numberOfPeriod = 1
-            interval = .oneday
+            range = "1mo"
+            interval = "1h"
         case .threeMonths:
-            timePeriod = .month
-            numberOfPeriod = 3
-            interval = .oneday
+            range = "3mo"
+            interval = "1d"
         case .sixMonths:
-            timePeriod = .month
-            numberOfPeriod = 6
-            interval = .fivedays
+            range = "6mo"
+            interval = "1d"
         case .year:
-            timePeriod = .year
-            numberOfPeriod = 1
-            interval = .fivedays
+            range = "1y"
+            interval = "1d"
         case .twoYears:
-            timePeriod = .year
-            numberOfPeriod = 2
-            interval = .fivedays
+            range = "2y"
+            interval = "5d"
         }
         
-        SwiftYFinance.chartDataBy(identifier: symbol, start: Calendar.current.date(byAdding: timePeriod!, value: -numberOfPeriod, to: today)!, end: Date.now, interval: interval!) { data, error in
-            if error == nil {
-                if let safeData = data {
-                    self.delegate?.receivedChartData(for: safeData)
-                } else {
-                    print("Error: Invalid data")
-                }
-            } else {
-                print(data![0].open ?? "Open price is unavailable")
+        let urlString = "https://query1.finance.yahoo.com/v8/finance/chart/\(symbol)?range=\(range)&interval=\(interval)&includeTimestamp=true&indicators=quote"
+        print(urlString)
+        let URL = URL(string: urlString)!
+        let request = URLRequest(url: URL)
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print("Error while performing request: \(error!)")
+            }
+            if let safeData = data {
+                self.parceChartJSON(from: safeData)
             }
         }
+        task.resume()
     }
+    
+    func parceChartJSON(from data: Data) {
+        let decoder = JSONDecoder()
+        do {
+            let chartData: ChartDataModel = try decoder.decode(ChartDataModel.self, from: data)
+            delegate?.receivedChartData(for: chartData)
+        } catch {
+            print("Error while decoding index entries: \(error)")
+        }
+    }
+    
 }
 
 

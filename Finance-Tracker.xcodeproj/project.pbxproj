@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E68B616829803D06008A3814 /* StockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B616729803D06008A3814 /* StockManager.swift */; };
 		E68B616C29804870008A3814 /* IndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B616B29804870008A3814 /* IndexEntry.swift */; };
+		E69DD758299E992D006FEF2D /* IndexFullEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69DD757299E992D006FEF2D /* IndexFullEntry.swift */; };
 		E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501512937DED100E5C36F /* AppDelegate.swift */; };
 		E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501532937DED100E5C36F /* SceneDelegate.swift */; };
 		E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A501552937DED100E5C36F /* WelcomeViewController.swift */; };
@@ -40,11 +41,14 @@
 		E6B1A6BA29488729006776E3 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6B929488729006776E3 /* TinyConstraints */; };
 		E6B1A6BC2948A4AB006776E3 /* CryptoHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */; };
 		E6B7DA8A2960479B008F8CD1 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B7DA892960479B008F8CD1 /* AccountViewController.swift */; };
+		E6BDD6EF29A532E900B9F958 /* ChartDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BDD6EE29A532E900B9F958 /* ChartDataModel.swift */; };
+		E6F92CC7299EB8090081948F /* constituents_json.json in Resources */ = {isa = PBXBuildFile; fileRef = E6F92CC6299EB8070081948F /* constituents_json.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E68B616729803D06008A3814 /* StockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockManager.swift; sourceTree = "<group>"; };
 		E68B616B29804870008A3814 /* IndexEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexEntry.swift; sourceTree = "<group>"; };
+		E69DD757299E992D006FEF2D /* IndexFullEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexFullEntry.swift; sourceTree = "<group>"; };
 		E6A5014E2937DED100E5C36F /* Finance-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finance-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A501512937DED100E5C36F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6A501532937DED100E5C36F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 		E6A50195293D0EAC00E5C36F /* CryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoManager.swift; sourceTree = "<group>"; };
 		E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHistory.swift; sourceTree = "<group>"; };
 		E6B7DA892960479B008F8CD1 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		E6BDD6EE29A532E900B9F958 /* ChartDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataModel.swift; sourceTree = "<group>"; };
+		E6F92CC6299EB8070081948F /* constituents_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = constituents_json.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +166,9 @@
 				E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */,
 				E68B616729803D06008A3814 /* StockManager.swift */,
 				E68B616B29804870008A3814 /* IndexEntry.swift */,
+				E69DD757299E992D006FEF2D /* IndexFullEntry.swift */,
+				E6F92CC6299EB8070081948F /* constituents_json.json */,
+				E6BDD6EE29A532E900B9F958 /* ChartDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -244,6 +253,7 @@
 				E6A5015E2937DED600E5C36F /* Assets.xcassets in Resources */,
 				E6A50184293BD1C800E5C36F /* GoogleService-Info.plist in Resources */,
 				E6A5017C293915B500E5C36F /* AssetCell.xib in Resources */,
+				E6F92CC7299EB8090081948F /* constituents_json.json in Resources */,
 				E6A501592937DED100E5C36F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,9 +269,11 @@
 				E6A50180293A5AF100E5C36F /* StocksViewController.swift in Sources */,
 				E6A501562937DED100E5C36F /* WelcomeViewController.swift in Sources */,
 				E6A501522937DED100E5C36F /* AppDelegate.swift in Sources */,
+				E69DD758299E992D006FEF2D /* IndexFullEntry.swift in Sources */,
 				E6A50194293D0CFB00E5C36F /* Keys.swift in Sources */,
 				E6A50190293D019800E5C36F /* Utilities.swift in Sources */,
 				E6A50192293D0C2900E5C36F /* Crypto .swift in Sources */,
+				E6BDD6EF29A532E900B9F958 /* ChartDataModel.swift in Sources */,
 				E6A5017E293A58F600E5C36F /* CryptoViewController.swift in Sources */,
 				E6B7DA8A2960479B008F8CD1 /* AccountViewController.swift in Sources */,
 				E6A501722938FD5700E5C36F /* RegisterViewController.swift in Sources */,
