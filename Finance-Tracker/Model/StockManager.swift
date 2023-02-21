@@ -46,7 +46,7 @@ class StockManager {
         }
         urlString.removeLast()
         let url = URL(string: urlString)!
-        var request = URLRequest(url: url)
+        let request = URLRequest(url: url)
         
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { data, response, error in
@@ -158,7 +158,7 @@ class StockManager {
                     print("Error: Invalid data")
                 }
             } else {
-                print(data![0].open ?? "Open price is unavailable")
+                print("Open price is unavailable")
             }
         }
     }

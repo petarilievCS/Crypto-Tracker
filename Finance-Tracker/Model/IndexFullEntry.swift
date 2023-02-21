@@ -25,4 +25,5 @@ struct IndexFullEntry: Codable {
     let regularMarketPreviousClose: Double?
     let regularMarketDayLow: Double?
     let regularMarketDayHigh: Double?
+    let marketCap: Int?
 }

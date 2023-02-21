@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "ABC.png",
+      "filename" : "NWS.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "ABC 1.png",
+      "filename" : "NWS 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -23,7 +23,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "ABC.D.png",
+      "filename" : "NWS.D.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
