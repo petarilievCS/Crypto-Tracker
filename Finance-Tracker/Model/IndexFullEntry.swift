@@ -26,4 +26,9 @@ struct IndexFullEntry: Codable {
     let regularMarketDayLow: Double?
     let regularMarketDayHigh: Double?
     let marketCap: Int?
+    let trailingPE: Double?
+    let trailingAnnualDividendYield: Double?
+    let averageDailyVolume10Day: Int?
+    let fiftyTwoWeekHigh: Double?
+    let fiftyTwoWeekLow: Double? 
 }

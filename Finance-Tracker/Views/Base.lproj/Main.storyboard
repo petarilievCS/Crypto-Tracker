@@ -283,7 +283,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="800"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ME1-nf-n1a">
-                                                <rect key="frame" x="18" y="10" width="357" height="694.33333333333337"/>
+                                                <rect key="frame" x="18" y="10" width="357" height="782.33333333333337"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yDV-HA-K8i">
                                                         <rect key="frame" x="0.0" y="0.0" width="357" height="85.333333333333329"/>
@@ -388,7 +388,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="171" height="73"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-2b-vPZ">
-                                                                                <rect key="frame" x="8" y="14" width="59" height="21"/>
+                                                                                <rect key="frame" x="8" y="14" width="143" height="21"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -608,7 +608,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="171" height="73"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnG-yu-lKs">
-                                                                                <rect key="frame" x="8" y="14" width="40" height="21"/>
+                                                                                <rect key="frame" x="8" y="14" width="63" height="21"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -648,6 +648,62 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="73" id="SVd-Sz-byu"/>
                                                                             <constraint firstAttribute="width" constant="171" id="s6e-wo-nDs"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="WLE-es-X8c">
+                                                        <rect key="frame" x="0.0" y="709.33333333333337" width="357" height="73"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="RgT-LQ-zc5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="357" height="73"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErM-xj-ytO">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="171" height="73"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="52 Week Low" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hon-pZ-Cw8">
+                                                                                <rect key="frame" x="8" y="14" width="104" height="21"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$179.41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dV5-cR-Ski">
+                                                                                <rect key="frame" x="8" y="38" width="150" height="21"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="171" id="IYQ-Em-h2V"/>
+                                                                            <constraint firstAttribute="height" constant="73" id="p9d-be-r09"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PmN-Sy-lVB">
+                                                                        <rect key="frame" x="186" y="0.0" width="171" height="73"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="52 Week High" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hs-jr-82G">
+                                                                                <rect key="frame" x="8" y="14" width="109" height="21"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$180.91" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RN-g5-Kez">
+                                                                                <rect key="frame" x="8" y="38" width="155" height="21"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="171" id="NlV-X4-AvQ"/>
+                                                                            <constraint firstAttribute="height" constant="73" id="bKO-bq-Nka"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
@@ -705,7 +761,10 @@
                         <outlet property="boxLabel4" destination="6QY-Os-Aks" id="wk3-tu-Ndr"/>
                         <outlet property="boxLabel5" destination="UG1-L6-3vl" id="iXE-O2-kMT"/>
                         <outlet property="boxLabel6" destination="zVa-A6-VUw" id="Rha-gg-wL7"/>
+                        <outlet property="boxLabel7" destination="CnG-yu-lKs" id="wRH-jQ-kxL"/>
+                        <outlet property="boxLabel8" destination="rfy-19-vhb" id="MMp-ny-mIi"/>
                         <outlet property="boxValue1" destination="YXh-Qs-8gq" id="Mdz-Ja-8Ah"/>
+                        <outlet property="boxValue10" destination="1RN-g5-Kez" id="WIs-Eg-bix"/>
                         <outlet property="boxValue2" destination="b8U-wg-xrX" id="xUd-Kp-NJd"/>
                         <outlet property="boxValue3" destination="j0j-Pe-LoS" id="4v6-eM-xjN"/>
                         <outlet property="boxValue4" destination="mOS-2k-ZSJ" id="Ydy-fG-XGQ"/>
@@ -713,6 +772,7 @@
                         <outlet property="boxValue6" destination="q76-OK-8ZS" id="Eq1-Z5-jsa"/>
                         <outlet property="boxValue7" destination="R1I-gR-Fp9" id="QfK-LS-v3N"/>
                         <outlet property="boxValue8" destination="FNM-Wg-7ng" id="kfg-5R-WR6"/>
+                        <outlet property="boxValue9" destination="dV5-cR-Ski" id="Ys1-6g-N3g"/>
                         <outlet property="chartView" destination="ljd-xc-K7S" id="juh-Rm-AhZ"/>
                         <outlet property="dayButton" destination="Chx-7p-eZS" id="Ucf-NU-h7N"/>
                         <outlet property="favoriteButton" destination="KAP-SV-xaY" id="xPO-YO-aV5"/>
@@ -726,6 +786,7 @@
                         <outlet property="threeMonthsButton" destination="5Ad-hQ-0LR" id="GgY-BB-yfo"/>
                         <outlet property="twoYearsButton" destination="itH-aq-mlZ" id="dw3-sC-jC9"/>
                         <outlet property="view1" destination="1CK-FL-WLS" id="kBn-ah-dAH"/>
+                        <outlet property="view10" destination="PmN-Sy-lVB" id="2Lp-Cc-1ba"/>
                         <outlet property="view2" destination="K9F-bq-Dr4" id="qtl-eb-ncK"/>
                         <outlet property="view3" destination="lAV-W3-P80" id="aqw-qq-EQl"/>
                         <outlet property="view4" destination="zu3-dl-3XM" id="zcW-4N-hKZ"/>
@@ -733,6 +794,7 @@
                         <outlet property="view6" destination="OEm-eT-dIF" id="jGi-28-WIw"/>
                         <outlet property="view7" destination="sAO-AO-pzf" id="qBy-nx-r0O"/>
                         <outlet property="view8" destination="ic9-mG-MuU" id="HW8-WY-Uva"/>
+                        <outlet property="view9" destination="ErM-xj-ytO" id="WIP-tu-X9y"/>
                         <outlet property="yearButton" destination="pjD-fe-GB5" id="IxQ-OI-IDV"/>
                     </connections>
                 </viewController>

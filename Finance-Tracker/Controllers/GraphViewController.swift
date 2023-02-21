@@ -87,6 +87,13 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var boxLabel5: UILabel!
     @IBOutlet weak var boxLabel6: UILabel!
     @IBOutlet weak var boxValue3: UILabel!
+    @IBOutlet weak var boxLabel7: UILabel!
+    @IBOutlet weak var boxLabel8: UILabel!
+    @IBOutlet weak var view9: UIView!
+    @IBOutlet weak var view10: UIView!
+    @IBOutlet weak var boxValue9: UILabel!
+    @IBOutlet weak var boxValue10: UILabel!
+    
     
     
     override func viewDidLoad() {
@@ -114,18 +121,17 @@ class GraphViewController: UIViewController {
         customizeViews()
         
         if isStocks {
-            boxLabel3.text = ""
+            boxLabel3.text = "Dividend Yield"
             boxLabel1.text = "Market Cap"
             boxLabel2.text = "Close"
             boxLabel5.text = "Low"
             boxLabel6.text = "High"
-            boxLabel4.text = "Previous Close"
-            
-            boxValue1.text = ""
-            boxValue2.text = ""
-            boxValue5.text = ""
-            boxValue6.text = ""
-            boxValue4.text = ""
+            boxLabel4.text = "Average Volume"
+            boxLabel7.text = "Open"
+            boxLabel8.text = "Volume"
+        } else {
+            view9.isHidden = true
+            view10.isHidden = true
         }
         
         let favorites = defaults.array(forKey: K.defaultFavorites) as? [String] ?? []
@@ -341,7 +347,7 @@ class GraphViewController: UIViewController {
             boxValue6.text = Utilities.formatDecimal(selectedCurrency!.total_supply, with: "")
             
             let unformattedVolume = Int(Utilities.getRate(for: selectedCurrency!, in: defaults.string(forKey: K.defaultFiat) ?? "USD").volume_24h)
-            boxLabel3.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
+            boxValue3.text = Utilities.formatDecimal(Double(unformattedVolume), with: "")
             
             if let maxSupply = selectedCurrency?.max_supply {
                 boxValue5.text = Utilities.formatDecimal(Double(maxSupply), with: "")
@@ -369,24 +375,26 @@ class GraphViewController: UIViewController {
                 self.symbolLabel.text = self.selectedStock?.symbol
                 self.nameLabel.text = self.selectedStock?.shortName
                 self.priceLabel.text = "$\(self.selectedStock?.regularMarketPrice ?? 0.0)"
-                self.boxLabel4.text = "Previous Close"
-                self.boxValue4.text = "$\(self.selectedStock?.regularMarketPreviousClose ?? 0.0)"
+                self.boxValue4.text = Utilities.formatDecimal(Double(self.selectedStock!.averageDailyVolume10Day ?? 0), with: "")
                 
                 self.percentChangeLabel.text = String(format: "%.2f", self.selectedStock!.regularMarketChangePercent ?? 0.0) + "%"
                 self.percentChangeLabel.textColor = self.percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
                 
                 self.customizeViews()
         
-                self.boxLabel2.text = "Close"
+                self.boxLabel2.text = "P/E"
                 self.boxLabel5.text = "Low"
                 self.boxLabel6.text = "High"
                 
-                self.boxValue3.text = Utilities.format(Int(self.selectedStock?.regularMarketVolume ?? 0), with: "")
-//                self.boxValue1.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketOpen ?? 0.0), with: "$")
+                self.boxValue3.text = Utilities.formatPriceLabel(String(format: "%.2f", (self.selectedStock!.trailingAnnualDividendYield ?? 0.0) * 100), with: "")
                 self.boxValue1.text = Utilities.formatDecimal(Double(self.selectedStock!.marketCap ?? 0), with: "$")
-                self.boxValue2.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketPrice ?? 0.0), with: "$")
+                self.boxValue2.text = String(format: "%.2f", self.selectedStock!.trailingPE ?? 0.0)
                 self.boxValue5.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketDayLow ?? 0.0), with: "$")
                 self.boxValue6.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketDayHigh ?? 0.0), with: "$")
+                self.boxValue7.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.regularMarketOpen ?? 0.0), with: "$")
+                self.boxValue8.text = Utilities.formatDecimal(Double(self.selectedStock!.regularMarketVolume ?? 0), with: "")
+                self.boxValue9.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.fiftyTwoWeekLow ?? 0.0), with: "$")
+                self.boxValue10.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.fiftyTwoWeekHigh ?? 0.0), with: "$")
             }
 
             DispatchQueue.main.async {
@@ -417,6 +425,8 @@ class GraphViewController: UIViewController {
         view6.layer.cornerRadius = K.viewCornerRadius
         view7.layer.cornerRadius = K.viewCornerRadius
         view8.layer.cornerRadius = K.viewCornerRadius
+        view9.layer.cornerRadius = K.viewCornerRadius
+        view10.layer.cornerRadius = K.viewCornerRadius
         dayButton.layer.cornerRadius = K.viewCornerRadius
         dayButton.titleLabel?.font = UIFont(name: "System Semibold", size: 17.0)
         fiveDaysButton.layer.cornerRadius = K.viewCornerRadius
