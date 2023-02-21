@@ -105,6 +105,10 @@ class GraphViewController: UIViewController {
         nameLabel.adjustsFontSizeToFitWidth = true
         percentChangeLabel.adjustsFontSizeToFitWidth = true
         
+//        self.lineChartView.xAxis.drawGridLinesEnabled = false
+        self.lineChartView.xAxis.drawLabelsEnabled = false
+//        self.lineChartView.legend.enabled = false
+        
         refreshInformation()
     }
     
@@ -489,18 +493,41 @@ extension GraphViewController: CryptoManagerDelegate {
 extension GraphViewController: StockManagerDelegate {
     
     // Chart data for stock received, chart updated
-    func receivedChartData(for data: [StockChartData]) {
+    func receivedChartData(for data: ChartDataModel) {
         yValue = []
         var counter = 0.0
-        for datum in data {
-            yValue.append(ChartDataEntry(x: counter, y: Double(datum.close!)))
-            counter += 1.0
+        let timestamps = data.chart.result[0].timestamp
+        var prices = data.chart.result[0].indicators.quote[0].close
+        
+        // JSON may return null values for some prices
+        var defaultPrice = prices[0]
+        if defaultPrice == nil {
+            for i in 0..<prices.count {
+                if prices[i] != nil {
+                    defaultPrice = prices[i]
+                    break
+                }
+            }
+        }
+        
+        for i in 0..<prices.count {
+            if prices[i] == nil {
+                if prices[i - 1] != nil {
+                    prices[i] = prices[i - 1]
+                } else {
+                    prices[i] = defaultPrice
+                }
+            }
+        }
+        
+        for _ in timestamps {
+            yValue.append(ChartDataEntry(x: counter, y: prices[Int(counter)] ?? prices[Int(counter - 1)]!))
+            counter += 1
         }
         DispatchQueue.main.async {
             self.setData()
         }
     }
-    
     
     func receivedSymbolMetrics(for symbol: StockChartData) {}
     

@@ -264,7 +264,7 @@ extension CryptoViewController {
 
 extension CryptoViewController: StockManagerDelegate {
     
-    func receivedChartData(for data: [StockChartData]) {}
+    func receivedChartData(for data: ChartDataModel) {}
     
     func receivedStockInformation() {
         self.indexFundEntries = stockManager.indexFundFullEntries
