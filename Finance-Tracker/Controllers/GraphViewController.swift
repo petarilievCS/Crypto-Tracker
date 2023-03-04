@@ -99,6 +99,8 @@ class GraphViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      
+        
         navigationItem.largeTitleDisplayMode = .never
         cryptoManager.delegate = self
         stockManager.delegate = self
@@ -135,23 +137,25 @@ class GraphViewController: UIViewController {
             view10.isHidden = true
         }
         
-        let favorites = defaults.array(forKey: K.defaultFavorites) as? [String] ?? []
+        let favoriteCrypto = defaults.array(forKey: K.defaultCrypto) as? [String] ?? []
+        let favoriteStocks = defaults.array(forKey: K.defaultStocks) as? [String] ?? []
         
-        for symbol in favorites {
-            if isStocks {
-                if symbol == selectedStock!.symbol {
-                    isFavorite = true
-                    favoriteButton.image = UIImage(systemName: "heart.fill")
-                    break
-                }
-            } else {
+        if !isStocks {
+            for symbol in favoriteCrypto {
                 if symbol == selectedCurrency!.symbol {
                     isFavorite = true
                     favoriteButton.image = UIImage(systemName: "heart.fill")
                     break
                 }
             }
-            
+        } else {
+            for symbol in favoriteStocks {
+                if symbol == selectedStock!.symbol {
+                    isFavorite = true
+                    favoriteButton.image = UIImage(systemName: "heart.fill")
+                    break
+                }
+            }
         }
     }
     
@@ -184,39 +188,81 @@ class GraphViewController: UIViewController {
     
     // Add crypto to favorites
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
-        var favorites = defaults.array(forKey: K.defaultFavorites)
         
-        if !isFavorite {
-            // Add to favorites
-            if favorites != nil {
-                if isStocks {
-                    favorites!.append(selectedStock!.symbol)
+        
+        if !isStocks {
+            var favoriteCrypto = defaults.array(forKey: K.defaultCrypto)
+            
+            if !isFavorite {
+                // Add to favorites
+                if favoriteCrypto != nil {
+                    if isStocks {
+                        favoriteCrypto!.append(selectedStock!.symbol)
+                    } else {
+                        favoriteCrypto!.append(selectedCurrency!.symbol)
+                    }
+                    defaults.set(favoriteCrypto, forKey: K.defaultCrypto)
                 } else {
-                    favorites!.append(selectedCurrency!.symbol)
+                    if isStocks {
+                        defaults.set([selectedStock!.symbol], forKey: K.defaultCrypto)
+                    } else {
+                        defaults.set([selectedCurrency!.symbol], forKey: K.defaultCrypto)
+                    }
                 }
-                defaults.set(favorites, forKey: K.defaultFavorites)
             } else {
-                if isStocks {
-                    defaults.set([selectedStock!.symbol], forKey: K.defaultFavorites)
-                } else {
-                    defaults.set([selectedCurrency!.symbol], forKey: K.defaultFavorites)
+                for i in 0...(favoriteCrypto!.count - 1) {
+                    if isStocks {
+                        if favoriteCrypto![i] as! String == selectedStock!.symbol {
+                            favoriteCrypto?.remove(at: i)
+                            break
+                        }
+                    } else {
+                        if favoriteCrypto![i] as! String == selectedCurrency!.symbol {
+                            favoriteCrypto?.remove(at: i)
+                            break
+                        }
+                    }
                 }
+                defaults.set(favoriteCrypto, forKey: K.defaultCrypto)
             }
+            
         } else {
-            for i in 0...(favorites!.count - 1) {
-                if isStocks {
-                    if favorites![i] as! String == selectedStock!.symbol {
-                        favorites?.remove(at: i)
-                        break
+            
+            var favoriteStocks = defaults.array(forKey: K.defaultStocks)
+            
+            if !isFavorite {
+                // Add to favorites
+                if favoriteStocks != nil {
+                    if isStocks {
+                        favoriteStocks!.append(selectedStock!.symbol)
+                    } else {
+                        favoriteStocks!.append(selectedCurrency!.symbol)
                     }
+                    defaults.set(favoriteStocks, forKey: K.defaultStocks)
                 } else {
-                    if favorites![i] as! String == selectedCurrency!.symbol {
-                        favorites?.remove(at: i)
-                        break
+                    if isStocks {
+                        defaults.set([selectedStock!.symbol], forKey: K.defaultStocks)
+                    } else {
+                        defaults.set([selectedCurrency!.symbol], forKey: K.defaultStocks)
                     }
                 }
+            } else {
+                for i in 0...(favoriteStocks!.count - 1) {
+                    if isStocks {
+                        if favoriteStocks![i] as! String == selectedStock!.symbol {
+                            favoriteStocks?.remove(at: i)
+                            break
+                        }
+                    } else {
+                        if favoriteStocks![i] as! String == selectedCurrency!.symbol {
+                            favoriteStocks?.remove(at: i)
+                            break
+                        }
+                    }
+                }
+                defaults.set(favoriteStocks, forKey: K.defaultStocks)
             }
-            defaults.set(favorites, forKey: K.defaultFavorites)
+            
         }
         
         favoriteButton.image = isFavorite ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
@@ -382,7 +428,7 @@ class GraphViewController: UIViewController {
                 self.percentChangeLabel.textColor = self.percentChange.first == "-" ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
                 
                 self.customizeViews()
-        
+                
                 self.boxLabel2.text = "P/E"
                 self.boxLabel5.text = "Low"
                 self.boxLabel6.text = "High"
@@ -397,7 +443,7 @@ class GraphViewController: UIViewController {
                 self.boxValue9.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.fiftyTwoWeekLow ?? 0.0), with: "$")
                 self.boxValue10.text = Utilities.formatPriceLabel(String(format: "%.2f", self.selectedStock!.fiftyTwoWeekHigh ?? 0.0), with: "$")
             }
-
+            
             DispatchQueue.main.async {
                 // Setup chart view
                 self.chartView.addSubview(self.lineChartView)
@@ -534,7 +580,7 @@ extension GraphViewController: StockManagerDelegate {
         refreshStockInformation()
     }
     
-    // Updates view when information is received
+    func receivedFavoriteStocks() {}
     func receivedSymbolInformatioN(for symbol: RecentStockData) {}
     
 }

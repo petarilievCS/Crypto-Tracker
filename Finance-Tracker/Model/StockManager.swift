@@ -13,6 +13,7 @@ protocol StockManagerDelegate {
     func receivedSymbolInformatioN(for symbol: RecentStockData)
     func receivedSymbolMetrics(for symbol: StockChartData)
     func receivedChartData(for data: ChartDataModel)
+    func receivedFavoriteStocks()
 }
 
 class StockManager {
@@ -20,6 +21,7 @@ class StockManager {
     var indexFundEntries: [IndexEntry] = []
     var searchResponse: SearchResponse?
     var indexFundFullEntries: [IndexFullEntry] = []
+    var favoriteStocks: [IndexFullEntry] = []
     var delegate: StockManagerDelegate?
     
     // Set containing all stocks which have the same symbol as a crypto currency
@@ -38,6 +40,28 @@ class StockManager {
                 print("error:\(error)")
             }
         }
+    }
+    
+    // Perform API request with given symbols
+    func performRequest(with symbols: [String]) {
+        var urlString = "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
+        for symbol in symbols {
+            urlString += symbol + ","
+        }
+        urlString.removeLast()
+        let url = URL(string: urlString)!
+        let request = URLRequest(url: url)
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil {
+                print("Error while performing request: \(error!)")
+            }
+            if let safeData = data {
+                self.parseFavoritesJSON(from: safeData)
+            }
+        }
+        task.resume()
     }
     
     func performRequest(for symbol: String) {
@@ -92,6 +116,17 @@ class StockManager {
         task.resume()
     }
     
+    // Parses favorite stocks
+    func parseFavoritesJSON(from data: Data) {
+        let decoder = JSONDecoder()
+        do {
+            favoriteStocks = try decoder.decode(QuoteResponse.self, from: data).quoteResponse.result
+            delegate?.receivedFavoriteStocks()
+        } catch {
+            print("Error while decoding favorite stocks: \(error)")
+        }
+    }
+    
     // Parses JSON response from Yahoo Finance
     func parsePricesJSON(from data: Data) {
         let decoder = JSONDecoder()
@@ -144,7 +179,6 @@ class StockManager {
         }
         
         let urlString = "https://query1.finance.yahoo.com/v8/finance/chart/\(symbol)?range=\(range)&interval=\(interval)&includeTimestamp=true&indicators=quote"
-        print(urlString)
         let URL = URL(string: urlString)!
         let request = URLRequest(url: URL)
         
