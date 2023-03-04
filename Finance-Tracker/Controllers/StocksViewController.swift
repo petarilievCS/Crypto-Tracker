@@ -52,7 +52,12 @@ class StocksViewController: CryptoViewController {
         }
         
         // Putting upper case first takes care of all edge cases where crypto and stock have the same symbol
-        cell.logoImaeView.image = UIImage(named: upperCaseImageName) ?? UIImage(named: imageName) ?? UIImage(named: "generic.svg")
+        cell.logoImaeView.image = UIImage(named: upperCaseImageName) ?? UIImage(named: imageName) ?? UIImage(named: "default.png")
+        
+        if cell.logoImaeView.image == nil {
+            cell.logoImaeView.removeFromSuperview()
+        }
+        
         return cell
     }
     
@@ -103,13 +108,7 @@ extension StocksViewController {
 extension StocksViewController {
     
     override func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        indexFundEntries = indexFundEntries.filter({ entry in
-            let query = searchBar.text!.lowercased()
-            let entryName = entry.shortName?.lowercased() ?? "Name not found"
-            let entrySymbol = entry.symbol.lowercased()
-            return entryName.contains(query) || entrySymbol.contains(query)
-        })
-        self.tableView.reloadData()
+        stockManager.performSearchRequest(with: searchBar.text!)
     }
     
     override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

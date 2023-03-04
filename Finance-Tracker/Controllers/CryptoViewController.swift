@@ -20,6 +20,8 @@ class CryptoViewController: UITableViewController {
     let defaults = UserDefaults.standard
     
     var indexFundEntries: [IndexFullEntry] = []
+    var favoriteStocks: [IndexFullEntry] = []
+    var favoriteCrypto: [CryptoData] = []
     let stockManager = StockManager()
 
     override func viewDidLoad() {
@@ -40,6 +42,8 @@ class CryptoViewController: UITableViewController {
         cryptoManager.performRequest()
         stockManager.delegate = self
         stockManager.performRequest()
+        getFavoriteStocks()
+        
         super.viewDidLoad()
     }
     
@@ -51,6 +55,43 @@ class CryptoViewController: UITableViewController {
         tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.navigationController?.navigationBar.isTranslucent = true
         tabBarController?.navigationController?.navigationBar.barTintColor = UIColor.black
+    }
+    
+    // Sets up the array for all favorite stocks
+    func getFavoriteStocks() {
+        let favorites: [String] = (defaults.array(forKey: K.defaultStocks) as? [String]) ?? []
+        stockManager.performRequest(with: favorites)
+    }
+    
+    // Sets up the array for all favorite cryptos
+    func getFavoriteCrypto() {
+        let favoriteCryptoSymbols: [String] = UserDefaults.standard.array(forKey: K.defaultCrypto) as! [String]
+        favoriteCrypto = []
+        for i in 0..<favoriteCryptoSymbols.count {
+            if let favorite = findFavorite(at: i) {
+                favoriteCrypto.append(favorite)
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    // Finds favorite crypto at given position
+    func findFavorite(at position: Int) -> CryptoData? {
+        var current = 0
+        var currentCrypto: CryptoData? = nil
+        let favorites = defaults.array(forKey: K.defaultCrypto) as! [String]
+        for cryptoData in crypto {
+            if favorites.contains(where: { str in
+                return str == cryptoData.symbol
+            }) {
+                if position == current {
+                    currentCrypto = cryptoData
+                    break
+                }
+                current += 1
+            }
+        }
+        return currentCrypto
     }
     
     // MARK: - Table View methods
@@ -152,6 +193,7 @@ class CryptoViewController: UITableViewController {
 extension CryptoViewController: CryptoManagerDelegate {
     func receivedInformation() {
         crypto = cryptoManager.returnArray
+        getFavoriteCrypto()
         self.tableView.reloadData()
     }
 }
@@ -268,6 +310,13 @@ extension CryptoViewController: StockManagerDelegate {
     
     func receivedStockInformation() {
         self.indexFundEntries = stockManager.indexFundFullEntries
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func receivedFavoriteStocks() {
+        self.favoriteStocks = stockManager.favoriteStocks
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

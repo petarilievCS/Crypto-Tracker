@@ -14,6 +14,7 @@ class FavoritesViewController: CryptoViewController {
     var cryptoCount: Int = 0
     var stockCount: Int = 0
     var isSelectedCellStock: Bool = false
+
     
     override func viewDidLoad() {
         self.searchBar = favoritesSearchBar
@@ -23,6 +24,8 @@ class FavoritesViewController: CryptoViewController {
     override func viewWillAppear(_ animated: Bool) {
         // Customize bar
         tableView.reloadData()
+        getFavoriteStocks()
+        getFavoriteCrypto()
         tabBarController?.navigationItem.hidesBackButton = true
         tabBarController?.navigationItem.title = "Favorites"
         tabBarController?.navigationItem.rightBarButtonItems?[1].isHidden = true
@@ -30,26 +33,10 @@ class FavoritesViewController: CryptoViewController {
     
     // UITableView methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let favorites: [String] = (defaults.array(forKey: K.defaultFavorites) as? [String]) ?? []
-        cryptoCount = 0
-        for cryptoData in crypto {
-            if favorites.contains(where: { str in
-                return str == cryptoData.symbol
-            }) {
-                cryptoCount += 1
-            }
+        if section == 0 {
+            return favoriteCrypto.count
         }
-        var stockCount = 0
-        for stockData in indexFundEntries {
-            if favorites.contains(where: { str in
-                return str == stockData.symbol
-            }) {
-                stockCount += 1
-            }
-        }
-        
-        if section == 0 { return cryptoCount }
-        return stockCount
+        return favoriteStocks.count
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,18 +64,21 @@ class FavoritesViewController: CryptoViewController {
             cell.stockLabel.text = currentCrypto?.symbol
             cell.companyLabel.text = currentCrypto?.name
             
-            setCurrencyInCell(cell, for: currentCrypto!)
-            
-            if let cryptoIcon = UIImage(named: "\(currentCrypto!.symbol.lowercased()).png") {
-                cell.logoImaeView.contentMode = .scaleAspectFit
-                cell.logoImaeView.image = cryptoIcon
+            if let safeCrypto = currentCrypto {
+                setCurrencyInCell(cell, for: safeCrypto)
+                if let cryptoIcon = UIImage(named: "\(currentCrypto!.symbol.lowercased()).png") {
+                    cell.logoImaeView.contentMode = .scaleAspectFit
+                    cell.logoImaeView.image = cryptoIcon
+                } else {
+                    cell.logoImaeView.image = UIImage(named: "generic.svg")
+                }
             } else {
-                cell.logoImaeView.image = UIImage(named: "generic.svg")
+                cell.logoImaeView.image = nil
             }
         }
         // Stocks
         else {
-            let currentStock  = findFavoriteStock(at: indexPath.row)!
+            let currentStock  = favoriteStocks[indexPath.row]
             cell.stockLabel.text = currentStock.symbol
             cell.companyLabel.text = currentStock.shortName
             cell.priceLabel.text = Utilities.formatPriceLabel(String(currentStock.regularMarketPrice ?? 0.0), with: "$")
@@ -99,10 +89,14 @@ class FavoritesViewController: CryptoViewController {
             cell.percentLabel.textColor = percentChange < 0 ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
             
             var imageName = "\(cell.stockLabel.text!.lowercased()).png"
-            if imageName == "payx.png" {
-                imageName = "payxx.png" // Edge case: crypto and stock have same symbol
+            var upperCaseImageName = "\(cell.stockLabel.text!).png"
+            
+            if stockManager.edgeCaseSet.contains(cell.stockLabel.text!.lowercased()) {
+                upperCaseImageName = "\(cell.stockLabel.text!) 1.png"
             }
-            cell.logoImaeView.image = UIImage(named: imageName) ?? UIImage(named: "generic.svg")
+            
+            // Putting upper case first takes care of all edge cases where crypto and stock have the same symbol
+            cell.logoImaeView.image = UIImage(named: upperCaseImageName) ?? UIImage(named: imageName) ?? UIImage(named: "default.png")
         }
         return cell
     }
@@ -121,45 +115,9 @@ class FavoritesViewController: CryptoViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // Finds favorite stock at given position
-    func findFavoriteStock(at position: Int) -> IndexFullEntry? {
-        var current = 0
-        var currentStock: IndexFullEntry? = nil
-        let favorites = defaults.array(forKey: K.defaultFavorites) as! [String]
-        
-        for stockData in indexFundEntries {
-            if favorites.contains(where: { str in
-                return str == stockData.symbol
-            }) {
-                if position == current {
-                    currentStock = stockData
-                    break
-                }
-                current += 1
-            }
-        }
-        return currentStock
-    }
+   
     
-    // Finds favorite crypto at given position
-    func findFavorite(at position: Int) -> CryptoData? {
-        var current = 0
-        var currentCrypto: CryptoData? = nil
-        let favorites = defaults.array(forKey: K.defaultFavorites) as! [String]
-        
-        for cryptoData in crypto {
-            if favorites.contains(where: { str in
-                return str == cryptoData.symbol
-            }) {
-                if position == current {
-                    currentCrypto = cryptoData
-                    break
-                }
-                current += 1
-            }
-        }
-        return currentCrypto
-    }
+ 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -174,7 +132,7 @@ class FavoritesViewController: CryptoViewController {
                 destinationVC.selectedCurrency = selectedCurrency
                 destinationVC.isStocks = false
             } else {
-                let selectedStock = findFavoriteStock(at: selectedIdx)
+                let selectedStock = favoriteStocks[selectedIdx]
                 destinationVC.isStocks = true
                 destinationVC.selectedStock = selectedStock
                 
@@ -185,13 +143,13 @@ class FavoritesViewController: CryptoViewController {
     }
     
     override func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        crypto = crypto.filter({ coin in
+        favoriteCrypto = favoriteCrypto.filter({ coin in
             let query = searchBar.text!.lowercased()
             let coinName = coin.name.lowercased()
             let coinSymbol = coin.symbol.lowercased()
             return coinName.contains(query) || coinSymbol.contains(query)
         })
-        indexFundEntries = indexFundEntries.filter({ entry in
+        favoriteStocks = favoriteStocks.filter({ entry in
             let query = searchBar.text!.lowercased()
             let entryName = entry.shortName?.lowercased() ?? "Name not found"
             let entrySymbol = entry.symbol.lowercased()
@@ -203,7 +161,7 @@ class FavoritesViewController: CryptoViewController {
     override func refreshInformation() {
         cryptoManager.performRequest()
         stockManager.performRequest()
-        
+        getFavoriteStocks()
         DispatchQueue.main.async {
             self.refreshControl?.endRefreshing()
         }
@@ -218,4 +176,6 @@ class FavoritesViewController: CryptoViewController {
         }
     }
     
+    
 }
+
