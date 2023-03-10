@@ -20,6 +20,8 @@ enum Period {
     case twoYears
 }
 
+
+
 class GraphViewController: UIViewController {
     
     // Chart view
@@ -93,20 +95,22 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var view10: UIView!
     @IBOutlet weak var boxValue9: UILabel!
     @IBOutlet weak var boxValue10: UILabel!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-      
-        
+    
         navigationItem.largeTitleDisplayMode = .never
         cryptoManager.delegate = self
         stockManager.delegate = self
         nameLabel.adjustsFontSizeToFitWidth = true
         percentChangeLabel.adjustsFontSizeToFitWidth = true
         self.lineChartView.xAxis.drawLabelsEnabled = false
+        
+        // Setup markers on chart
+        let marker:BalloonMarker = BalloonMarker(color: .systemGray5, font: .systemFont(ofSize: 17.0, weight: .medium), textColor: .label, insets: UIEdgeInsets(top: 10.0, left: 10.0, bottom: 20.0, right: 10.0))
+        marker.minimumSize = CGSize(width: 75.0, height: 35.0)
+        marker.isStocks = isStocks
+        lineChartView.marker = marker
         
         refreshInformation()
     }
