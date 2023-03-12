@@ -88,7 +88,7 @@ class FavoritesViewController: CryptoViewController {
             cell.percentLabel.text! += "%"
             cell.percentLabel.textColor = percentChange < 0 ? UIColor(named: "Signature Red") : UIColor(named: "Signature Green")
             
-            var imageName = "\(cell.stockLabel.text!.lowercased()).png"
+            let imageName = "\(cell.stockLabel.text!.lowercased()).png"
             var upperCaseImageName = "\(cell.stockLabel.text!).png"
             
             if stockManager.edgeCaseSet.contains(cell.stockLabel.text!.lowercased()) {

@@ -888,11 +888,12 @@
                         <segue destination="G7e-ge-7uD" kind="relationship" relationship="viewControllers" id="5vu-zF-Ifr"/>
                         <segue destination="vkJ-9T-mEX" kind="relationship" relationship="viewControllers" id="BzI-66-bLv"/>
                         <segue destination="EE0-lG-Ffe" kind="relationship" relationship="viewControllers" id="LwS-vr-lQW"/>
+                        <segue destination="dbC-92-7Ey" kind="relationship" relationship="viewControllers" id="OSv-EF-2Uv"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wvt-35-yd7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3539.6946564885493" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="3540" y="-2"/>
         </scene>
         <!--Stocks-->
         <scene sceneID="hAk-hK-qnq">
@@ -937,7 +938,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OFR-7W-eVe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3329" y="745"/>
+            <point key="canvasLocation" x="3540" y="710"/>
         </scene>
         <!--Crypto-->
         <scene sceneID="RS2-e5-vL8">
@@ -985,6 +986,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kdj-Ip-JAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4465" y="710"/>
+        </scene>
+        <!--Stocks-->
+        <scene sceneID="Rw1-ZG-p3a">
+            <objects>
+                <tableViewController id="dbC-92-7Ey" customClass="ForexViewControlelr" customModule="Finance_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="GTM-jl-8uz">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="crz-uh-s7e">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssetCell" id="isB-qu-Vzq" customClass="AssetCell" customModule="Finance_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="94" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="isB-qu-Vzq" id="Kh4-lv-EN9">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dbC-92-7Ey" id="fa8-ID-tsa"/>
+                            <outlet property="delegate" destination="dbC-92-7Ey" id="clI-XC-tRE"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Stocks" id="rcA-N7-SJt">
+                        <imageReference key="image" image="dollarsign.circle" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="dollarsign.circle" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t9t-uR-Qt1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2676" y="710"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
