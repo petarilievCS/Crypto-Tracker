@@ -17,12 +17,30 @@ class ForexViewControlelr: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: K.assetCellIdentifier, bundle: nil), forCellReuseIdentifier: K.assetCellIdentifier)
+        searchBar.delegate = self
         
         forexManager.delegate = self
         forexManager.performRequest()
+        
+        // Refresh functionality
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: #selector(refreshInformation), for: .valueChanged)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // Customize bar
+        tabBarController?.navigationItem.hidesBackButton = true
+        tabBarController?.navigationItem.title = "Foreign Exchange"
+        tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
+    }
     
+    // Reloads most recent data
+    @objc func refreshInformation() {
+        forexManager.performRequest()
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
+    }
 
     // MARK: - Table View methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,13 +95,19 @@ extension ForexViewControlelr {
             } else {
                 forexRate.name = String(forexRate.name.dropFirst(10))
             }
-            forexRate.shortsymbol = String(forexRate.shortsymbol.dropFirst(3))
+            forexRate.shortsymbol = String(forexRate.shortsymbol.dropFirst(3)).uppercased()
         }
     }
     
     // Returns the name of the given currency symbol
     func getName(for symbol: String) -> String? {
         switch symbol {
+        case "AED":
+            return "UAE Dirham"
+        case "CNY":
+            return "Chinese Yuan"
+        case "LRD":
+            return "Liberian Dollar"
         case "AOA":
             return "Angolan Kwanza"
         case "AWG":
@@ -110,8 +134,38 @@ extension ForexViewControlelr {
             return "Serbian Dinar"
         case "ZMW":
             return "Zambian Kwacha"
+        case "SLL":
+            return "Sierra Leonean Leone"
+        case "USD":
+            return "United States Dollar"
+        case "VND":
+            return "Vietnam Dong"
         default:
             return nil
+        }
+    }
+    
+}
+
+// MARK: - Search Bar methods
+extension ForexViewControlelr: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        forexRates = forexRates.filter({ forexRate in
+            let query = searchBar.text!.lowercased()
+            let forexName = forexRate.name.lowercased()
+            let forexSymbol = forexRate.shortsymbol.lowercased()
+            return forexName.contains(query) || forexSymbol.contains(query)
+        })
+        self.tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text!.isEmpty {
+            forexManager.performRequest()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
         }
     }
     

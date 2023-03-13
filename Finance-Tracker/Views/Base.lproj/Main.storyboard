@@ -927,8 +927,8 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Stocks" id="gsZ-91-Tva">
-                        <imageReference key="image" image="dollarsign.circle" catalog="system" symbolScale="large"/>
-                        <imageReference key="selectedImage" image="dollarsign.circle" catalog="system" symbolScale="large"/>
+                        <imageReference key="image" image="dollarsign.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="dollarsign.circle.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="newSearchBar" destination="glJ-Ql-6su" id="Hnk-YW-7tZ"/>
@@ -987,7 +987,7 @@
             </objects>
             <point key="canvasLocation" x="4465" y="710"/>
         </scene>
-        <!--Stocks-->
+        <!--Forex-->
         <scene sceneID="Rw1-ZG-p3a">
             <objects>
                 <tableViewController id="dbC-92-7Ey" customClass="ForexViewControlelr" customModule="Finance_Tracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -1015,10 +1015,13 @@
                             <outlet property="delegate" destination="dbC-92-7Ey" id="clI-XC-tRE"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Stocks" id="rcA-N7-SJt">
-                        <imageReference key="image" image="dollarsign.circle" catalog="system" symbolScale="large"/>
-                        <imageReference key="selectedImage" image="dollarsign.circle" catalog="system" symbolScale="large"/>
+                    <tabBarItem key="tabBarItem" title="Forex" id="rcA-N7-SJt">
+                        <imageReference key="image" image="eurosign.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="eurosign.circle.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="searchBar" destination="crz-uh-s7e" id="E9a-eO-xHt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9t-uR-Qt1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1035,7 +1038,8 @@
         <image name="bitcoinsign.circle" catalog="system" width="128" height="123"/>
         <image name="bitcoinsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="dollarsign" catalog="system" width="89" height="128"/>
-        <image name="dollarsign.circle" catalog="system" width="128" height="123"/>
+        <image name="dollarsign.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="eurosign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="person" catalog="system" width="128" height="121"/>
