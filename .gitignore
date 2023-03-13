@@ -89,3 +89,4 @@ fastlane/test_output
 
 iOSInjectionProject/
 Finance-Tracker/Keys.swift
+*.DS_Store

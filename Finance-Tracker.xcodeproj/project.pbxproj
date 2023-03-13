@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E6269B8E29BD021700DF255B /* ForexViewControlelr.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6269B8D29BD021700DF255B /* ForexViewControlelr.swift */; };
+		E6269B9229BD051200DF255B /* ForexManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6269B9129BD051200DF255B /* ForexManager.swift */; };
 		E68B616829803D06008A3814 /* StockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B616729803D06008A3814 /* StockManager.swift */; };
 		E68B616C29804870008A3814 /* IndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B616B29804870008A3814 /* IndexEntry.swift */; };
 		E69DD758299E992D006FEF2D /* IndexFullEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69DD757299E992D006FEF2D /* IndexFullEntry.swift */; };
@@ -34,6 +36,7 @@
 		E6A50190293D019800E5C36F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A5018F293D019800E5C36F /* Utilities.swift */; };
 		E6A50192293D0C2900E5C36F /* Crypto .swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50191293D0C2900E5C36F /* Crypto .swift */; };
 		E6A50196293D0EAC00E5C36F /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A50195293D0EAC00E5C36F /* CryptoManager.swift */; };
+		E6AA087F29BD300700BD2B5B /* ForexRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AA087E29BD300700BD2B5B /* ForexRate.swift */; };
 		E6ADAE8A29817FC6008C4D15 /* SwiftYFinance in Frameworks */ = {isa = PBXBuildFile; productRef = E6ADAE8929817FC6008C4D15 /* SwiftYFinance */; };
 		E6B1A6AE29478958006776E3 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6AD29478958006776E3 /* Algorithms */; };
 		E6B1A6B629478C45006776E3 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = E6B1A6B529478C45006776E3 /* Charts */; };
@@ -48,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E6269B8D29BD021700DF255B /* ForexViewControlelr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForexViewControlelr.swift; sourceTree = "<group>"; };
+		E6269B9129BD051200DF255B /* ForexManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForexManager.swift; sourceTree = "<group>"; };
 		E68B616729803D06008A3814 /* StockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockManager.swift; sourceTree = "<group>"; };
 		E68B616B29804870008A3814 /* IndexEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexEntry.swift; sourceTree = "<group>"; };
 		E69DD757299E992D006FEF2D /* IndexFullEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexFullEntry.swift; sourceTree = "<group>"; };
@@ -73,6 +78,7 @@
 		E6A5018F293D019800E5C36F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E6A50191293D0C2900E5C36F /* Crypto .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto .swift"; sourceTree = "<group>"; };
 		E6A50195293D0EAC00E5C36F /* CryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoManager.swift; sourceTree = "<group>"; };
+		E6AA087E29BD300700BD2B5B /* ForexRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForexRate.swift; sourceTree = "<group>"; };
 		E6B1A6BB2948A4AB006776E3 /* CryptoHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHistory.swift; sourceTree = "<group>"; };
 		E6B7DA892960479B008F8CD1 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		E6BA790529AE6FB2004FB910 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				E6A5017F293A5AF100E5C36F /* StocksViewController.swift */,
 				E6A50181293A5D6E00E5C36F /* GraphViewController.swift */,
 				E6B7DA892960479B008F8CD1 /* AccountViewController.swift */,
+				E6269B8D29BD021700DF255B /* ForexViewControlelr.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -175,6 +182,8 @@
 				E6F92CC6299EB8070081948F /* constituents_json.json */,
 				E6BDD6EE29A532E900B9F958 /* ChartDataModel.swift */,
 				E6BA790529AE6FB2004FB910 /* SearchResponse.swift */,
+				E6269B9129BD051200DF255B /* ForexManager.swift */,
+				E6AA087E29BD300700BD2B5B /* ForexRate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -289,12 +298,15 @@
 				E6C3F9D629BB7AE2002865F5 /* BalloonMarker.swift in Sources */,
 				E6A501542937DED100E5C36F /* SceneDelegate.swift in Sources */,
 				E68B616C29804870008A3814 /* IndexEntry.swift in Sources */,
+				E6269B8E29BD021700DF255B /* ForexViewControlelr.swift in Sources */,
 				E6A5016E2938F75900E5C36F /* K.swift in Sources */,
 				E68B616829803D06008A3814 /* StockManager.swift in Sources */,
 				E6A50182293A5D6E00E5C36F /* GraphViewController.swift in Sources */,
 				E6A5015C2937DED100E5C36F /* Finance_Tracker.xcdatamodeld in Sources */,
 				E6B1A6BC2948A4AB006776E3 /* CryptoHistory.swift in Sources */,
+				E6269B9229BD051200DF255B /* ForexManager.swift in Sources */,
 				E6A5016C293826CC00E5C36F /* UICustomTextField.swift in Sources */,
+				E6AA087F29BD300700BD2B5B /* ForexRate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 59DXMVY9R4;
@@ -455,7 +468,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.petariliev.Finance-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -472,6 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 59DXMVY9R4;
@@ -488,7 +502,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.petariliev.Finance-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -30,7 +30,6 @@ class CryptoViewController: UITableViewController {
         // Refresh functionality
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refreshInformation), for: .valueChanged)
-        // self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshInformation))
         self.tabBarController?.navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(goToAccount))
         
         // Currency change
