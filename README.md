@@ -10,4 +10,4 @@ iOS application that lets the user track metrics (price, price change, market ca
 
 # Demo 
 
- <img/> <img src="https://user-images.githubusercontent.com/90746623/228086810-762450eb-8c55-435e-8b75-8606412738c4.gif" width="266" height="576"/>
+ <img/> <img src="https://user-images.githubusercontent.com/90746623/228087983-ecd1bea8-457c-480a-aa5e-fdda2987c6c1.gif" width="266" height="576"/>
