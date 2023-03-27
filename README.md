@@ -6,9 +6,8 @@ iOS application that lets the user track metrics (price, price change, market ca
 
 # Screenshots 
 
-<img src="https://user-images.githubusercontent.com/90746623/215623570-55fa89be-38ea-4ed8-9c58-e5a47a32396a.png" width="266" height="576"/><img src="https://user-images.githubusercontent.com/90746623/220434661-ca932342-63ed-458c-9dc2-18241cd250ca.jpg" width="266" height="576"/><img src="https://user-images.githubusercontent.com/90746623/215623576-60f0cc2a-24b4-456d-85e4-fc606d3cde76.png" width="266" height="576"/>
+<img src="https://user-images.githubusercontent.com/90746623/228083717-148555ce-20c0-4af7-a929-6764d9d6a3e7.jpg" width="266" height="576"/><img src="https://user-images.githubusercontent.com/90746623/228083712-88b5d502-cb6c-4f19-b363-5e9ea70eede1.jpg" width="266" height="576"/><img src="https://user-images.githubusercontent.com/90746623/220434661-ca932342-63ed-458c-9dc2-18241cd250ca.jpg" width="266" height="576"/>
 
 # Demo 
 
- <img/> <img src="https://user-images.githubusercontent.com/90746623/210065407-b043a21f-899c-46dc-9e7c-a0987e25061d.gif" width="266" height="576"/>
-
+ <img/> <img src="https://user-images.githubusercontent.com/90746623/228086810-762450eb-8c55-435e-8b75-8606412738c4.gif" width="266" height="576"/>
